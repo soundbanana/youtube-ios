@@ -7,18 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B529D6A51B007D361B /* AppCoordinator.swift */; };
+		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
+		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
+		FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942BB29D6A784007D361B /* LibraryViewController.swift */; };
 		FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */; };
 		FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */; };
-		FFEEC0E329D4279700CBF948 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0E229D4279700CBF948 /* ViewController.swift */; };
+		FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0E229D4279700CBF948 /* HomeViewController.swift */; };
 		FFEEC0E829D4279800CBF948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E729D4279800CBF948 /* Assets.xcassets */; };
 		FFEEC0EB29D4279800CBF948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E929D4279800CBF948 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FFC942B529D6A51B007D361B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
+		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
+		FFC942BB29D6A784007D361B /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		FFEEC0DB29D4279700CBF948 /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFEEC0E229D4279700CBF948 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		FFEEC0E229D4279700CBF948 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FFEEC0E729D4279800CBF948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFEEC0EA29D4279800CBF948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFEEC0EC29D4279800CBF948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -58,6 +66,8 @@
 				FFEEC0EC29D4279800CBF948 /* Info.plist */,
 				FFEEC0F429D428CE00CBF948 /* Storyboards */,
 				FFEEC0F329D428B900CBF948 /* ViewControllers */,
+				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
+				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
 			);
 			path = YouTube;
 			sourceTree = "<group>";
@@ -75,7 +85,9 @@
 		FFEEC0F329D428B900CBF948 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				FFEEC0E229D4279700CBF948 /* ViewController.swift */,
+				FFEEC0E229D4279700CBF948 /* HomeViewController.swift */,
+				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
+				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -158,9 +170,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFEEC0E329D4279700CBF948 /* ViewController.swift in Sources */,
+				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
+				FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */,
+				FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
+				FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */,
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
+				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
