@@ -17,4 +17,3 @@ class AppCoordinator {
         window?.rootViewController = tabBarCoordinator.start()
     }
 }
-
