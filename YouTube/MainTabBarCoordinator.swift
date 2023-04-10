@@ -17,7 +17,7 @@ class MainTabBarCoordinator {
         tabBarController.viewControllers = [
             home(),
             subscriptions(),
-            library(),
+            library()
         ]
         return tabBarController
     }
@@ -52,4 +52,3 @@ class MainTabBarCoordinator {
         return controller
     }
 }
-
