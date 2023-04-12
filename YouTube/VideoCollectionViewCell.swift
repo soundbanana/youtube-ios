@@ -22,7 +22,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
 
         setupView()
         setConstraints()
-        self.backgroundColor = .red
+        self.backgroundColor = .gray
     }
 
     required init?(coder: NSCoder) {
@@ -41,7 +41,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
         label.text = name
     }
 
-
     func setConstraints() {
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: topAnchor, constant: 5),
@@ -52,4 +51,3 @@ class VideoCollectionViewCell: UICollectionViewCell {
         )
     }
 }
-

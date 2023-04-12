@@ -9,76 +9,57 @@ import UIKit
 
 class SubscriptionsViewController: UIViewController {
 
-//    let flowLayout: UICollectionViewFlowLayout = {
-//        let layout = UICollectionViewFlowLayout()
-//        layout.minimumInteritemSpacing = 5
-//        layout.minimumLineSpacing = 5
-//        layout.sectionInset = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-//        return layout
-//    }()
-
-
-    private let collectionView: UICollectionView = {
-        let collectionViewLayout = UICollectionViewFlowLayout()
-        collectionViewLayout.minimumInteritemSpacing = 0
-//        collectionViewLayout.minimumLineSpacing = 0
-        collectionViewLayout.sectionInset = UIEdgeInsets(top: 20, left: 0, bottom: 10, right: 0)
-
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: collectionViewLayout)
-        collectionView.backgroundColor = .white
-        collectionView.bounces = true
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-        return collectionView
-    }()
+    private var collectionView: UICollectionView! = nil
 
     override func viewDidLoad() {
+        configureCollectionView()
         setupViews()
-        addConstraints()
-
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
 
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        view.addSubview(collectionView)
-        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
-        collectionView.collectionViewLayout = createLayout()
+    }
 
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        view.addSubview(collectionView)
     }
 }
 
 extension SubscriptionsViewController {
+
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            guard let self = self else { return nil }
-            return self.createVideosSection()
-        }
+        return self.createVideosSection()
     }
 
-    private func createVideosSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .estimated(100)
-            )
-        )
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .estimated(300)
-            ),
-            repeatingSubitem: item, count: 1
-        )
-        let section = NSCollectionLayoutSection(
-            group: group
-        )
+    private func createVideosSection() -> UICollectionViewCompositionalLayout {
+        let spacing: CGFloat = 10
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .fractionalHeight(1.0))
 
-        return section
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+
+        let groupSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .absolute(200))
+
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = spacing
+
+        let layout = UICollectionViewCompositionalLayout(section: section)
+        return layout
     }
 }
 
-//MARK: - UICollectionViewDelegate
+// MARK: - UICollectionViewDelegate
 
 extension SubscriptionsViewController: UICollectionViewDelegate { }
 
@@ -98,20 +79,9 @@ extension SubscriptionsViewController: UICollectionViewDataSource {
     }
 }
 
-
-//MARK: Set Constraints
+// MARK: Set Constraints
 
 extension SubscriptionsViewController {
 
-    private func addConstraints() {
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ]
-        )
-    }
-
+    private func addConstraints() { }
 }
-
