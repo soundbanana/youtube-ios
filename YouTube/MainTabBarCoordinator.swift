@@ -14,6 +14,8 @@ class MainTabBarCoordinator {
     func start() -> UIViewController {
         let tabBarController = UITabBarController()
         self.tabBarController = tabBarController
+        tabBarController.tabBar.tintColor = .black
+
         tabBarController.viewControllers = [
             home(),
             subscriptions(),
