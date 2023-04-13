@@ -25,7 +25,7 @@
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		FFC942BB29D6A784007D361B /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
-		FFEEC0DB29D4279700CBF948 /* YouTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YouTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFEEC0DB29D4279700CBF948 /* BananaTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BananaTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FFEEC0E229D4279700CBF948 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		FFEEC0D229D4279700CBF948 = {
 			isa = PBXGroup;
 			children = (
-				FFEEC0DD29D4279700CBF948 /* YouTube */,
+				FFEEC0DD29D4279700CBF948 /* BananaTube */,
 				FFEEC0DC29D4279700CBF948 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,12 +56,12 @@
 		FFEEC0DC29D4279700CBF948 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FFEEC0DB29D4279700CBF948 /* YouTube.app */,
+				FFEEC0DB29D4279700CBF948 /* BananaTube.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		FFEEC0DD29D4279700CBF948 /* YouTube */ = {
+		FFEEC0DD29D4279700CBF948 /* BananaTube */ = {
 			isa = PBXGroup;
 			children = (
 				FFEEC0F229D428A800CBF948 /* App */,
@@ -72,7 +72,7 @@
 				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
 				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
 			);
-			path = YouTube;
+			path = BananaTube;
 			sourceTree = "<group>";
 		};
 		FFEEC0F229D428A800CBF948 /* App */ = {
@@ -106,9 +106,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		FFEEC0DA29D4279700CBF948 /* YouTube */ = {
+		FFEEC0DA29D4279700CBF948 /* BananaTube */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FFEEC0EF29D4279800CBF948 /* Build configuration list for PBXNativeTarget "YouTube" */;
+			buildConfigurationList = FFEEC0EF29D4279800CBF948 /* Build configuration list for PBXNativeTarget "BananaTube" */;
 			buildPhases = (
 				FFEEC0D729D4279700CBF948 /* Sources */,
 				FFEEC0D829D4279700CBF948 /* Frameworks */,
@@ -119,9 +119,9 @@
 			);
 			dependencies = (
 			);
-			name = YouTube;
+			name = BananaTube;
 			productName = YouTube;
-			productReference = FFEEC0DB29D4279700CBF948 /* YouTube.app */;
+			productReference = FFEEC0DB29D4279700CBF948 /* BananaTube.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,7 +139,7 @@
 					};
 				};
 			};
-			buildConfigurationList = FFEEC0D629D4279700CBF948 /* Build configuration list for PBXProject "YouTube" */;
+			buildConfigurationList = FFEEC0D629D4279700CBF948 /* Build configuration list for PBXProject "BananaTube" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -152,7 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				FFEEC0DA29D4279700CBF948 /* YouTube */,
+				FFEEC0DA29D4279700CBF948 /* BananaTube */,
 			);
 		};
 /* End PBXProject section */
@@ -343,7 +343,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTNM35TF3W;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = YouTube/Info.plist;
+				INFOPLIST_FILE = BananaTube/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -353,7 +353,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.notsoundbanana.YouTube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.soundbanana.BananaTube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -370,7 +370,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTNM35TF3W;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = YouTube/Info.plist;
+				INFOPLIST_FILE = BananaTube/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -380,7 +380,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.github.notsoundbanana.YouTube;
+				PRODUCT_BUNDLE_IDENTIFIER = com.github.soundbanana.BananaTube;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -391,7 +391,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		FFEEC0D629D4279700CBF948 /* Build configuration list for PBXProject "YouTube" */ = {
+		FFEEC0D629D4279700CBF948 /* Build configuration list for PBXProject "BananaTube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FFEEC0ED29D4279800CBF948 /* Debug */,
@@ -400,7 +400,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FFEEC0EF29D4279800CBF948 /* Build configuration list for PBXNativeTarget "YouTube" */ = {
+		FFEEC0EF29D4279800CBF948 /* Build configuration list for PBXNativeTarget "BananaTube" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				FFEEC0F029D4279800CBF948 /* Debug */,
