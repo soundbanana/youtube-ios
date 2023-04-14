@@ -9,8 +9,16 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
+    let networkManager = NetworkManager()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+
+        Task {
+            await networkManager.getPlaylists(channelId: "UCqKaoE5W0WDnQHG9jU21daQ", completion: { (result) in
+                print(result)
+            })
+        }
     }
 }
