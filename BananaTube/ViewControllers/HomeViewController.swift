@@ -16,9 +16,7 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .white
 
         Task {
-            await networkManager.getPlaylists(channelId: "UCqKaoE5W0WDnQHG9jU21daQ", completion: { (result) in
-                print(result)
-            })
+            await networkManager.getSubscriptions(channelId: "UCqKaoE5W0WDnQHG9jU21daQ")
         }
     }
 }

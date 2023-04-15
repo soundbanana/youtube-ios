@@ -26,17 +26,14 @@ class NetworkManager {
 //        return data['items'][0]['id']
 //    }
 
-    func getPlaylists(channelId: String, completion: @escaping([String]) -> Void) async {
+    @MainActor
+    func getPlaylists(channelId: String) async -> [String] {
 
         var playlists: [String] = []
 
         var result: Subscriptions
 
-        defer {
-            completion(playlists)
-        }
-
-        guard let url = URL(string: "\(Constants.BASE_URL)/subscriptions?part=snippet&channelId=\(channelId)&maxResults=50&key=\(Constants.API_KEY)") else { return }
+        guard let url = URL(string: "\(Constants.BASE_URL)/subscriptions?part=snippet&channelId=\(channelId)&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
 
         var subs = [String]()
 
@@ -52,7 +49,7 @@ class NetworkManager {
             subs.append(item.snippet!.resourceId.channelId)
         }
 
-        guard let purl = URL(string: "\(Constants.BASE_URL)/channels?part=contentDetails&id=\(subs.joined(separator: "%2C"))&maxResults=50&key=\(Constants.API_KEY)") else { return }
+        guard let purl = URL(string: "\(Constants.BASE_URL)/channels?part=contentDetails&id=\(subs.joined(separator: "%2C"))&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
 
         do {
             let (contentDetails, _) = try await session.data(from: purl)
@@ -63,9 +60,54 @@ class NetworkManager {
         }
 
         for item in result.items {
-            playlists.append((item.contentDetails?.relatedPlaylists.uploads)!)
+            playlists.append((item.contentDetails?.relatedPlaylists?.uploads)!)
         }
 
-        completion(playlists)
+        return playlists
+    }
+
+    func getPlaylistItems(playlist: String) async -> [String] {
+        var videos: [String] = []
+
+        // Get the last 5 items from every playlist
+        if (!playlist.isEmpty) {
+            guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=5&key=\(Constants.API_KEY)") else {
+                return []
+            }
+
+            var statusCode = 200
+
+            do {
+                let (playlistItems, _) = try await session.data(from: url)
+                let response = try decoder.decode(Subscriptions.self, from: playlistItems)
+
+                for item in response.items where item.kind == "youtube#playlistItem" {
+                    videos.append((item.contentDetails?.videoId)!)
+                }
+            } catch {
+            }
+        }
+        return videos
+    }
+
+//    func getSubscriptions(channelId: String, completion: @escaping([String]) -> Void) async {
+    func getSubscriptions(channelId: String) async {
+
+        var playlists: [String] = []
+
+//        defer {
+//            completion(playlists)
+//        }
+
+        // Get all upload playlists of subbed channels
+        playlists = await getPlaylists(channelId: channelId)
+
+        // Get the last 5 items from every playlist
+        var allItems: [String] = []
+
+        for playlist in playlists {
+            await allItems.append(contentsOf: getPlaylistItems(playlist: playlist))
+        }
+        print(allItems)
     }
 }

@@ -37,7 +37,8 @@ struct Snippet: Codable {
 }
 
 struct ContentDetails: Codable {
-    let relatedPlaylists: RelatedPlaylists
+    let relatedPlaylists: RelatedPlaylists?
+    let videoId: String?
 }
 
 struct RelatedPlaylists: Codable {
