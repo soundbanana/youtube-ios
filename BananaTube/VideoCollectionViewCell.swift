@@ -9,23 +9,26 @@ import UIKit
 
 class VideoCollectionViewCell: UICollectionViewCell {
 
+    private let networkImageManager = NetworkImageManager.instance
+
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .blue
+        imageView.backgroundColor = .gray
         return imageView
     }()
 
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .green
+        imageView.backgroundColor = .gray
         return imageView
     }()
 
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .purple
         label.numberOfLines = 2
         label.text = "12312312312312312317826348723846782367846278364872346823678678624786823123123123"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -34,8 +37,8 @@ class VideoCollectionViewCell: UICollectionViewCell {
 
     let subtitleTextView: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
-        label.numberOfLines = 1
+        label.textColor = .gray
+        label.numberOfLines = 2
         label.text = "123123123123123123123123123123"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -43,7 +46,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .gray
         setupView()
 
     }
@@ -61,13 +63,38 @@ class VideoCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
 
-    func configureCell(name: String) {
+    func configureCell(
+        videoInfo: Snippet,
+        statistics: Statistics
+    ) {
+        titleLabel.text = videoInfo.title
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
+        let date = dateFormatter.date(from: videoInfo.publishedAt)
+
+        subtitleTextView.text = "\(videoInfo.channelTitle!) \(statistics.viewCount) views \(date!.timeIntervalSince1970)"
+
+        guard let url = URL(string: videoInfo.thumbnails.high.url) else { return }
+        networkImageManager.image(imageURL: url) { [self] data, _ in
+            let img = image(data: data)
+            Task {
+                thumbnailImageView.image = img
+            }
+        }
+    }
+
+    func image(data: Data?) -> UIImage? {
+        if let data = data {
+            return UIImage(data: data)
+        }
+        return nil
     }
 
     func setConstraints() {
         NSLayoutConstraint.activate([
             thumbnailImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
-            thumbnailImageView.heightAnchor.constraint(equalToConstant: 200),
+            thumbnailImageView.heightAnchor.constraint(equalToConstant: 215),
             thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
 

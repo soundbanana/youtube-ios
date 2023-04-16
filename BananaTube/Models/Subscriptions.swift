@@ -25,6 +25,7 @@ struct Item: Codable {
     let id: String
     let snippet: Snippet?
     let contentDetails: ContentDetails?
+    let statistics: Statistics?
 }
 
 struct Snippet: Codable {
@@ -34,12 +35,19 @@ struct Snippet: Codable {
     let resourceId: ResourceId?
     let channelId: String
     let channelTitle: String?
-//  let thumbnails: Thumbnails
+    let thumbnails: Thumbnails
 }
 
 struct ContentDetails: Codable {
     let relatedPlaylists: RelatedPlaylists?
     let videoId: String?
+}
+
+struct Statistics: Codable {
+    let viewCount: String
+    let likeCount: String
+    let favouriteCount: String?
+    let commentCount: String
 }
 
 struct RelatedPlaylists: Codable {
@@ -52,14 +60,23 @@ struct ResourceId: Codable {
     let channelId: String
 }
 
-//    struct Thumbnails: Codable {
-//        let _default = {
-//            let url: String
-//        }
-//        let medium = {
-//            let url: String
-//        }
-//        let high = {
-//            let url: String
-//        }
-//    }
+struct Thumbnails: Codable {
+    private enum CodingKeys: String, CodingKey {
+        case default_thumbnail = "default"
+        case medium
+        case high
+        case standard
+        case maxres
+    }
+    let default_thumbnail: Thumbnail
+    let medium: Thumbnail
+    let high: Thumbnail
+    let standard: Thumbnail?
+    let maxres: Thumbnail?
+}
+
+struct Thumbnail: Codable {
+    let url: String
+    let width: Int?
+    let height: Int?
+}

@@ -93,7 +93,7 @@ class NetworkManager {
     func getRealVideos(videoIds: [String]) async -> [Item] {
         var videos: [Item] = []
 
-        guard let purl = URL(string: "\(Constants.BASE_URL)/videos?part=snippet&id=\(videoIds.joined(separator: "%2C"))&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
+        guard let purl = URL(string: "\(Constants.BASE_URL)/videos?part=snippet,statistics&id=\(videoIds.joined(separator: "%2C"))&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
         do {
             let (contentDetails, _) = try await session.data(from: purl)
             let response = try decoder.decode(Subscriptions.self, from: contentDetails)
@@ -104,15 +104,15 @@ class NetworkManager {
         return videos
     }
 
-    //    func getSubscriptions(channelId: String, completion: @escaping([String]) -> Void) async {
-    func getSubscriptions(channelId: String) async {
+    func getSubscriptions(channelId: String, completion: @escaping([Item]) -> Void) async {
+
+        var result: [Item] = []
+
+        defer {
+            completion(result)
+        }
 
         var playlists: [String] = []
-
-//        defer {
-//            completion(playlists)
-//        }
-
         // Get all upload playlists of subbed channels
         playlists = await getPlaylists(channelId: channelId)
 
@@ -131,11 +131,7 @@ class NetworkManager {
             await allVids.append(contentsOf: (getRealVideos(videoIds: chunk)))
         }
 
-        let sortedVids = allVids.sorted { $0.snippet!.publishedAt > $1.snippet!.publishedAt }
-
-        for vid in sortedVids {
-            print(vid.snippet!.title)
-        }
+        result = allVids.sorted { $0.snippet!.publishedAt > $1.snippet!.publishedAt }
     }
 }
 

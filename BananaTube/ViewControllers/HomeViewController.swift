@@ -14,9 +14,5 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-
-        Task {
-            await networkManager.getSubscriptions(channelId: "UCqKaoE5W0WDnQHG9jU21daQ")
-        }
     }
 }

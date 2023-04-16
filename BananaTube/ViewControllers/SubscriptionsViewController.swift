@@ -11,9 +11,23 @@ class SubscriptionsViewController: UIViewController {
 
     private var collectionView: UICollectionView! = nil
 
+    let networkManager = NetworkManager()
+
+    private var subscriptionsList: [Item] = []
+
     override func viewDidLoad() {
         configureCollectionView()
         setupViews()
+
+        Task {
+            await networkManager.getSubscriptions(channelId: "UCqKaoE5W0WDnQHG9jU21daQ", completion: { result in
+                self.subscriptionsList = result
+
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            })
+        }
     }
 
     private func setupViews() {
@@ -66,15 +80,18 @@ extension SubscriptionsViewController: UICollectionViewDelegate { }
 extension SubscriptionsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        subscriptionsList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell
-        else {
+            else {
             return UICollectionViewCell()
         }
-        cell.configureCell(name: "123")
+
+        let sub = subscriptionsList[indexPath.row]
+
+        cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
         return cell
     }
 }
