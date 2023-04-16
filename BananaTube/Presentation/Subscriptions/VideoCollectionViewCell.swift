@@ -9,7 +9,7 @@ import UIKit
 
 class VideoCollectionViewCell: UICollectionViewCell {
 
-    private let networkImageManager = NetworkImageManager.instance
+    private let networkImageManager = NetworkImageManager.shared
 
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()

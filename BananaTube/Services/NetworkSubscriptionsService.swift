@@ -15,6 +15,8 @@ enum ObtainSubscriptionsResult {
 @MainActor
 class NetworkSubscriptionsService {
 
+    public static let shared = NetworkSubscriptionsService()
+
     let sessionConfiguration = URLSessionConfiguration.default
     let session = URLSession.shared
     let decoder = JSONDecoder()

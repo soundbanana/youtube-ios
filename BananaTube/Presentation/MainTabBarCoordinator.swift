@@ -41,7 +41,7 @@ class MainTabBarCoordinator {
             image: .init(systemName: "books.vertical"),
             selectedImage: .init(systemName: "books.vertical.fill")
         )
-        return controller
+        return SubscriptionsCoordinator.shared.start(controller)
     }
 
     private func library() -> UIViewController {

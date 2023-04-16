@@ -9,7 +9,7 @@ import Foundation
 
 class NetworkImageManager {
 
-    public static let instance = NetworkImageManager()
+    public static let shared = NetworkImageManager()
 
     let sessionConfiguration = URLSessionConfiguration.default
     let session = URLSession.shared

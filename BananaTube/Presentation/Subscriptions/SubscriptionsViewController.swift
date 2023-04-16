@@ -9,28 +9,21 @@ import UIKit
 
 class SubscriptionsViewController: UIViewController {
 
-    private var collectionView: UICollectionView! = nil
+    var collectionView: UICollectionView! = nil
 
-    let networkService = NetworkSubscriptionsService()
+    var presenter: SubscriptionsPresenter!
 
-    private var subscriptionsList: [Item] = []
+    var subscriptionsList: [Item] = []
 
     override func viewDidLoad() {
         configureCollectionView()
-        setupViews()
-
-        Task {
-            await networkService.getSubscriptions(channelId: Constants.CHANNEL_ID, completion: { result in
-                self.subscriptionsList = result
-                DispatchQueue.main.async {
-                    self.collectionView.reloadData()
-                }
-            })
-        }
+        setupUI()
+        presenter.obtainData()
     }
 
-    private func setupViews() {
+    private func setupUI() {
         view.backgroundColor = .systemBackground
+        view.addSubview(collectionView)
     }
 
     private func configureCollectionView() {
@@ -40,7 +33,6 @@ class SubscriptionsViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        view.addSubview(collectionView)
     }
 }
 

@@ -12,6 +12,8 @@
 		FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */; };
 		FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F529E9ADC40056075D /* Subscriptions.swift */; };
 		FFC276F829EBF8D40056075D /* NetworkImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F729EBF8D40056075D /* NetworkImageManager.swift */; };
+		FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */; };
+		FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */; };
 		FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B529D6A51B007D361B /* AppCoordinator.swift */; };
 		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
 		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
@@ -29,6 +31,8 @@
 		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
 		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		FFC276F729EBF8D40056075D /* NetworkImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageManager.swift; sourceTree = "<group>"; };
+		FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
+		FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B529D6A51B007D361B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +100,8 @@
 			children = (
 				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
 				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
+				FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */,
+				FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */,
 			);
 			path = Subscriptions;
 			sourceTree = "<group>";
@@ -254,6 +260,8 @@
 				FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
 				FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */,
+				FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */,
+				FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */,
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFC276F829EBF8D40056075D /* NetworkImageManager.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
