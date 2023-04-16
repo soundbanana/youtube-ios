@@ -9,8 +9,6 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    let networkManager = NetworkManager()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white

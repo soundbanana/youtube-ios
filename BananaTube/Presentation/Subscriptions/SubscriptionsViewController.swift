@@ -11,7 +11,7 @@ class SubscriptionsViewController: UIViewController {
 
     private var collectionView: UICollectionView! = nil
 
-    let networkManager = NetworkManager()
+    let networkService = NetworkSubscriptionsService()
 
     private var subscriptionsList: [Item] = []
 
@@ -20,9 +20,8 @@ class SubscriptionsViewController: UIViewController {
         setupViews()
 
         Task {
-            await networkManager.getSubscriptions(channelId: "UCqKaoE5W0WDnQHG9jU21daQ", completion: { result in
+            await networkService.getSubscriptions(channelId: Constants.CHANNEL_ID, completion: { result in
                 self.subscriptionsList = result
-
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
@@ -94,11 +93,4 @@ extension SubscriptionsViewController: UICollectionViewDataSource {
         cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
         return cell
     }
-}
-
-// MARK: Set Constraints
-
-extension SubscriptionsViewController {
-
-    private func addConstraints() { }
 }

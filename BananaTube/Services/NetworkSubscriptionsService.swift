@@ -13,7 +13,7 @@ enum ObtainSubscriptionsResult {
 }
 
 @MainActor
-class NetworkManager {
+class NetworkSubscriptionsService {
 
     let sessionConfiguration = URLSessionConfiguration.default
     let session = URLSession.shared
@@ -84,7 +84,6 @@ class NetworkManager {
                     videos.append((item.contentDetails?.videoId)!)
                 }
             } catch {
-                print(error)
             }
         }
         return videos
@@ -99,7 +98,6 @@ class NetworkManager {
             let response = try decoder.decode(Subscriptions.self, from: contentDetails)
             videos = response.items
         } catch {
-            print(error)
         }
         return videos
     }

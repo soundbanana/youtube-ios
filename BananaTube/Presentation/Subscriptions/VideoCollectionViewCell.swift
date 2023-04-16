@@ -30,7 +30,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.text = "12312312312312312317826348723846782367846278364872346823678678624786823123123123"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -39,7 +38,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.textColor = .gray
         label.numberOfLines = 2
-        label.text = "123123123123123123123123123123"
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
