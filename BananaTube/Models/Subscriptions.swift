@@ -10,7 +10,7 @@ import Foundation
 struct Subscriptions: Codable {
     let kind: String
     let etag: String
-    let pageInfo: PageInfo
+    let pageInfo: PageInfo?
     let items: [Item]
 }
 
@@ -31,8 +31,9 @@ struct Snippet: Codable {
     let publishedAt: String
     let title: String
     let description: String
-    let resourceId: ResourceId
+    let resourceId: ResourceId?
     let channelId: String
+    let channelTitle: String?
 //  let thumbnails: Thumbnails
 }
 
