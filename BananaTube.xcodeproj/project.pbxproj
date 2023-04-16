@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4127878F4B314CF15991A40B /* Pods_BananaTube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DD66A7AC3908BADEAD9934 /* Pods_BananaTube.framework */; };
 		FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */; };
 		FFC276EF29E9A59E0056075D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276EE29E9A59E0056075D /* Constants.swift */; };
 		FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */; };
@@ -26,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4D958E9A989374E2D4613B5F /* Pods-BananaTube.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaTube.release.xcconfig"; path = "Target Support Files/Pods-BananaTube/Pods-BananaTube.release.xcconfig"; sourceTree = "<group>"; };
+		60DD66A7AC3908BADEAD9934 /* Pods_BananaTube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BananaTube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaTube.debug.xcconfig"; path = "Target Support Files/Pods-BananaTube/Pods-BananaTube.debug.xcconfig"; sourceTree = "<group>"; };
 		FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
@@ -51,12 +55,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4127878F4B314CF15991A40B /* Pods_BananaTube.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		02DDDB3562339E56BAE22EFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */,
+				4D958E9A989374E2D4613B5F /* Pods-BananaTube.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E127A1A62BC470D4620EDB62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				60DD66A7AC3908BADEAD9934 /* Pods_BananaTube.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		FFC276F429E9A9110056075D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +141,8 @@
 			children = (
 				FFEEC0DD29D4279700CBF948 /* BananaTube */,
 				FFEEC0DC29D4279700CBF948 /* Products */,
+				02DDDB3562339E56BAE22EFC /* Pods */,
+				E127A1A62BC470D4620EDB62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,10 +192,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFEEC0EF29D4279800CBF948 /* Build configuration list for PBXNativeTarget "BananaTube" */;
 			buildPhases = (
+				06DBEBA6416320C4B26175E6 /* [CP] Check Pods Manifest.lock */,
 				FFEEC0D729D4279700CBF948 /* Sources */,
 				FFEEC0D829D4279700CBF948 /* Frameworks */,
 				FFEEC0D929D4279700CBF948 /* Resources */,
 				FFB5DA7629E4A2DE00D47D62 /* ShellScript */,
+				7161EBD1BA2D455B9A0D562F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,6 +254,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		06DBEBA6416320C4B26175E6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BananaTube-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7161EBD1BA2D455B9A0D562F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BananaTube/Pods-BananaTube-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-BananaTube/Pods-BananaTube-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BananaTube/Pods-BananaTube-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FFB5DA7629E4A2DE00D47D62 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -400,12 +465,16 @@
 		};
 		FFEEC0F029D4279800CBF948 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTNM35TF3W;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BananaTube/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -428,12 +497,16 @@
 		};
 		FFEEC0F129D4279800CBF948 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4D958E9A989374E2D4613B5F /* Pods-BananaTube.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = KTNM35TF3W;
+				EXCLUDED_ARCHS = "";
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
+				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BananaTube/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
