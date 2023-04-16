@@ -9,15 +9,21 @@ import UIKit
 
 class SubscriptionsViewController: UIViewController {
 
-    private var collectionView: UICollectionView! = nil
+    var collectionView: UICollectionView! = nil
+
+    var presenter: SubscriptionsPresenter!
+
+    var subscriptionsList: [Item] = []
 
     override func viewDidLoad() {
         configureCollectionView()
-        setupViews()
+        setupUI()
+        presenter.obtainData()
     }
 
-    private func setupViews() {
+    private func setupUI() {
         view.backgroundColor = .systemBackground
+        view.addSubview(collectionView)
     }
 
     private func configureCollectionView() {
@@ -27,7 +33,6 @@ class SubscriptionsViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        view.addSubview(collectionView)
     }
 }
 
@@ -66,22 +71,18 @@ extension SubscriptionsViewController: UICollectionViewDelegate { }
 extension SubscriptionsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        subscriptionsList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell
-        else {
+            else {
             return UICollectionViewCell()
         }
-        cell.configureCell(name: "123")
+
+        let sub = subscriptionsList[indexPath.row]
+
+        cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
         return cell
     }
-}
-
-// MARK: Set Constraints
-
-extension SubscriptionsViewController {
-
-    private func addConstraints() { }
 }

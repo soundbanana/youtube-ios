@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */; };
+		FFC276EF29E9A59E0056075D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276EE29E9A59E0056075D /* Constants.swift */; };
+		FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */; };
+		FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F529E9ADC40056075D /* Subscriptions.swift */; };
+		FFC276F829EBF8D40056075D /* NetworkImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F729EBF8D40056075D /* NetworkImageManager.swift */; };
+		FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */; };
+		FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */; };
 		FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B529D6A51B007D361B /* AppCoordinator.swift */; };
 		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
 		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
@@ -21,6 +27,12 @@
 
 /* Begin PBXFileReference section */
 		FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
+		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
+		FFC276F729EBF8D40056075D /* NetworkImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkImageManager.swift; sourceTree = "<group>"; };
+		FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
+		FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B529D6A51B007D361B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
@@ -45,6 +57,63 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FFC276F429E9A9110056075D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FFC276EE29E9A59E0056075D /* Constants.swift */,
+				FFC276F529E9ADC40056075D /* Subscriptions.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		FFC276F929EC50990056075D /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */,
+				FFC276F729EBF8D40056075D /* NetworkImageManager.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		FFC276FA29EC50B40056075D /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				FFC276FD29EC51830056075D /* Library */,
+				FFC276FC29EC51750056075D /* Subscriptions */,
+				FFC276FB29EC516A0056075D /* Home */,
+				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
+				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		FFC276FB29EC516A0056075D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FFEEC0E229D4279700CBF948 /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		FFC276FC29EC51750056075D /* Subscriptions */ = {
+			isa = PBXGroup;
+			children = (
+				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
+				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
+				FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */,
+				FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */,
+			);
+			path = Subscriptions;
+			sourceTree = "<group>";
+		};
+		FFC276FD29EC51830056075D /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		FFEEC0D229D4279700CBF948 = {
 			isa = PBXGroup;
 			children = (
@@ -66,11 +135,10 @@
 			children = (
 				FFEEC0F229D428A800CBF948 /* App */,
 				FFEEC0EC29D4279800CBF948 /* Info.plist */,
+				FFC276FA29EC50B40056075D /* Presentation */,
+				FFC276F429E9A9110056075D /* Models */,
+				FFC276F929EC50990056075D /* Services */,
 				FFEEC0F429D428CE00CBF948 /* Storyboards */,
-				FFEEC0F329D428B900CBF948 /* ViewControllers */,
-				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
-				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
-				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
 			);
 			path = BananaTube;
 			sourceTree = "<group>";
@@ -83,16 +151,6 @@
 				FFEEC0E729D4279800CBF948 /* Assets.xcassets */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		FFEEC0F329D428B900CBF948 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				FFEEC0E229D4279700CBF948 /* HomeViewController.swift */,
-				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
-				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
-			);
-			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		FFEEC0F429D428CE00CBF948 /* Storyboards */ = {
@@ -195,14 +253,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */,
 				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
 				FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */,
 				FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */,
 				FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
 				FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */,
+				FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */,
+				FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */,
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
+				FFC276F829EBF8D40056075D /* NetworkImageManager.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
+				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
+				FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,6 +412,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -375,6 +440,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
