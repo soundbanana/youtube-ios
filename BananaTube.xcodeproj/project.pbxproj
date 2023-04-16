@@ -31,6 +31,8 @@
 		60DD66A7AC3908BADEAD9934 /* Pods_BananaTube.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BananaTube.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaTube.debug.xcconfig"; path = "Target Support Files/Pods-BananaTube/Pods-BananaTube.debug.xcconfig"; sourceTree = "<group>"; };
 		FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
+		FF582FCF29EC80260092554D /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FF582FD129EC803A0092554D /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
 		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		E127A1A62BC470D4620EDB62 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF582FD129EC803A0092554D /* Kingfisher.framework */,
+				FF582FCF29EC80260092554D /* Kingfisher.framework */,
 				60DD66A7AC3908BADEAD9934 /* Pods_BananaTube.framework */,
 			);
 			name = Frameworks;
@@ -196,7 +200,7 @@
 				FFEEC0D729D4279700CBF948 /* Sources */,
 				FFEEC0D829D4279700CBF948 /* Frameworks */,
 				FFEEC0D929D4279700CBF948 /* Resources */,
-				FFB5DA7629E4A2DE00D47D62 /* ShellScript */,
+				FFB5DA7629E4A2DE00D47D62 /* Run Script */,
 				7161EBD1BA2D455B9A0D562F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -293,7 +297,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BananaTube/Pods-BananaTube-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FFB5DA7629E4A2DE00D47D62 /* ShellScript */ = {
+		FFB5DA7629E4A2DE00D47D62 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -303,6 +307,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -474,7 +479,6 @@
 				DEVELOPMENT_TEAM = KTNM35TF3W;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BananaTube/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -506,7 +510,6 @@
 				DEVELOPMENT_TEAM = KTNM35TF3W;
 				EXCLUDED_ARCHS = "";
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
-				FRAMEWORK_SEARCH_PATHS = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = BananaTube/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
