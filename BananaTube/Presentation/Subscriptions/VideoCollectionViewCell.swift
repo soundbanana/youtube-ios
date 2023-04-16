@@ -6,10 +6,9 @@
 //
 
 import UIKit
+import Kingfisher
 
 class VideoCollectionViewCell: UICollectionViewCell {
-
-    private let networkImageManager = NetworkImageManager.shared
 
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
@@ -74,19 +73,10 @@ class VideoCollectionViewCell: UICollectionViewCell {
         subtitleTextView.text = "\(videoInfo.channelTitle!) \(statistics.viewCount) views \(date!.timeIntervalSince1970)"
 
         guard let url = URL(string: videoInfo.thumbnails.high.url) else { return }
-        networkImageManager.image(imageURL: url) { [self] data, _ in
-            let img = image(data: data)
-            Task {
-                thumbnailImageView.image = img
-            }
-        }
-    }
 
-    func image(data: Data?) -> UIImage? {
-        if let data = data {
-            return UIImage(data: data)
+        Task {
+            thumbnailImageView.kf.setImage(with: url)
         }
-        return nil
     }
 
     func setConstraints() {
