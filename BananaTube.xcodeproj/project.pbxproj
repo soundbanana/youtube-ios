@@ -14,6 +14,7 @@
 		FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F529E9ADC40056075D /* Subscriptions.swift */; };
 		FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */; };
 		FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */; };
+		FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770329EC69000056075D /* Extension + UIViewController.swift */; };
 		FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B529D6A51B007D361B /* AppCoordinator.swift */; };
 		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
 		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
@@ -37,6 +38,7 @@
 		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCoordinator.swift; sourceTree = "<group>"; };
+		FFC2770329EC69000056075D /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
 		FFC942B529D6A51B007D361B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 		FFC276FA29EC50B40056075D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FFC2770229EC68E40056075D /* Extensions */,
 				FFC276FD29EC51830056075D /* Library */,
 				FFC276FC29EC51750056075D /* Subscriptions */,
 				FFC276FB29EC516A0056075D /* Home */,
@@ -135,6 +138,14 @@
 				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
 			);
 			path = Library;
+			sourceTree = "<group>";
+		};
+		FFC2770229EC68E40056075D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FFC2770329EC69000056075D /* Extension + UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		FFEEC0D229D4279700CBF948 = {
@@ -320,6 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */,
 				FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */,
 				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
 				FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */,
