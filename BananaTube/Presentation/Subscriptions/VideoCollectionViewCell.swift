@@ -15,14 +15,14 @@ class VideoCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
 
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .gray
+        imageView.backgroundColor = .lightGray
         return imageView
     }()
 

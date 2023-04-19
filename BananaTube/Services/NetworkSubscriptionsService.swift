@@ -21,13 +21,6 @@ class NetworkSubscriptionsService {
     let session = URLSession.shared
     let decoder = JSONDecoder()
 
-//    func get_channel_for_user(channelId: String){
-//        var url =  "\(Constants.BASE_URL)/channels?part=id&forUsername=\(Constants.CHANNEL_ID)&key=\(Constants.API_KEY)"
-//        response = urllib.request.urlopen(url)
-//        data = json.load(response)
-//        return data['items'][0]['id']
-//    }
-
     @MainActor
     func getPlaylists(channelId: String) async -> [String] {
 
@@ -99,6 +92,7 @@ class NetworkSubscriptionsService {
             let (contentDetails, _) = try await session.data(from: purl)
             let response = try decoder.decode(Subscriptions.self, from: contentDetails)
             videos = response.items
+
         } catch {
         }
         return videos
