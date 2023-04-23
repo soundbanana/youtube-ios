@@ -8,7 +8,6 @@
 import UIKit
 
 class SubscriptionsViewController: UIViewController {
-
     var collectionView: UICollectionView! = nil
 
     var presenter: SubscriptionsPresenter!
@@ -44,7 +43,6 @@ class SubscriptionsViewController: UIViewController {
 }
 
 extension SubscriptionsViewController {
-
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return self.createVideosSection()
     }
@@ -76,9 +74,8 @@ extension SubscriptionsViewController {
 extension SubscriptionsViewController: UICollectionViewDelegate { }
 
 extension SubscriptionsViewController: UICollectionViewDataSource {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if (subscriptionsList.isEmpty) {
+        if subscriptionsList.isEmpty {
             return 20
         }
         return subscriptionsList.count
@@ -90,10 +87,9 @@ extension SubscriptionsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        if (!subscriptionsList.isEmpty) {
+        if !subscriptionsList.isEmpty {
             let sub = subscriptionsList[indexPath.row]
             cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
-
         }
         return cell
     }

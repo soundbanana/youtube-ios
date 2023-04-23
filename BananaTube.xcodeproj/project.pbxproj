@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4127878F4B314CF15991A40B /* Pods_BananaTube.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60DD66A7AC3908BADEAD9934 /* Pods_BananaTube.framework */; };
 		FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */; };
+		FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */; };
 		FFC276EF29E9A59E0056075D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276EE29E9A59E0056075D /* Constants.swift */; };
 		FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */; };
 		FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F529E9ADC40056075D /* Subscriptions.swift */; };
@@ -33,6 +34,7 @@
 		FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF582FCF29EC80260092554D /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF582FD129EC803A0092554D /* Kingfisher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Kingfisher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
 		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				FFC276FB29EC516A0056075D /* Home */,
 				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
 				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
+				FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -344,6 +347,7 @@
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
+				FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */,
 				FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

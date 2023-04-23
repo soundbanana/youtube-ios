@@ -8,7 +8,6 @@
 import UIKit
 
 class MainTabBarCoordinator {
-
     weak var tabBarController: UITabBarController?
 
     func start() -> UIViewController {

@@ -14,7 +14,6 @@ enum ObtainSubscriptionsResult {
 
 @MainActor
 class NetworkSubscriptionsService {
-
     public static let shared = NetworkSubscriptionsService()
 
     let sessionConfiguration = URLSessionConfiguration.default
@@ -23,14 +22,13 @@ class NetworkSubscriptionsService {
 
     @MainActor
     func getPlaylists(channelId: String) async -> [String] {
-
         var playlists: [String] = []
 
         var result: Subscriptions
 
         guard let url = URL(string: "\(Constants.BASE_URL)/subscriptions?part=snippet&channelId=\(channelId)&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
 
-        var subs = [String]()
+        var subs: [String] = []
 
         do {
             let (data, _) = try await session.data(from: url)
@@ -66,7 +64,7 @@ class NetworkSubscriptionsService {
         var videos: [String] = []
 
         // Get the last 5 items from every playlist
-        if (!playlist.isEmpty) {
+        if !playlist.isEmpty {
             guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=5&key=\(Constants.API_KEY)") else {
                 return []
             }
@@ -92,14 +90,12 @@ class NetworkSubscriptionsService {
             let (contentDetails, _) = try await session.data(from: purl)
             let response = try decoder.decode(Subscriptions.self, from: contentDetails)
             videos = response.items
-
         } catch {
         }
         return videos
     }
 
     func getSubscriptions(channelId: String, completion: @escaping([Item]) -> Void) async {
-
         var result: [Item] = []
 
         defer {
@@ -135,7 +131,7 @@ struct Chuncks: Sequence, IteratorProtocol {
     var i = 0
 
     mutating func next() -> [String]? {
-        if (i + n >= chunk.count) {
+        if i + n >= chunk.count {
             return nil
         } else {
             defer { i += 50 }

@@ -8,12 +8,11 @@
 import UIKit
 
 class SubscriptionsPresenter {
-
     weak var view: SubscriptionsViewController?
     var subsriptions: [Item]?
     var navigationController: UINavigationController?
 
-    private let networkSubscriptionsService: NetworkSubscriptionsService = NetworkSubscriptionsService.shared
+    private let networkSubscriptionsService = NetworkSubscriptionsService.shared
 
     func obtainData() {
         Task {

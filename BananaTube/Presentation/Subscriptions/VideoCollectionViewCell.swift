@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 
 class VideoCollectionViewCell: UICollectionViewCell {
-
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -47,7 +46,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-
     }
 
     required init?(coder: NSCoder) {
@@ -104,8 +102,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
             subtitleTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             subtitleTextView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
             subtitleTextView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
-
-            ]
+        ]
         )
     }
 }
