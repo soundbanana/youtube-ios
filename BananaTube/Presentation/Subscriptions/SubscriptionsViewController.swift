@@ -25,7 +25,12 @@ class SubscriptionsViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
 
-        navigationItem.leftBarButtonItem = createCustomButton(imageName: "light-icon", selector: nil)
+        navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
+
+        let accountButton = createCustomButton(imageName: "person.circle.fill", selector: nil)
+        let searchButton = createCustomButton(imageName: "magnifyingglass", selector: nil)
+
+        navigationItem.rightBarButtonItems = [accountButton, searchButton]
     }
 
     private func configureCollectionView() {

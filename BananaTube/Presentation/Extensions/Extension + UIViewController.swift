@@ -29,14 +29,14 @@ extension UIViewController {
         return view
     }
 
-    func createCustomButton (imageName: String, selector: Selector?) -> UIBarButtonItem {
+    func createCustomTitleButton(imageName: String, selector: Selector?) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.setImage(
             UIImage(named: imageName),
             for: .normal
         )
-        button.tintColor = .none
         button.imageView?.contentMode = .scaleAspectFit
+        button.adjustsImageWhenHighlighted = false
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .left
         if ((selector) != nil) {
@@ -47,6 +47,27 @@ extension UIViewController {
         currWidth?.isActive = true
         let currHeight = menuBarItem.customView?.heightAnchor.constraint(equalToConstant: 41)
         currHeight?.isActive = true
+
+        return menuBarItem
+    }
+
+    func createCustomButton(imageName: String, selector: Selector?) -> UIBarButtonItem {
+        let button = UIButton(type: .system)
+        button.setImage(
+            UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate),
+            for: .normal
+        )
+        button.tintColor = .black
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
+
+        if ((selector) != nil) {
+            button.addTarget(self, action: selector!, for: .touchUpInside)
+        }
+
+        let menuBarItem = UIBarButtonItem(customView: button)
 
         return menuBarItem
     }
