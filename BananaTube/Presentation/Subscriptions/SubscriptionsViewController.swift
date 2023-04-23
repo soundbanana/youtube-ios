@@ -78,7 +78,10 @@ extension SubscriptionsViewController: UICollectionViewDelegate { }
 extension SubscriptionsViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        subscriptionsList.count
+        if (subscriptionsList.isEmpty) {
+            return 20
+        }
+        return subscriptionsList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -87,9 +90,11 @@ extension SubscriptionsViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let sub = subscriptionsList[indexPath.row]
+        if (!subscriptionsList.isEmpty) {
+            let sub = subscriptionsList[indexPath.row]
+            cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
 
-        cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
+        }
         return cell
     }
 }
