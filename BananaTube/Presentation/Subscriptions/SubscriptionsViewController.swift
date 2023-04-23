@@ -17,13 +17,20 @@ class SubscriptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         configureCollectionView()
-        setupUI()
+        setupViews()
         presenter.obtainData()
     }
 
-    private func setupUI() {
+    private func setupViews() {
         view.backgroundColor = .systemBackground
         view.addSubview(collectionView)
+
+        navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
+
+        let accountButton = createCustomButton(imageName: "person.circle.fill", selector: nil)
+        let searchButton = createCustomButton(imageName: "magnifyingglass", selector: nil)
+
+        navigationItem.rightBarButtonItems = [accountButton, searchButton]
     }
 
     private func configureCollectionView() {

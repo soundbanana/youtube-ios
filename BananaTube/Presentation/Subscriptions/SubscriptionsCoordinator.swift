@@ -19,5 +19,4 @@ class SubscriptionsCoordinator {
         navigationController = UINavigationController(rootViewController: viewController)
         return navigationController!
     }
-
 }

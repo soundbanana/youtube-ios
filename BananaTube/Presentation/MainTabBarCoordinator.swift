@@ -31,7 +31,8 @@ class MainTabBarCoordinator {
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill")
         )
-        return viewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        return navigationController
     }
 
     private func subscriptions() -> UIViewController {
