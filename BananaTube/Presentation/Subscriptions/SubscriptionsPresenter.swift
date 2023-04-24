@@ -44,11 +44,11 @@ class SubscriptionsPresenter {
         let formatter = RelativeDateTimeFormatter()
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
-        let subtitleText = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
+        let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
 
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
-        cell.show(title: title, subtitleText: subtitleText, imageURL: url)
+        cell.show(title: title, subtitle: subtitle, imageURL: url)
     }
 
     func showDetails(row: Int) {

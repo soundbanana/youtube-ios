@@ -21,7 +21,7 @@ class SubscriptionsCoordinator {
     }
 
     func showDetails(video: Item) {
-        let presenter = VideoPlaybackPresenter()
+        let presenter = VideoPlaybackPresenter(video: video)
         let viewController = VideoPlaybackViewController()
 
         viewController.presenter = presenter

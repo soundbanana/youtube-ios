@@ -41,20 +41,13 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     override func viewDidLoad() {
         view.backgroundColor = .systemBackground
         setupViews()
-        playerView.load(withVideoId: "ZRt9KJtNSJg", playerVars: ["playsinline": 1])
+        presenter.configureData()
     }
 
-    func update(video: Item) {
-        titleLabel.text = video.snippet?.title
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
-        let date = Date().addingTimeInterval(dateFormatter.date(from: video.snippet!.publishedAt)!.timeIntervalSinceNow)
-
-        let formatter = RelativeDateTimeFormatter()
-        let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
-
-        subtitleTextView.text = "\(video.snippet!.channelTitle!) \(video.statistics!.viewCount) views \(relativeDate)"
-        titleLabel.text = video.snippet?.title
+    func show(title: String, subtitle: String, videoId: String) {
+        titleLabel.text = title
+        subtitleTextView.text = subtitle
+        playerView.load(withVideoId: videoId, playerVars: ["playsinline": 1])
     }
 
     private func setupViews() {

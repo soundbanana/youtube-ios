@@ -61,9 +61,9 @@ class VideoCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
 
-    func show(title: String, subtitleText: String, imageURL: URL) {
+    func show(title: String, subtitle: String, imageURL: URL) {
         titleLabel.text = title
-        subtitleTextView.text = subtitleText
+        subtitleTextView.text = subtitle
         thumbnailImageView.kf.setImage(with: imageURL)
     }
 
