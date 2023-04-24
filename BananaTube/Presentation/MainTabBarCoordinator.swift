@@ -21,6 +21,8 @@ class MainTabBarCoordinator {
             library()
         ]
         return tabBarController
+//    let tempController = VideoPlaybackViewController()
+//        return tempController
     }
 
     private func home() -> UIViewController {

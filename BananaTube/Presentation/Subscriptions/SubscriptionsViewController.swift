@@ -82,15 +82,15 @@ extension SubscriptionsViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell
-            else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell else {
             return UICollectionViewCell()
         }
+        presenter.configureCell(cell: cell, row: indexPath.row)
 
-        if !subscriptionsList.isEmpty {
-            let sub = subscriptionsList[indexPath.row]
-            cell.configureCell(videoInfo: sub.snippet!, statistics: sub.statistics!)
-        }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        presenter.showDetails(row: indexPath.row)
     }
 }
