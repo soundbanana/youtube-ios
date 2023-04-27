@@ -8,7 +8,6 @@
 import UIKit
 
 extension UIViewController {
-
     func createCustomNavigationBar() {
         navigationController?.navigationBar.barTintColor = .systemBackground
     }
@@ -39,7 +38,7 @@ extension UIViewController {
         button.adjustsImageWhenHighlighted = false
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .left
-        if ((selector) != nil) {
+        if (selector) != nil {
             button.addTarget(self, action: selector!, for: .touchUpInside)
         }
         let menuBarItem = UIBarButtonItem(customView: button)
@@ -63,7 +62,7 @@ extension UIViewController {
         button.contentHorizontalAlignment = .fill
         button.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
 
-        if ((selector) != nil) {
+        if (selector) != nil {
             button.addTarget(self, action: selector!, for: .touchUpInside)
         }
 

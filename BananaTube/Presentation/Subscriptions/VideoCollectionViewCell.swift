@@ -9,7 +9,6 @@ import UIKit
 import Kingfisher
 
 class VideoCollectionViewCell: UICollectionViewCell {
-
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
@@ -47,7 +46,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
-
     }
 
     required init?(coder: NSCoder) {
@@ -63,26 +61,10 @@ class VideoCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
 
-    func configureCell(
-        videoInfo: Snippet,
-        statistics: Statistics
-    ) {
-        titleLabel.text = videoInfo.title
-
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy'-'MM'-'dd'T'HH':'mm':'ssZZZ"
-        let date = Date().addingTimeInterval(dateFormatter.date(from: videoInfo.publishedAt)!.timeIntervalSinceNow)
-
-        let formatter = RelativeDateTimeFormatter()
-        let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
-
-        subtitleTextView.text = "\(videoInfo.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
-
-        guard let url = URL(string: videoInfo.thumbnails.high.url) else { return }
-
-        Task {
-            thumbnailImageView.kf.setImage(with: url)
-        }
+    func show(title: String, subtitle: String, imageURL: URL) {
+        titleLabel.text = title
+        subtitleTextView.text = subtitle
+        thumbnailImageView.kf.setImage(with: imageURL)
     }
 
     func setConstraints() {
@@ -104,8 +86,6 @@ class VideoCollectionViewCell: UICollectionViewCell {
             subtitleTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             subtitleTextView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
             subtitleTextView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
-
-            ]
-        )
+        ])
     }
 }

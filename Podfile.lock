@@ -1,20 +1,24 @@
 PODS:
   - Kingfisher (7.6.2)
   - SwiftLint (0.46.5)
+  - youtube-ios-player-helper (1.0.4)
 
 DEPENDENCIES:
   - Kingfisher (~> 7.0)
   - SwiftLint (~> 0.46.2)
+  - youtube-ios-player-helper
 
 SPEC REPOS:
   trunk:
     - Kingfisher
     - SwiftLint
+    - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
   Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+  youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: 614b24d5ca0821a0ebd68b13aa0117a81acc7dea
+PODFILE CHECKSUM: 784874076c158b4da2b56c1cf2d2d3c4467c7bc8
 
 COCOAPODS: 1.12.0
