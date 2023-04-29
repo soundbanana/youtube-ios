@@ -6,6 +6,8 @@ target 'BananaTube' do
     pod 'SwiftLint', '~> 0.46.2'   
     pod 'Kingfisher', '~> 7.0'
     pod 'youtube-ios-player-helper'
+    pod 'GoogleSignIn'
+    pod 'Firebase/Auth'
 end
 
 post_install do |installer|

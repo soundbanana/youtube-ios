@@ -28,6 +28,7 @@
 		FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0E229D4279700CBF948 /* HomeViewController.swift */; };
 		FFEEC0E829D4279800CBF948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E729D4279800CBF948 /* Assets.xcassets */; };
 		FFEEC0EB29D4279800CBF948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E929D4279800CBF948 /* LaunchScreen.storyboard */; };
+		FFF76EA129FD06D700FB0C00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		FFEEC0E729D4279800CBF948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFEEC0EA29D4279800CBF948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFEEC0EC29D4279800CBF948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 		FFEEC0DD29D4279700CBF948 /* BananaTube */ = {
 			isa = PBXGroup;
 			children = (
+				FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */,
 				FFEEC0F229D428A800CBF948 /* App */,
 				FFEEC0EC29D4279800CBF948 /* Info.plist */,
 				FFC276FA29EC50B40056075D /* Presentation */,
@@ -287,6 +290,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFEEC0EB29D4279800CBF948 /* LaunchScreen.storyboard in Resources */,
+				FFF76EA129FD06D700FB0C00 /* GoogleService-Info.plist in Resources */,
 				FFEEC0E829D4279800CBF948 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

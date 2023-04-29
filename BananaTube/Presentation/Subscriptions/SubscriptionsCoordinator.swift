@@ -33,6 +33,9 @@ class SubscriptionsCoordinator {
 
     func showProfile() {
         let viewController = ProfileViewController()
+        let presenter = ProfilePresenter()
+
+        viewController.presenter = presenter
 
         navigationController?.pushViewController(viewController, animated: true)
     }
