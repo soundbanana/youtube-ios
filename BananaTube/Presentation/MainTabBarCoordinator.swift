@@ -8,6 +8,7 @@
 import UIKit
 
 class MainTabBarCoordinator {
+    static let shared: MainTabBarCoordinator = .init()
     weak var tabBarController: UITabBarController?
 
     func start() -> UIViewController {
@@ -20,9 +21,8 @@ class MainTabBarCoordinator {
             subscriptions(),
             library()
         ]
+
         return tabBarController
-//    let tempController = VideoPlaybackViewController()
-//        return tempController
     }
 
     private func home() -> UIViewController {
@@ -54,5 +54,15 @@ class MainTabBarCoordinator {
             selectedImage: .init(systemName: "folder.fill")
         )
         return controller
+    }
+
+    func account() {
+//        let presenter = AccountPresenter()
+//        let viewController = AccountViewController()
+//
+//        viewController.presenter = presenter
+//        presenter.view = viewController
+//
+//        navigationController?.pushViewController(viewController, animated: true)
     }
 }

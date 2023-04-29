@@ -8,8 +8,9 @@
 import UIKit
 
 class SubscriptionsCoordinator {
-    static let shared = SubscriptionsCoordinator()
+    static let shared: SubscriptionsCoordinator = .init()
     var navigationController: UINavigationController?
+    var mainTabBarCoordinator = MainTabBarCoordinator.shared
 
     func start(_ viewController: SubscriptionsViewController) -> UIViewController {
         let presenter = SubscriptionsPresenter(coordinator: SubscriptionsCoordinator.shared)
@@ -26,6 +27,12 @@ class SubscriptionsCoordinator {
 
         viewController.presenter = presenter
         presenter.view = viewController
+
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    func showProfile() {
+        let viewController = ProfileViewController()
 
         navigationController?.pushViewController(viewController, animated: true)
     }
