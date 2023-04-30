@@ -36,10 +36,10 @@ class ProfilePresenter {
 
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
 
-            print(credential)
             Auth.auth().signIn(with: credential) { result, _ in
                 print(result?.user.email ?? "No user found")
             }
+            self.view?.dismiss(animated: true)
         }
     }
 }

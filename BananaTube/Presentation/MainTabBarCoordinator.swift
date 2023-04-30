@@ -55,14 +55,4 @@ class MainTabBarCoordinator {
         )
         return controller
     }
-
-    func account() {
-//        let presenter = AccountPresenter()
-//        let viewController = AccountViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        navigationController?.pushViewController(viewController, animated: true)
-    }
 }

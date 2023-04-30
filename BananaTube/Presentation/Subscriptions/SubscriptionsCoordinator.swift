@@ -30,13 +30,4 @@ class SubscriptionsCoordinator {
 
         navigationController?.pushViewController(viewController, animated: true)
     }
-
-    func showProfile() {
-        let viewController = ProfileViewController()
-        let presenter = ProfilePresenter()
-
-        viewController.presenter = presenter
-
-        navigationController?.pushViewController(viewController, animated: true)
-    }
 }

@@ -17,7 +17,7 @@ class SubscriptionsViewController: UIViewController {
     override func viewDidLoad() {
         configureCollectionView()
         setupViews()
-//        presenter.obtainData()
+        presenter.obtainData()
     }
 
     private func setupViews() {
@@ -26,18 +26,15 @@ class SubscriptionsViewController: UIViewController {
 
         navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
 
-        let accountButton = createCustomButton(
-            imageName: "person.circle.fill",
-            selector: #selector(showProfile)
-        )
-        let searchButton = createCustomButton(imageName: "magnifyingglass", selector: nil)
+        let accountButton = createCustomButton(imageName: "person.circle.fill", action: .profile)
+        let searchButton = createCustomButton(imageName: "magnifyingglass", action: .search)
 
         navigationItem.rightBarButtonItems = [accountButton, searchButton]
     }
 
-    @objc private func showProfile() {
-        presenter.showProfile()
-    }
+//    @objc private func showProfile() {
+//        presenter.showProfile()
+//    }
 
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
@@ -92,7 +89,7 @@ extension SubscriptionsViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell else {
             return UICollectionViewCell()
         }
-//        presenter.configureCell(cell: cell, row: indexPath.row)
+        presenter.configureCell(cell: cell, row: indexPath.row)
 
         return cell
     }

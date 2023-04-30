@@ -55,8 +55,4 @@ class SubscriptionsPresenter {
         guard let item = subscriptions?[row] else { return }
         coordinator.showDetails(video: item)
     }
-
-    func showProfile() {
-        coordinator.showProfile()
-    }
 }

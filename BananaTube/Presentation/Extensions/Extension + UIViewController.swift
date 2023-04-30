@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum Action {
+    case search
+    case profile
+}
+
 extension UIViewController {
     func createCustomNavigationBar() {
         navigationController?.navigationBar.barTintColor = .systemBackground
@@ -50,7 +55,7 @@ extension UIViewController {
         return menuBarItem
     }
 
-    func createCustomButton(imageName: String, selector: Selector?) -> UIBarButtonItem {
+    func createCustomButton(imageName: String, action: Action) -> UIBarButtonItem {
         let button = UIButton(type: .system)
         button.setImage(
             UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate),
@@ -62,12 +67,28 @@ extension UIViewController {
         button.contentHorizontalAlignment = .fill
         button.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
 
-        if (selector) != nil {
-            button.addTarget(self, action: selector!, for: .touchUpInside)
+        switch action {
+        case .profile: button.addTarget(self, action: #selector(showProfile), for: .touchUpInside)
+        case .search: button.addTarget(self, action: #selector(showSearch), for: .touchUpInside)
         }
 
         let menuBarItem = UIBarButtonItem(customView: button)
 
         return menuBarItem
+    }
+
+    @objc func showProfile() {
+        let viewController = ProfileViewController()
+        let presenter = ProfilePresenter()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewController, animated: true)
+    }
+
+    @objc func showSearch() {
+        print("Search button did tap")
     }
 }
