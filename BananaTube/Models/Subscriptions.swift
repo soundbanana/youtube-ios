@@ -36,6 +36,7 @@ struct Snippet: Codable {
     let channelId: String
     let channelTitle: String?
     let thumbnails: Thumbnails
+    let liveBroadcastContent: String?
 }
 
 struct ContentDetails: Codable {

@@ -51,6 +51,16 @@ class ProfileViewController: UIViewController {
         return label
     }()
 
+    let emailLabel: UILabel = {
+        let label = UILabel()
+        label.numberOfLines = 1
+        label.text = "sample@sample.com"
+        label.textAlignment = .center
+        label.font = label.font.withSize(14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     let signOutButton: UIButton = {
         let button = UIButton()
         button.setTitle("Sign Out", for: .normal)
@@ -70,7 +80,14 @@ class ProfileViewController: UIViewController {
         }
         setupProfileView()
         titleLabel.text = currentUser.displayName
-        userProfileImageView.kf.setImage(with: currentUser.photoURL)
+        emailLabel.text = currentUser.email
+
+        // Just for better quality
+        GIDSignIn.sharedInstance.restorePreviousSignIn { [self] user, error in
+            guard error == nil || user == nil else { return }
+            guard let imageURL = user?.profile?.imageURL(withDimension: 0) else { return }
+            userProfileImageView.kf.setImage(with: imageURL)
+        }
     }
 
     private func setupProfileView() {
@@ -80,6 +97,7 @@ class ProfileViewController: UIViewController {
         view.addSubview(closeButton)
         view.addSubview(userProfileImageView)
         view.addSubview(titleLabel)
+        view.addSubview(emailLabel)
         view.addSubview(signOutButton)
 
         NSLayoutConstraint.activate([
@@ -94,6 +112,10 @@ class ProfileViewController: UIViewController {
             titleLabel.topAnchor.constraint(equalTo: userProfileImageView.bottomAnchor, constant: 10),
             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
             titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
+
+            emailLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
+            emailLabel.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+            emailLabel.rightAnchor.constraint(equalTo: titleLabel.rightAnchor),
 
             signOutButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             signOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),

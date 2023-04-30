@@ -26,6 +26,8 @@ class SubscriptionsPresenter {
                 self.subscriptions = result
                 DispatchQueue.main.async { [self] in
                     view?.subscriptionsList = self.subscriptions ?? []
+                    print(self.subscriptions![0])
+                    print(self.subscriptions![1])
                     view?.collectionView.reloadData()
                 }
             }
@@ -48,7 +50,14 @@ class SubscriptionsPresenter {
 
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
-        cell.show(title: title, subtitle: subtitle, imageURL: url)
+        let liveBroadcast: Bool
+        if snippet.liveBroadcastContent == "live" {
+            liveBroadcast = true
+        } else {
+            liveBroadcast = false
+        }
+
+        cell.show(title: title, subtitle: subtitle, imageURL: url, liveBroadcast: liveBroadcast)
     }
 
     func showDetails(row: Int) {
