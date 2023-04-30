@@ -25,6 +25,13 @@ class ProfileViewController: UIViewController {
         return button
     }()
 
+    let logoImageView: UIImageView = {
+        let imageView = UIImageView(image: UIImage(named: "light-icon"))
+        imageView.contentMode = .scaleAspectFit
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        return imageView
+    }()
+
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -44,48 +51,60 @@ class ProfileViewController: UIViewController {
         return label
     }()
 
+    let signOutButton: UIButton = {
+        let button = UIButton()
+        button.setTitle("Sign Out", for: .normal)
+        button.backgroundColor = UIColor(red: 0.92, green: 0.81, blue: 0.37, alpha: 1)
+        button.layer.cornerRadius = 16
+        button.clipsToBounds = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        GIDSignIn.sharedInstance.restorePreviousSignIn { [self] user, error in
-            if error != nil || user == nil {
-                // Show the app's signed-out state.
-                setupSignInView()
-            } else {
-                // Show the app's signed-in state.
-                setupProfileView()
-                titleLabel.text = user?.profile?.name
-                guard let imageURL = user?.profile?.imageURL(withDimension: 150) else { return }
-                userProfileImageView.kf.setImage(with: imageURL)
-                print("Already signed in")
-            }
+        guard let currentUser = Auth.auth().currentUser else {
+            setupSignInView()
+            return
         }
+        setupProfileView()
+        titleLabel.text = currentUser.displayName
+        userProfileImageView.kf.setImage(with: currentUser.photoURL)
     }
 
     private func setupProfileView() {
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
 
         view.addSubview(closeButton)
         view.addSubview(userProfileImageView)
         view.addSubview(titleLabel)
+        view.addSubview(signOutButton)
 
         NSLayoutConstraint.activate([
             closeButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
 
             userProfileImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            userProfileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            userProfileImageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             userProfileImageView.heightAnchor.constraint(equalToConstant: 150),
             userProfileImageView.widthAnchor.constraint(equalToConstant: 150),
 
-            titleLabel.topAnchor.constraint(equalTo: userProfileImageView.bottomAnchor),
+            titleLabel.topAnchor.constraint(equalTo: userProfileImageView.bottomAnchor, constant: 10),
             titleLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
-            titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor)
+            titleLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
+
+            signOutButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
+            signOutButton.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -10),
+            signOutButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            signOutButton.heightAnchor.constraint(equalToConstant: 46)
         ])
     }
 
     private func setupSignInView() {
         let signInButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signIn)))
         signInButton.center = view.center
 
@@ -93,17 +112,31 @@ class ProfileViewController: UIViewController {
 
         view.addSubview(signInButton)
         view.addSubview(closeButton)
+        view.addSubview(logoImageView)
+
         NSLayoutConstraint.activate([
+            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            logoImageView.heightAnchor.constraint(equalToConstant: 100),
+            logoImageView.widthAnchor.constraint(equalToConstant: 300),
+
+            signInButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10),
+            signInButton.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor),
+
             closeButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)
         ])
+    }
+
+    @objc private func close() {
+        self.dismiss(animated: true)
     }
 
     @objc private func signIn() {
         presenter.signIn()
     }
 
-    @objc private func close() {
-        self.dismiss(animated: true)
+    @objc private func signOut() {
+        presenter.signOut()
     }
 }

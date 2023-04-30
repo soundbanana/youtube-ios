@@ -13,7 +13,7 @@ class ProfilePresenter {
     weak var view: ProfileViewController?
     var navigationController: UINavigationController?
 
-    @objc func signIn() {
+    func signIn() {
         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
 
         // Create Google Sign In configuration object.
@@ -41,5 +41,17 @@ class ProfilePresenter {
             }
             self.view?.dismiss(animated: true)
         }
+    }
+
+    func signOut() {
+        let firebaseAuth = Auth.auth()
+
+        do {
+            try firebaseAuth.signOut()
+        } catch let signOutError as NSError {
+            print("Error signing out: %@", signOutError)
+        }
+
+        self.view?.dismiss(animated: true)
     }
 }
