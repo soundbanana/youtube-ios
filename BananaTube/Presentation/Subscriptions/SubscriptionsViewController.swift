@@ -32,10 +32,6 @@ class SubscriptionsViewController: UIViewController {
         navigationItem.rightBarButtonItems = [accountButton, searchButton]
     }
 
-//    @objc private func showProfile() {
-//        presenter.showProfile()
-//    }
-
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]

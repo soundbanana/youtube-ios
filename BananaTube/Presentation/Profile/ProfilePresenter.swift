@@ -54,4 +54,22 @@ class ProfilePresenter {
 
         self.view?.dismiss(animated: true)
     }
+
+    func configureData() {
+        guard let currentUser = Auth.auth().currentUser else {
+            view?.setupSignInView()
+            return
+        }
+        view?.setupProfileView()
+
+        let title = currentUser.displayName!
+        let email = currentUser.email!
+
+        // Just for better quality
+        GIDSignIn.sharedInstance.restorePreviousSignIn { [self] user, error in
+            guard error == nil || user == nil else { return }
+            guard let imageURL = user?.profile?.imageURL(withDimension: 0) else { return }
+            view?.show(title: title, email: email, imageURL: imageURL)
+        }
+    }
 }

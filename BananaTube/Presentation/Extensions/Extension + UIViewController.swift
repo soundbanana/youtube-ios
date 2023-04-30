@@ -57,6 +57,7 @@ extension UIViewController {
 
     func createCustomButton(imageName: String, action: Action) -> UIBarButtonItem {
         let button = UIButton(type: .system)
+        
         button.setImage(
             UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate),
             for: .normal

@@ -26,8 +26,6 @@ class SubscriptionsPresenter {
                 self.subscriptions = result
                 DispatchQueue.main.async { [self] in
                     view?.subscriptionsList = self.subscriptions ?? []
-                    print(self.subscriptions![0])
-                    print(self.subscriptions![1])
                     view?.collectionView.reloadData()
                 }
             }

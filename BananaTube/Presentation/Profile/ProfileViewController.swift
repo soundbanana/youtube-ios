@@ -74,23 +74,16 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        guard let currentUser = Auth.auth().currentUser else {
-            setupSignInView()
-            return
-        }
-        setupProfileView()
-        titleLabel.text = currentUser.displayName
-        emailLabel.text = currentUser.email
-
-        // Just for better quality
-        GIDSignIn.sharedInstance.restorePreviousSignIn { [self] user, error in
-            guard error == nil || user == nil else { return }
-            guard let imageURL = user?.profile?.imageURL(withDimension: 0) else { return }
-            userProfileImageView.kf.setImage(with: imageURL)
-        }
+        presenter.configureData()
     }
 
-    private func setupProfileView() {
+    func show(title: String, email: String, imageURL: URL!) {
+        titleLabel.text = title
+        emailLabel.text = email
+        userProfileImageView.kf.setImage(with: imageURL)
+    }
+
+    func setupProfileView() {
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
         signOutButton.addTarget(self, action: #selector(signOut), for: .touchUpInside)
 
@@ -124,7 +117,7 @@ class ProfileViewController: UIViewController {
         ])
     }
 
-    private func setupSignInView() {
+    func setupSignInView() {
         let signInButton = GIDSignInButton(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
         signInButton.translatesAutoresizingMaskIntoConstraints = false
         signInButton.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(signIn)))
