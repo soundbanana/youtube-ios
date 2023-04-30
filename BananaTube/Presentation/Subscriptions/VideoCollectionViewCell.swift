@@ -43,6 +43,19 @@ class VideoCollectionViewCell: UICollectionViewCell {
         return label
     }()
 
+    let liveLabel: UILabel = {
+        let label = UILabel()
+        label.text = "LIVE"
+        label.textColor = .white
+        label.textAlignment = .center
+        label.layer.cornerRadius = 4
+        label.clipsToBounds = true
+        label.backgroundColor = .red
+        label.font = label.font.withSize(14)
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
@@ -61,10 +74,11 @@ class VideoCollectionViewCell: UICollectionViewCell {
         setConstraints()
     }
 
-    func show(title: String, subtitle: String, imageURL: URL) {
+    func show(title: String, subtitle: String, imageURL: URL, liveBroadcast: Bool) {
         titleLabel.text = title
         subtitleTextView.text = subtitle
         thumbnailImageView.kf.setImage(with: imageURL)
+        if liveBroadcast { setLiveLabel() }
     }
 
     func setConstraints() {
@@ -86,6 +100,16 @@ class VideoCollectionViewCell: UICollectionViewCell {
             subtitleTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
             subtitleTextView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
             subtitleTextView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
+        ])
+    }
+
+    func setLiveLabel() {
+        addSubview(liveLabel)
+        
+        NSLayoutConstraint.activate([
+            liveLabel.bottomAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: -5),
+            liveLabel.rightAnchor.constraint(equalTo: thumbnailImageView.rightAnchor, constant: -5),
+            liveLabel.widthAnchor.constraint(equalToConstant: 38)
         ])
     }
 }

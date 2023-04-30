@@ -8,8 +8,9 @@
 import UIKit
 
 class SubscriptionsCoordinator {
-    static let shared = SubscriptionsCoordinator()
+    static let shared: SubscriptionsCoordinator = .init()
     var navigationController: UINavigationController?
+    var mainTabBarCoordinator = MainTabBarCoordinator.shared
 
     func start(_ viewController: SubscriptionsViewController) -> UIViewController {
         let presenter = SubscriptionsPresenter(coordinator: SubscriptionsCoordinator.shared)

@@ -22,7 +22,6 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
-        label.text = "Mazda RX-7 from the bush is back | NIGHTRIDE"
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -32,7 +31,6 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
         let label = UILabel()
         label.textColor = .gray
         label.numberOfLines = 2
-        label.text = "71K views  12 hours ago"
         label.font = label.font.withSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -84,8 +82,8 @@ struct ViewControllerRepresentable: UIViewControllerRepresentable {
     func makeUIViewController (context: Context) -> VideoPlaybackViewController {
         VideoPlaybackViewController()
     }
-    func updateUIViewController(_ uiViewController: VideoPlaybackViewController, context: Context) {
-    }
+
+    func updateUIViewController(_ uiViewController: VideoPlaybackViewController, context: Context) {}
 }
 
 struct ViewController_Previews: PreviewProvider {

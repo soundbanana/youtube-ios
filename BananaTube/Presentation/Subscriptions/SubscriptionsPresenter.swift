@@ -48,7 +48,14 @@ class SubscriptionsPresenter {
 
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
-        cell.show(title: title, subtitle: subtitle, imageURL: url)
+        let liveBroadcast: Bool
+        if snippet.liveBroadcastContent == "live" {
+            liveBroadcast = true
+        } else {
+            liveBroadcast = false
+        }
+
+        cell.show(title: title, subtitle: subtitle, imageURL: url, liveBroadcast: liveBroadcast)
     }
 
     func showDetails(row: Int) {

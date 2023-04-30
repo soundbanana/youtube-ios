@@ -8,6 +8,7 @@
 import UIKit
 
 class MainTabBarCoordinator {
+    static let shared: MainTabBarCoordinator = .init()
     weak var tabBarController: UITabBarController?
 
     func start() -> UIViewController {
@@ -20,9 +21,8 @@ class MainTabBarCoordinator {
             subscriptions(),
             library()
         ]
+
         return tabBarController
-//    let tempController = VideoPlaybackViewController()
-//        return tempController
     }
 
     private func home() -> UIViewController {
