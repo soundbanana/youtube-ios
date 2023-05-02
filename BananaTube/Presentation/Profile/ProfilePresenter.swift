@@ -8,6 +8,7 @@
 import UIKit
 import Firebase
 import GoogleSignIn
+import GoogleAPIClientForREST
 
 class ProfilePresenter {
     weak var view: ProfileViewController?
@@ -18,10 +19,12 @@ class ProfilePresenter {
 
         // Create Google Sign In configuration object.
         let config = GIDConfiguration(clientID: clientID)
+        let scopes = [kGTLRAuthScopeYouTubeReadonly]
         GIDSignIn.sharedInstance.configuration = config
 
         // Start the sign in flow!
-        GIDSignIn.sharedInstance.signIn(withPresenting: view!) { result, error in
+        //        GIDSignIn.sharedInstance.signIn(withPresenting: view!, : []) { result, error in
+        GIDSignIn.sharedInstance.signIn(withPresenting: view!, hint: "Hint", additionalScopes: scopes) { result, error in
             guard error == nil else {
                 print("Error because \(String(describing: error?.localizedDescription))")
                 return
@@ -35,9 +38,11 @@ class ProfilePresenter {
             }
 
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+            Constants.service.authorizer = user.fetcherAuthorizer
 
             Auth.auth().signIn(with: credential) { result, _ in
                 print(result?.user.email ?? "No user found")
+                print(user.accessToken.tokenString)
             }
             self.view?.dismiss(animated: true)
         }
