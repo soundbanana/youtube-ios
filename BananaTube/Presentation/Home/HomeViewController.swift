@@ -10,7 +10,7 @@ import GoogleSignIn
 import GoogleAPIClientForREST
 
 class HomeViewController: UIViewController {
-    private let service = Constants.service
+    private let youtubeService = GoogleServices.youtubeService
 
     let button: UIButton = {
         var button = UIButton()
@@ -39,20 +39,14 @@ class HomeViewController: UIViewController {
             button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             button.heightAnchor.constraint(equalToConstant: 50),
             button.widthAnchor.constraint(equalToConstant: 100)
-            ])
-
-//        self.service.authorizer = user.authentication.fetcherAuthorizer()
+        ])
     }
 
     @objc func foo() {
         let query = GTLRYouTubeQuery_ChannelsList.query(withPart: ["snippet", "statistics"])
 
-//        query.identifier = ["UC_x5XG1OV2P6uZZ5FSM9Ttw"]
-
-        // To retrieve data for the current user's channel, comment out the previous
-        // line (query.identifier ...) and uncomment the next line (query.mine ...)
         query.mine = true
-        service.executeQuery(
+        youtubeService.executeQuery(
             query,
             delegate: self,
             didFinish: #selector(displayResultWithTicket(ticket: finishedWithObject: error:)))
@@ -62,7 +56,8 @@ class HomeViewController: UIViewController {
     @objc func displayResultWithTicket(
         ticket: GTLRServiceTicket,
         finishedWithObject response: GTLRYouTube_ChannelListResponse,
-        error: NSError?) {
+        error: NSError?
+    ) {
         if let error = error {
             showAlert(title: "Error", message: error.localizedDescription)
             return

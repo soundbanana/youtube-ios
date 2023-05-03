@@ -12,6 +12,7 @@
 		FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */; };
 		FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1C829FB140E0040672B /* ProfileViewController.swift */; };
 		FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */; };
+		FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78A7C82A023622002A4B9F /* GoogleServices.swift */; };
 		FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */; };
 		FFC276EF29E9A59E0056075D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276EE29E9A59E0056075D /* Constants.swift */; };
 		FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */; };
@@ -41,6 +42,7 @@
 		FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackPresenter.swift; sourceTree = "<group>"; };
 		FF5FA1C829FB140E0040672B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		FF78A7C82A023622002A4B9F /* GoogleServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServices.swift; sourceTree = "<group>"; };
 		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 		FFC276F929EC50990056075D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				FF78A7C82A023622002A4B9F /* GoogleServices.swift */,
 				FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */,
 			);
 			path = Services;
@@ -376,6 +379,7 @@
 				FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */,
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
+				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
 				FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */,
 				FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */,
