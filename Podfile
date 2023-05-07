@@ -9,6 +9,7 @@ target 'BananaTube' do
     pod 'GoogleSignIn'
     pod 'GoogleAPIClientForREST/YouTube'
     pod 'Firebase/Auth'
+    pod 'SWXMLHash'
 end
 
 post_install do |installer|

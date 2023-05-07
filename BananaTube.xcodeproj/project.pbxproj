@@ -32,6 +32,8 @@
 		FFF76EA129FD06D700FB0C00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */; };
 		FFF7A3B92A07B09300BD6186 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */; };
 		FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */; };
+		FFF7A3BD2A07DFC300BD6186 /* NetworkSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */; };
+		FFF7A3BF2A07EA2900BD6186 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +68,8 @@
 		FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
 		FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchService.swift; sourceTree = "<group>"; };
+		FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,7 @@
 			children = (
 				FFC276EE29E9A59E0056075D /* Constants.swift */,
 				FFC276F529E9ADC40056075D /* Subscriptions.swift */,
+				FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +136,7 @@
 			children = (
 				FF78A7C82A023622002A4B9F /* GoogleServices.swift */,
 				FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */,
+				FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -380,6 +386,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFF7A3BF2A07EA2900BD6186 /* SearchResult.swift in Sources */,
 				FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */,
 				FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */,
 				FFF7A3B92A07B09300BD6186 /* SearchPresenter.swift in Sources */,
@@ -398,6 +405,7 @@
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
 				FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */,
+				FFF7A3BD2A07DFC300BD6186 /* NetworkSearchService.swift in Sources */,
 				FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */,
 				FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */,
 				FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */,

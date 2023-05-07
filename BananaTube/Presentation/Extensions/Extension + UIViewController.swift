@@ -92,6 +92,13 @@ extension UIViewController {
     }
 
     @objc func showSearch() {
-        print("Search button did tap")
+        let viewController = SearchViewController()
+        let presenter = SearchPresenter()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewController, animated: false)
     }
 }
