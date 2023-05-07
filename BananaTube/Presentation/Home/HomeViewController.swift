@@ -7,12 +7,12 @@
 
 import UIKit
 import GoogleSignIn
-import GoogleAPIClientForREST
 
 class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        createCustomNavigationBar()
 
         navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
 
