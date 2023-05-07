@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GoogleSignIn
 
 enum ObtainSubscriptionsResult {
     case success(posts: [String])
@@ -21,12 +22,14 @@ class NetworkSubscriptionsService {
     let decoder = JSONDecoder()
 
     @MainActor
-    func getPlaylists(channelId: String) async -> [String] {
+    func getPlaylists() async -> [String] {
         var playlists: [String] = []
 
         var result: Subscriptions
 
-        guard let url = URL(string: "\(Constants.BASE_URL)/subscriptions?part=snippet&channelId=\(channelId)&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
+        guard let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString else { return [] }
+
+        guard let url = URL(string: "\(Constants.BASE_URL)/subscriptions?part=snippet&access_token=\(accessToken)&mine=true&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
 
         var subs: [String] = []
 
@@ -77,6 +80,7 @@ class NetworkSubscriptionsService {
                     videos.append((item.contentDetails?.videoId)!)
                 }
             } catch {
+                print(error.localizedDescription)
             }
         }
         return videos
@@ -91,11 +95,14 @@ class NetworkSubscriptionsService {
             let response = try decoder.decode(Subscriptions.self, from: contentDetails)
             videos = response.items
         } catch {
+            print(error.localizedDescription)
         }
         return videos
     }
 
-    func getSubscriptions(channelId: String, completion: @escaping([Item]) -> Void) async {
+    func getSubscriptions(completion: @escaping([Item]) -> Void) async {
+        guard let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken else { return }
+
         var result: [Item] = []
 
         defer {
@@ -104,7 +111,7 @@ class NetworkSubscriptionsService {
 
         var playlists: [String] = []
         // Get all upload playlists of subbed channels
-        playlists = await getPlaylists(channelId: channelId)
+        playlists = await getPlaylists()
 
         // Get the last 5 items from every playlist
         var allItems: [String] = []
@@ -115,10 +122,14 @@ class NetworkSubscriptionsService {
 
         // The playlist items don't contain the correct published date, so now we have to fetch every video in batches of 50.
         var allVids: [Item] = []
-        let chunks = Chuncks(chunk: allItems, n: 50)
+        if allItems.count > 50 {
+            let chunks = Chuncks(chunk: allItems, n: 50)
 
-        for chunk in chunks {
-            await allVids.append(contentsOf: (getRealVideos(videoIds: chunk)))
+            for chunk in chunks {
+                await allVids.append(contentsOf: (getRealVideos(videoIds: chunk)))
+            }
+        } else {
+            await allVids.append(contentsOf: (getRealVideos(videoIds: allItems)))
         }
 
         result = allVids.sorted { $0.snippet!.publishedAt > $1.snippet!.publishedAt }
