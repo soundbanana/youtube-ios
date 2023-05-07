@@ -7,6 +7,7 @@ target 'BananaTube' do
     pod 'Kingfisher', '~> 7.0'
     pod 'youtube-ios-player-helper'
     pod 'GoogleSignIn'
+    pod 'GoogleAPIClientForREST/YouTube'
     pod 'Firebase/Auth'
 end
 

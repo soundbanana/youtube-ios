@@ -22,7 +22,7 @@ class SubscriptionsPresenter {
 
     func obtainData() {
         Task {
-            await networkSubscriptionsService.getSubscriptions(channelId: Constants.CHANNEL_ID) { result in
+            await networkSubscriptionsService.getSubscriptions { result in
                 self.subscriptions = result
                 DispatchQueue.main.async { [self] in
                     view?.subscriptionsList = self.subscriptions ?? []
