@@ -150,17 +150,10 @@
 		FFC276FA29EC50B40056075D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
-				FFF7A3C22A08117C00BD6186 /* Videos */,
-				FFF7A3B72A07B07B00BD6186 /* Search */,
-				FF5FA1C729FB0D240040672B /* Profile */,
-				FF586AAA29F6F3C4005D44BF /* VideoPlayback */,
 				FFC2770229EC68E40056075D /* Extensions */,
-				FFC276FD29EC51830056075D /* Library */,
-				FFC276FC29EC51750056075D /* Subscriptions */,
-				FFC276FB29EC516A0056075D /* Home */,
+				FFF7A3C72A0833A900BD6186 /* Main */,
+				FFF7A3C82A0833E800BD6186 /* Navbar */,
 				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
-				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
-				FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -221,11 +214,11 @@
 		FFEEC0DD29D4279700CBF948 /* BananaTube */ = {
 			isa = PBXGroup;
 			children = (
-				FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */,
 				FFEEC0F229D428A800CBF948 /* App */,
+				FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */,
 				FFEEC0EC29D4279800CBF948 /* Info.plist */,
-				FFC276FA29EC50B40056075D /* Presentation */,
 				FFC276F429E9A9110056075D /* Models */,
+				FFC276FA29EC50B40056075D /* Presentation */,
 				FFC276F929EC50990056075D /* Services */,
 				FFEEC0F429D428CE00CBF948 /* Storyboards */,
 			);
@@ -264,6 +257,37 @@
 			children = (
 				FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */,
 				FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */,
+			);
+			path = Videos;
+			sourceTree = "<group>";
+		};
+		FFF7A3C72A0833A900BD6186 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
+				FFC276FB29EC516A0056075D /* Home */,
+				FFC276FD29EC51830056075D /* Library */,
+				FFC276FC29EC51750056075D /* Subscriptions */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		FFF7A3C82A0833E800BD6186 /* Navbar */ = {
+			isa = PBXGroup;
+			children = (
+				FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */,
+				FF5FA1C729FB0D240040672B /* Profile */,
+				FFF7A3B72A07B07B00BD6186 /* Search */,
+				FFF7A3C92A08342E00BD6186 /* Videos */,
+			);
+			path = Navbar;
+			sourceTree = "<group>";
+		};
+		FFF7A3C92A08342E00BD6186 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				FFF7A3C22A08117C00BD6186 /* Videos */,
+				FF586AAA29F6F3C4005D44BF /* VideoPlayback */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
