@@ -63,16 +63,6 @@ class SubscriptionsPresenter {
         coordinator.showDetails(video: item)
     }
 
-    func showVideos() {
-        let presenter = VideosPresenter()
-        let viewController = VideosViewController()
-
-        viewController.presenter = presenter
-        presenter.view = viewController
-
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-
     func showSearch() {
         coordinator.showSearch()
     }

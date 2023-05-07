@@ -7,9 +7,9 @@
 
 import UIKit
 
-class SubscriptionsCoordinator {
+class SubscriptionsCoordinator: NavbarCoordinator {
     static let shared: SubscriptionsCoordinator = .init()
-    var navigationController: UINavigationController?
+    private var navigationController: UINavigationController?
     var mainTabBarCoordinator = MainTabBarCoordinator.shared
 
     func start(_ viewController: SubscriptionsViewController) -> UIViewController {
@@ -32,7 +32,7 @@ class SubscriptionsCoordinator {
     }
 
     func showSearch() {
-        let presenter = SearchPresenter()
+        let presenter = SearchPresenter(coordinator: SubscriptionsCoordinator.shared)
         let viewController = SearchViewController()
 
         viewController.presenter = presenter
@@ -43,13 +43,23 @@ class SubscriptionsCoordinator {
     }
 
     func showProfile() {
-        let viewController = ProfileViewController()
         let presenter = ProfilePresenter()
+        let viewController = ProfileViewController()
 
         viewController.presenter = presenter
         presenter.view = viewController
 
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.present(viewController, animated: true)
+    }
+
+    func showVideos() {
+        let presenter = VideosPresenter(coordinator: SubscriptionsCoordinator.shared)
+        let viewController = VideosViewController()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

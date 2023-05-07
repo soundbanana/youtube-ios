@@ -36,6 +36,7 @@
 		FFF7A3BF2A07EA2900BD6186 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */; };
 		FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */; };
 		FFF7A3C42A08119300BD6186 /* VideosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */; };
+		FFF7A3C62A082FA200BD6186 /* NavbarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,7 @@
 		FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
 		FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
 		FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosPresenter.swift; sourceTree = "<group>"; };
+		FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavbarCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 				FFC276FB29EC516A0056075D /* Home */,
 				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
 				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
+				FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
+				FFF7A3C62A082FA200BD6186 /* NavbarCoordinator.swift in Sources */,
 				FFF7A3C42A08119300BD6186 /* VideosPresenter.swift in Sources */,
 				FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */,
 				FFF7A3BD2A07DFC300BD6186 /* NetworkSearchService.swift in Sources */,
