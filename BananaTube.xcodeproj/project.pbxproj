@@ -30,6 +30,8 @@
 		FFEEC0E829D4279800CBF948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E729D4279800CBF948 /* Assets.xcassets */; };
 		FFEEC0EB29D4279800CBF948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E929D4279800CBF948 /* LaunchScreen.storyboard */; };
 		FFF76EA129FD06D700FB0C00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */; };
+		FFF7A3B92A07B09300BD6186 /* SearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */; };
+		FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +64,8 @@
 		FFEEC0EA29D4279800CBF948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFEEC0EC29D4279800CBF948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPresenter.swift; sourceTree = "<group>"; };
+		FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +138,7 @@
 		FFC276FA29EC50B40056075D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FFF7A3B72A07B07B00BD6186 /* Search */,
 				FF5FA1C729FB0D240040672B /* Profile */,
 				FF586AAA29F6F3C4005D44BF /* VideoPlayback */,
 				FFC2770229EC68E40056075D /* Extensions */,
@@ -229,6 +234,15 @@
 				FFEEC0E929D4279800CBF948 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FFF7A3B72A07B07B00BD6186 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */,
+				FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +382,7 @@
 			files = (
 				FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */,
 				FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */,
+				FFF7A3B92A07B09300BD6186 /* SearchPresenter.swift in Sources */,
 				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
 				FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */,
 				FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */,
@@ -380,6 +395,7 @@
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
+				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
 				FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */,
 				FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */,
