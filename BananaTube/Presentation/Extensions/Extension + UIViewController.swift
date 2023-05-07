@@ -57,9 +57,9 @@ extension UIViewController {
         return menuBarItem
     }
 
-    func createCustomButton(imageName: String, action: Action) -> UIBarButtonItem {
+    func createCustomButton(imageName: String, selector: Selector?) -> UIBarButtonItem {
         let button = UIButton(type: .system)
-        
+
         button.setImage(
             UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate),
             for: .normal
@@ -70,35 +70,12 @@ extension UIViewController {
         button.contentHorizontalAlignment = .fill
         button.frame = CGRect(x: 0, y: 0, width: 40, height: 30)
 
-        switch action {
-        case .profile: button.addTarget(self, action: #selector(showProfile), for: .touchUpInside)
-        case .search: button.addTarget(self, action: #selector(showSearch), for: .touchUpInside)
+        if selector != nil {
+            button.addTarget(self, action: selector!, for: .touchUpInside)
         }
 
         let menuBarItem = UIBarButtonItem(customView: button)
 
         return menuBarItem
-    }
-
-    @objc func showProfile() {
-        let viewController = ProfileViewController()
-        let presenter = ProfilePresenter()
-
-        viewController.presenter = presenter
-        presenter.view = viewController
-
-        viewController.modalPresentationStyle = .fullScreen
-        navigationController?.present(viewController, animated: true)
-    }
-
-    @objc func showSearch() {
-        let viewController = SearchViewController()
-        let presenter = SearchPresenter()
-
-        viewController.presenter = presenter
-        presenter.view = viewController
-
-        viewController.modalPresentationStyle = .fullScreen
-        navigationController?.present(viewController, animated: false)
     }
 }

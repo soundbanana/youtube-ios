@@ -23,13 +23,23 @@ class SearchPresenter {
         do {
             let (data, _) = try await session.data(from: url)
 
+//            print(String(data: data, encoding: .ascii)!)
+//            let xml = XMLHash.parse(data)
+//            let result = xml["toplevel"]["CompleteSuggestion"]["suggestion"].element?.allAttributes
+//            print(1)
+//            print(result)
+
+//            result = response
         } catch {
             print(error)
             return
         }
     }
 
-    func search(searchText: String) async {
-        await service.getVideos(searchText: searchText)
+    func search(searchText: String) {
+        Task {
+            let videos = await service.getVideos(searchText: searchText)
+        }
+        view?.dismiss(animated: false)
     }
 }

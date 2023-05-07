@@ -54,7 +54,7 @@ class SearchViewController: UIViewController {
             searchBar.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
             searchBar.leftAnchor.constraint(equalTo: closeButton.rightAnchor, constant: 5),
             searchBar.rightAnchor.constraint(equalTo: view.rightAnchor)
-            ])
+        ])
     }
 
     @objc private func close() {
@@ -63,11 +63,10 @@ class SearchViewController: UIViewController {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        Task {
-            await presenter.search(searchText: searchBar.text!)
-        }
+        presenter.search(searchText: searchBar.text!)
     }
 }
+
 extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Task {

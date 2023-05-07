@@ -101,8 +101,6 @@ class NetworkSubscriptionsService {
     }
 
     func getSubscriptions(completion: @escaping([Item]) -> Void) async {
-        guard let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken else { return }
-
         var result: [Item] = []
 
         defer {

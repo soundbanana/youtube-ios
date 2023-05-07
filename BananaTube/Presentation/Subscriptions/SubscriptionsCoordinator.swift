@@ -30,4 +30,26 @@ class SubscriptionsCoordinator {
 
         navigationController?.pushViewController(viewController, animated: true)
     }
+
+    func showSearch() {
+        let presenter = SearchPresenter()
+        let viewController = SearchViewController()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewController, animated: false)
+    }
+
+    func showProfile() {
+        let viewController = ProfileViewController()
+        let presenter = ProfilePresenter()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewController, animated: true)
+    }
 }

@@ -16,9 +16,9 @@ class HomeViewController: UIViewController {
 
         navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
 
-        let accountButton = createCustomButton(imageName: "person.circle.fill", action: .profile)
-        let searchButton = createCustomButton(imageName: "magnifyingglass", action: .search)
+//        let accountButton = createCustomButton(imageName: "person.circle.fill", action: .profile)
+//        let searchButton = createCustomButton(imageName: "magnifyingglass", action: .search)
 
-        navigationItem.rightBarButtonItems = [accountButton, searchButton]
+//        navigationItem.rightBarButtonItems = [accountButton, searchButton]
     }
 }

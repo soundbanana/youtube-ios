@@ -34,6 +34,8 @@
 		FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */; };
 		FFF7A3BD2A07DFC300BD6186 /* NetworkSearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */; };
 		FFF7A3BF2A07EA2900BD6186 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */; };
+		FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */; };
+		FFF7A3C42A08119300BD6186 /* VideosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +72,8 @@
 		FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchService.swift; sourceTree = "<group>"; };
 		FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosViewController.swift; sourceTree = "<group>"; };
+		FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +148,7 @@
 		FFC276FA29EC50B40056075D /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				FFF7A3C22A08117C00BD6186 /* Videos */,
 				FFF7A3B72A07B07B00BD6186 /* Search */,
 				FF5FA1C729FB0D240040672B /* Profile */,
 				FF586AAA29F6F3C4005D44BF /* VideoPlayback */,
@@ -249,6 +254,15 @@
 				FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		FFF7A3C22A08117C00BD6186 /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */,
+				FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -400,10 +414,12 @@
 				FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */,
 				FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */,
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
+				FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
+				FFF7A3C42A08119300BD6186 /* VideosPresenter.swift in Sources */,
 				FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */,
 				FFF7A3BD2A07DFC300BD6186 /* NetworkSearchService.swift in Sources */,
 				FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */,

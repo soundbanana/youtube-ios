@@ -15,6 +15,7 @@ class SubscriptionsViewController: UIViewController {
     var subscriptionsList: [Item] = []
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         configureCollectionView()
         setupViews()
         presenter.obtainData()
@@ -28,8 +29,8 @@ class SubscriptionsViewController: UIViewController {
 
         navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
 
-        let accountButton = createCustomButton(imageName: "person.circle.fill", action: .profile)
-        let searchButton = createCustomButton(imageName: "magnifyingglass", action: .search)
+        let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
+        let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))
 
         navigationItem.rightBarButtonItems = [accountButton, searchButton]
 
@@ -43,6 +44,14 @@ class SubscriptionsViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+
+    @objc func showSearch() {
+        presenter.showSearch()
+    }
+
+    @objc func showProfile() {
+        presenter.showProfile()
     }
 }
 
