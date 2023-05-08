@@ -23,22 +23,26 @@ class SearchPresenter {
     let service = NetworkSearchService()
 
     func predict(searchText: String) async {
-        guard let url = URL(string: "https://suggestqueries.google.com/complete/search?ds=yt&output=xml&q=\(searchText)") else { return }
+        let encodedTexts = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
 
+        guard let url = URL(string: "https://suggestqueries.google.com/complete/search?ds=yt&output=xml&q=\(encodedTexts!)") else {
+            return }
+
+        let result: [String]
         do {
             let (data, _) = try await session.data(from: url)
+            let xml = XMLHash.parse(data)
 
-            print(String(data: data, encoding: .ascii)!)
-//            let xml = XMLHash.parse(data)
-//            let result = xml["toplevel"]["CompleteSuggestion"]["suggestion"].element?.allAttributes
-//            print(1)
-//            print(result)
-
-//            result = response
+            let predictons = xml["toplevel"]["CompleteSuggestion"].all.map { elem in
+                elem["suggestion"].element!.attribute(by: "data")?.text
+            }
+            result = predictons.compactMap { $0 }
         } catch {
             print(error)
             return
         }
+
+        print(result)
     }
 
     func search(searchText: String) {
