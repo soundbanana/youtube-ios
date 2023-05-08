@@ -51,9 +51,7 @@ class SearchViewController: UIViewController {
         view.addSubview(tableView)
 
         searchBar.delegate = self
-
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
-
         setupTableView()
 
         NSLayoutConstraint.activate([
@@ -70,7 +68,7 @@ class SearchViewController: UIViewController {
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+        ])
     }
 
     @objc private func close() {
@@ -87,6 +85,7 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Task {
             await presenter.predict(searchText: searchText)
+            tableView.reloadData()
         }
     }
 }
@@ -96,22 +95,25 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "text")
-        tableView.alwaysBounceVertical = false
         tableView.reloadData()
     }
 
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        9
+        presenter.getPredictionsListSize()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PredictionsTableViewCell.identifier, for: indexPath) as? PredictionsTableViewCell else { return UITableViewCell() }
-        cell.configure(title: "123")
+        presenter.configureCell(cell: cell, row: indexPath.row)
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        70
+        50
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        searchBar.resignFirstResponder()
     }
 }

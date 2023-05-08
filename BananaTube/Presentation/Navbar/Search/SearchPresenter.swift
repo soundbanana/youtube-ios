@@ -21,6 +21,7 @@ class SearchPresenter {
     let parser = XMLParser()
 
     let service = NetworkSearchService()
+    var predictionsList: [String] = []
 
     func predict(searchText: String) async {
         let encodedTexts = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
@@ -34,15 +35,14 @@ class SearchPresenter {
             let xml = XMLHash.parse(data)
 
             let predictons = xml["toplevel"]["CompleteSuggestion"].all.map { elem in
-                elem["suggestion"].element!.attribute(by: "data")?.text
+                elem["suggestion"].element?.attribute(by: "data")?.text
             }
-            result = predictons.compactMap { $0 }
+            predictionsList = predictons.compactMap { $0 }
         } catch {
             print(error)
             return
         }
-
-        print(result)
+//        print(result)
     }
 
     func search(searchText: String) {
@@ -52,4 +52,10 @@ class SearchPresenter {
         view?.dismiss(animated: false)
         coordinator.showVideos()
     }
+
+    func configureCell(cell: PredictionsTableViewCell, row: Int) {
+        cell.configure(title: predictionsList[row])
+    }
+
+    func getPredictionsListSize() -> Int { predictionsList.count }
 }
