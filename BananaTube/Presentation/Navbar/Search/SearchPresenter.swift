@@ -22,6 +22,7 @@ class SearchPresenter {
 
     let service = NetworkSearchService()
     var predictionsList: [String] = []
+    var searchResult: SearchResult?
 
     func predict(searchText: String) async {
         let encodedTexts = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
@@ -29,7 +30,6 @@ class SearchPresenter {
         guard let url = URL(string: "https://suggestqueries.google.com/complete/search?ds=yt&output=xml&q=\(encodedTexts!)") else {
             return }
 
-        let result: [String]
         do {
             let (data, _) = try await session.data(from: url)
             let xml = XMLHash.parse(data)
@@ -42,15 +42,29 @@ class SearchPresenter {
             print(error)
             return
         }
-//        print(result)
+    }
+
+    func rowTapped(row: Int) {
+        search(searchText: predictionsList[row])
     }
 
     func search(searchText: String) {
         Task {
-            let videos = await service.getVideos(searchText: searchText)
+            await self.service.getVideos(searchText: searchText) { result in
+                switch result {
+                case .success(let searchResult):
+                    self.searchResult = searchResult
+                case .failure(let error):
+                    print("Error: \(error)")
+                }
+            }
+            DispatchQueue.main.async { [self] in
+                if let searchResult = searchResult {
+                    view?.dismiss(animated: false)
+                    coordinator.showVideos(searchResult: searchResult)
+                }
+            }
         }
-        view?.dismiss(animated: false)
-        coordinator.showVideos()
     }
 
     func configureCell(cell: PredictionsTableViewCell, row: Int) {

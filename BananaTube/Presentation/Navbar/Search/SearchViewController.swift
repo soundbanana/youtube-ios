@@ -116,4 +116,8 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.rowTapped(row: indexPath.row)
+    }
 }

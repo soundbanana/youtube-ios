@@ -7,28 +7,33 @@
 
 import Foundation
 
+enum NetworkError: Error {
+    case invalidURL
+}
+
 class NetworkSearchService {
     let session = URLSession.shared
     let decoder = JSONDecoder()
 
-    func getVideos(searchText: String) async -> [Item] {
+    func getVideos(searchText: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/search"
         let part = "snippet"
-        let maxResult = "50"
+        let maxResults = "20"
         let order = "viewCount"
         let type = "video"
         let q = searchText
 
-        guard let url = URL(string: "\(mainPart)?part=\(part)&maxResult\(maxResult)&key=\(Constants.API_KEY)&order=\(order)&q=\(q)&type=\(type)") else { return [] }
+        guard let url = URL(string: "\(mainPart)?part=\(part)&maxResults=\(maxResults)&key=\(Constants.API_KEY)&order=\(order)&q=\(q)&type=\(type)") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
 
         do {
             let (data, _) = try await session.data(from: url)
             let response = try decoder.decode(SearchResult.self, from: data)
-            print(response)
-            return []
+            completion(.success(response))
         } catch {
-            print(error)
-            return []
+            completion(.failure(error))
         }
     }
 }

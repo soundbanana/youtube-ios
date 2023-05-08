@@ -53,8 +53,8 @@ class SubscriptionsCoordinator: NavbarCoordinator {
         navigationController?.present(viewController, animated: true)
     }
 
-    func showVideos() {
-        let presenter = VideosPresenter(coordinator: SubscriptionsCoordinator.shared)
+    func showVideos(searchResult: SearchResult) {
+        let presenter = VideosPresenter(coordinator: SubscriptionsCoordinator.shared, videosList: searchResult.items)
         let viewController = VideosViewController()
 
         viewController.presenter = presenter

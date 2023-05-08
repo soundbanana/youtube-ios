@@ -13,11 +13,18 @@ class VideosPresenter {
 
     var coordinator: NavbarCoordinator
 
-    init(coordinator: NavbarCoordinator) {
+    var videosList: [SearchItem]
+
+    init(coordinator: NavbarCoordinator, videosList: [SearchItem]) {
         self.coordinator = coordinator
+        self.videosList = videosList
     }
 
     func showSearch() {
         coordinator.showSearch()
+    }
+
+    func foo() {
+        print(videosList)
     }
 }

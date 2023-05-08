@@ -9,5 +9,5 @@ import Foundation
 
 protocol NavbarCoordinator {
     func showSearch()
-    func showVideos()
+    func showVideos(searchResult: SearchResult)
 }

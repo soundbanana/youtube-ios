@@ -38,6 +38,6 @@ class VideosViewController: UIViewController {
     }
 
     @objc func showSearch() {
-        presenter.showSearch()
+        presenter.foo()
     }
 }
