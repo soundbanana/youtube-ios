@@ -11,7 +11,7 @@ import SwiftUI
 class SearchViewController: UIViewController {
     var presenter: SearchPresenter!
 
-    let closeButton: UIButton = {
+    private let closeButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.imageView?.contentMode = .scaleAspectFit
@@ -23,12 +23,20 @@ class SearchViewController: UIViewController {
         return button
     }()
 
-    let searchBar: UISearchBar = {
+    private let searchBar: UISearchBar = {
         let search = UISearchBar()
         search.placeholder = "Search BananaTube"
         search.backgroundImage = UIImage()
         search.translatesAutoresizingMaskIntoConstraints = false
         return search
+    }()
+
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        tableView.register(PredictionsTableViewCell.self, forCellReuseIdentifier: PredictionsTableViewCell.identifier)
+        return tableView
     }()
 
     override func viewDidLoad() {
@@ -40,10 +48,13 @@ class SearchViewController: UIViewController {
     private func setupSearchView() {
         view.addSubview(closeButton)
         view.addSubview(searchBar)
+        view.addSubview(tableView)
 
         searchBar.delegate = self
 
         closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+
+        setupTableView()
 
         NSLayoutConstraint.activate([
             closeButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
@@ -53,8 +64,13 @@ class SearchViewController: UIViewController {
 
             searchBar.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
             searchBar.leftAnchor.constraint(equalTo: closeButton.rightAnchor, constant: 5),
-            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor)
-        ])
+            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor),
+
+            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
     }
 
     @objc private func close() {
@@ -72,5 +88,30 @@ extension SearchViewController: UISearchBarDelegate {
         Task {
             await presenter.predict(searchText: searchText)
         }
+    }
+}
+
+extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
+    func setupTableView() {
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "text")
+        tableView.alwaysBounceVertical = false
+        tableView.reloadData()
+    }
+
+    // MARK: - UITableViewDataSource
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        9
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: PredictionsTableViewCell.identifier, for: indexPath) as? PredictionsTableViewCell else { return UITableViewCell() }
+        cell.configure(title: "123")
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        70
     }
 }
