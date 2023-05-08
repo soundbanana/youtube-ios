@@ -14,17 +14,28 @@ class VideosViewController: UIViewController {
 
     var videosList: [Item] = []
 
-    let testButton: UIButton = {
-        var button = UIButton()
-        button.setTitle("Test", for: .normal)
-        button.backgroundColor = .blue
-        button.translatesAutoresizingMaskIntoConstraints = false
-        return button
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureCollectionView()
+        setupViews()
+        presenter.obtainData()
+        print(videosList)
+    }
+
+    private func setupViews() {
         view.backgroundColor = .systemBackground
+        view.addSubview(collectionView)
+
+        self.edgesForExtendedLayout = []
+    }
+
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = .systemBackground
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
     }
 }
 
@@ -61,9 +72,6 @@ extension VideosViewController: UICollectionViewDelegate { }
 
 extension VideosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if videosList.isEmpty {
-            return 20
-        }
         return videosList.count
     }
 

@@ -12,21 +12,38 @@ class VideosPresenter {
     var navigationController: UINavigationController?
 
     var coordinator: NavbarCoordinator
+    var videosCoordinator = VideosCoordinator.shared
 
-    var videosList: [SearchItem] = []
+    var searchResult: SearchResult
+    var items: [Item] = []
 
-    init(coordinator: NavbarCoordinator, videosList: [SearchItem]) {
+    init(coordinator: NavbarCoordinator, searchResult: SearchResult) {
         self.coordinator = coordinator
-        self.videosList = videosList
+        self.searchResult = searchResult
     }
 
     func showSearch() {
         coordinator.showSearch()
     }
 
+    func obtainData() {
+        items = searchResult.items.map { searchItem in
+            return Item(
+                kind: searchItem.kind,
+                etag: searchItem.etag,
+                id: searchItem.id.videoId,
+                snippet: searchItem.snippet,
+                contentDetails: nil,
+                statistics: searchItem.statistics)
+        }
+
+        view?.videosList = items
+        view?.collectionView.reloadData()
+    }
+
     func configureCell(cell: VideoCollectionViewCell, row: Int) {
-        let snippet = videosList[row].snippet
-//        guard let statistics = videosList[row].statistics else { return }
+        guard let snippet = items[row].snippet else { return }
+        guard let statistics = items[row].statistics else { return }
 
         let title = snippet.title
 
@@ -36,8 +53,7 @@ class VideosPresenter {
         let formatter = RelativeDateTimeFormatter()
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
-//        let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
-        let subtitle = ""
+        let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
 
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
@@ -48,6 +64,13 @@ class VideosPresenter {
             liveBroadcast = false
         }
 
+        print(title)
+
         cell.show(title: title, subtitle: subtitle, imageURL: url, liveBroadcast: liveBroadcast)
     }
+
+//    func showDetails(row: Int) {
+//        let item = searchResult.items[row]
+//        videosCoordinator.showDetails(video: item)
+//    }
 }

@@ -21,6 +21,7 @@ struct SearchItem: Decodable {
     let etag: String
     let id: Id
     let snippet: Snippet
+    var statistics: Statistics?
 }
 
 struct Id: Decodable {

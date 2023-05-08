@@ -37,21 +37,28 @@ class NetworkSearchService {
             let (data, _) = try await session.data(from: url)
             let response = try decoder.decode(SearchResult.self, from: data)
 
+            // Due to search does't have statistics part, I need to do additional API request
             var videoIds: [String] = []
             for video in response.items {
                 videoIds.append(video.id.videoId)
             }
 
-            print(videoIds)
-
+            var stats: [Statistics] = []
             await getStatistics(videoIds: videoIds) { result in
                 switch result {
                 case .success(let statistics):
-                    print("OK")
+                    for item in statistics.items {
+                        stats.append(item.statistics!)
+                    }
                 case .failure(let error):
                     print("Error: \(error.localizedDescription)")
                 }
             }
+
+            for (index, var item) in response.items.enumerated() where index < stats.count {
+                item.statistics = stats[index]
+            }
+            
             completion(.success(response))
         } catch {
             completion(.failure(error))
@@ -72,7 +79,6 @@ class NetworkSearchService {
         do {
             let (data, _) = try await session.data(from: url)
             let response = try decoder.decode(Subscriptions.self, from: data)
-            print(response)
             completion(.success(response))
         } catch {
             completion(.failure(error))
