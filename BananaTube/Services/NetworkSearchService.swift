@@ -11,6 +11,11 @@ enum NetworkError: Error {
     case invalidURL
 }
 
+enum APIError: Error {
+    case invalidResponse
+    case apiError(String)
+}
+
 class NetworkSearchService {
     let session = URLSession.shared
     let decoder = JSONDecoder()
@@ -31,6 +36,43 @@ class NetworkSearchService {
         do {
             let (data, _) = try await session.data(from: url)
             let response = try decoder.decode(SearchResult.self, from: data)
+
+            var videoIds: [String] = []
+            for video in response.items {
+                videoIds.append(video.id.videoId)
+            }
+
+            print(videoIds)
+
+            await getStatistics(videoIds: videoIds) { result in
+                switch result {
+                case .success(let statistics):
+                    print("OK")
+                case .failure(let error):
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
+            completion(.success(response))
+        } catch {
+            completion(.failure(error))
+        }
+    }
+
+    func getStatistics(videoIds: [String], completion: @escaping (Result<Subscriptions, Error>) -> Void) async {
+        let mainPart = "https://youtube.googleapis.com/youtube/v3/videos"
+        let part = "statistics"
+        let id = videoIds.joined(separator: "%2C")
+
+        guard let url = URL(string: "\(mainPart)?part=\(part)&id=\(id)&key=\(Constants.API_KEY)") else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
+
+        // !TODO Change name of model Subscriptions to smth else
+        do {
+            let (data, _) = try await session.data(from: url)
+            let response = try decoder.decode(Subscriptions.self, from: data)
+            print(response)
             completion(.success(response))
         } catch {
             completion(.failure(error))
