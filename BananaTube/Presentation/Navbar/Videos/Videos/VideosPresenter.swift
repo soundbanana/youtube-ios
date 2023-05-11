@@ -14,32 +14,47 @@ class VideosPresenter {
     var coordinator: NavbarCoordinator
     var videosCoordinator = VideosCoordinator.shared
 
-    var searchResult: SearchResult
+    var searchResult: SearchResult!
+    let searchText: String!
     var items: [Item] = []
 
-    init(coordinator: NavbarCoordinator, searchResult: SearchResult) {
+    let service = NetworkSearchService()
+
+    init(coordinator: NavbarCoordinator, searchText: String) {
         self.coordinator = coordinator
-        self.searchResult = searchResult
+        self.searchText = searchText
     }
 
     func showSearch() {
         coordinator.showSearch()
     }
 
-    func obtainData() {
-        print("OBTAIN DATA \(searchResult)\n")
-        items = searchResult.items.map { searchItem in
-            return Item(
-                kind: searchItem.kind,
-                etag: searchItem.etag,
-                id: searchItem.id.videoId,
-                snippet: searchItem.snippet,
-                contentDetails: nil,
-                statistics: searchItem.statistics)
+    func obtainData() async {
+        await service.getVideos(searchText: searchText) { result in
+            switch result {
+            case .success(let searchResult):
+                self.searchResult = searchResult
+            case .failure(let error):
+                print("Error: \(error)")
+            }
+        }
+        
+        if let searchResult = searchResult {
+            items = searchResult.items.map { searchItem in
+                return Item(
+                    kind: searchItem.kind,
+                    etag: searchItem.etag,
+                    id: searchItem.id.videoId,
+                    snippet: searchItem.snippet,
+                    contentDetails: nil,
+                    statistics: searchItem.statistics)
+            }
         }
 
-        view?.videosList = items
+        print("OBTAIN DATA \(String(describing: searchResult))\n")
+
         DispatchQueue.main.async {
+            self.view?.videosList = self.items
             self.view?.collectionView.reloadData()
         }
     }
@@ -79,8 +94,8 @@ class VideosPresenter {
         cell.show(title: title, subtitle: subtitle, imageURL: url, liveBroadcast: liveBroadcast)
     }
 
-//    func showDetails(row: Int) {
-//        let item = searchResult.items[row]
-//        videosCoordinator.showDetails(video: item)
-//    }
+    func showDetails(row: Int) {
+        let item = items[row]
+        coordinator.showDetails(video: item)
+    }
 }

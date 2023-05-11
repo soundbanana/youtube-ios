@@ -56,17 +56,12 @@ class NetworkSearchService {
                 }
             }
 
+            print("RESPONSE ITEMS \(response.items)")
             print("STATS \(stats)\n")
 
             for i in 0..<response.items.count {
                 response.items[i].statistics = stats[i]
             }
-
-//            for (index, var item) in response.items.enumerated() where index < stats.count {
-//                item.statistics = stats[index]
-//                print(item)
-//                print()
-//            }
 
             print("RESPONSE \(response)\n")
 
@@ -91,10 +86,8 @@ class NetworkSearchService {
         // !TODO Change name of model Subscriptions to smth else
         do {
             let (data, _) = try await session.data(from: url)
-//            let test = data.data(using: .utf8)!
-//            print(type(of: data))
             let response = try decoder.decode(Subscriptions.self, from: data)
-            print("RESPONSE \(response)\n")
+            print("RESPONSE IN GET STATISTICS \(response)\n")
             completion(.success(response))
         } catch {
             completion(.failure(error))

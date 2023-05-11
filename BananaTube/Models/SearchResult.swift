@@ -19,12 +19,12 @@ struct SearchResult: Decodable {
 struct SearchItem: Decodable {
     let kind: String
     let etag: String
-    let id: Id
+    let id: Identity
     let snippet: Snippet
     var statistics: Statistics?
 }
 
-struct Id: Decodable {
+struct Identity: Decodable {
     let kind: String?
     let videoId: String
 }

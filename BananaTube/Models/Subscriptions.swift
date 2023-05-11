@@ -46,9 +46,9 @@ struct ContentDetails: Codable {
 
 struct Statistics: Codable {
     let viewCount: String
-    let likeCount: String
+    let likeCount: String?
     let favouriteCount: String?
-    let commentCount: String
+    let commentCount: String?
 }
 
 struct RelatedPlaylists: Codable {

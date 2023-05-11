@@ -18,8 +18,9 @@ class VideosViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
-        presenter.obtainData()
-//        print(videosList)
+        Task {
+            await presenter.obtainData()
+        }
     }
 
     private func setupViews() {
@@ -85,6 +86,6 @@ extension VideosViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        presenter.showDetails(row: indexPath.row)
+        presenter.showDetails(row: indexPath.row)
     }
 }

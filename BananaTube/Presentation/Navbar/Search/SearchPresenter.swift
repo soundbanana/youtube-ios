@@ -20,9 +20,7 @@ class SearchPresenter {
     let session = URLSession.shared
     let parser = XMLParser()
 
-    let service = NetworkSearchService()
     var predictionsList: [String] = []
-    var searchResult: SearchResult?
 
     func predict(searchText: String) async {
         let encodedTexts = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
@@ -49,22 +47,8 @@ class SearchPresenter {
     }
 
     func search(searchText: String) {
-        Task {
-            await service.getVideos(searchText: searchText) { result in
-                switch result {
-                case .success(let searchResult):
-                    self.searchResult = searchResult
-                case .failure(let error):
-                    print("Error: \(error)")
-                }
-            }
-            DispatchQueue.main.async { [self] in
-                if let searchResult = searchResult {
-                    view?.dismiss(animated: false)
-                    coordinator.showVideos(searchResult: searchResult)
-                }
-            }
-        }
+        view?.dismiss(animated: false)
+        coordinator.showVideos(searchText: searchText)
     }
 
     func configureCell(cell: PredictionsTableViewCell, row: Int) {
