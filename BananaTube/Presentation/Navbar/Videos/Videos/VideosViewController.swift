@@ -19,7 +19,7 @@ class VideosViewController: UIViewController {
         configureCollectionView()
         setupViews()
         presenter.obtainData()
-        print(videosList)
+//        print(videosList)
     }
 
     private func setupViews() {

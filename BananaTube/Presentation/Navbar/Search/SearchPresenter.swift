@@ -50,7 +50,7 @@ class SearchPresenter {
 
     func search(searchText: String) {
         Task {
-            await self.service.getVideos(searchText: searchText) { result in
+            await service.getVideos(searchText: searchText) { result in
                 switch result {
                 case .success(let searchResult):
                     self.searchResult = searchResult

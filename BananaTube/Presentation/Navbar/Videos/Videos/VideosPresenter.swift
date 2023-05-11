@@ -27,6 +27,7 @@ class VideosPresenter {
     }
 
     func obtainData() {
+        print("OBTAIN DATA \(searchResult)\n")
         items = searchResult.items.map { searchItem in
             return Item(
                 kind: searchItem.kind,
@@ -38,12 +39,21 @@ class VideosPresenter {
         }
 
         view?.videosList = items
-        view?.collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.view?.collectionView.reloadData()
+        }
     }
 
     func configureCell(cell: VideoCollectionViewCell, row: Int) {
-        guard let snippet = items[row].snippet else { return }
-        guard let statistics = items[row].statistics else { return }
+        guard let snippet = items[row].snippet else {
+            print("No snippet provided")
+            return
+        }
+        guard let statistics = items[row].statistics
+            else {
+            print("No statistics provided")
+            return
+        }
 
         let title = snippet.title
 

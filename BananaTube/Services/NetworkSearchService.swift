@@ -23,19 +23,19 @@ class NetworkSearchService {
     func getVideos(searchText: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/search"
         let part = "snippet"
-        let maxResults = "20"
+        let maxResults = "10"
         let order = "viewCount"
         let type = "video"
-        let q = searchText
+        let q = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
 
-        guard let url = URL(string: "\(mainPart)?part=\(part)&maxResults=\(maxResults)&key=\(Constants.API_KEY)&order=\(order)&q=\(q)&type=\(type)") else {
+        guard let url = URL(string: "\(mainPart)?part=\(part)&maxResults=\(maxResults)&key=\(Constants.API_KEY)&order=\(order)&q=\(q!)&type=\(type)") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
 
         do {
             let (data, _) = try await session.data(from: url)
-            let response = try decoder.decode(SearchResult.self, from: data)
+            var response = try decoder.decode(SearchResult.self, from: data)
 
             // Due to search does't have statistics part, I need to do additional API request
             var videoIds: [String] = []
@@ -44,6 +44,7 @@ class NetworkSearchService {
             }
 
             var stats: [Statistics] = []
+            print(videoIds)
             await getStatistics(videoIds: videoIds) { result in
                 switch result {
                 case .success(let statistics):
@@ -51,14 +52,24 @@ class NetworkSearchService {
                         stats.append(item.statistics!)
                     }
                 case .failure(let error):
-                    print("Error: \(error.localizedDescription)")
+                    print("Error while getting statistics: \(error.localizedDescription)")
                 }
             }
 
-            for (index, var item) in response.items.enumerated() where index < stats.count {
-                item.statistics = stats[index]
+            print("STATS \(stats)\n")
+
+            for i in 0..<response.items.count {
+                response.items[i].statistics = stats[i]
             }
-            
+
+//            for (index, var item) in response.items.enumerated() where index < stats.count {
+//                item.statistics = stats[index]
+//                print(item)
+//                print()
+//            }
+
+            print("RESPONSE \(response)\n")
+
             completion(.success(response))
         } catch {
             completion(.failure(error))
@@ -75,10 +86,15 @@ class NetworkSearchService {
             return
         }
 
+        print(url.absoluteString)
+
         // !TODO Change name of model Subscriptions to smth else
         do {
             let (data, _) = try await session.data(from: url)
+//            let test = data.data(using: .utf8)!
+//            print(type(of: data))
             let response = try decoder.decode(Subscriptions.self, from: data)
+            print("RESPONSE \(response)\n")
             completion(.success(response))
         } catch {
             completion(.failure(error))

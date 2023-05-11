@@ -13,7 +13,7 @@ struct SearchResult: Decodable {
     let nextPageToken: String
     let regionCode: String
     let pageInfo: PageInfo
-    let items: [SearchItem]
+    var items: [SearchItem]
 }
 
 struct SearchItem: Decodable {
