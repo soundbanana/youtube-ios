@@ -14,6 +14,13 @@ class VideosViewController: UIViewController {
 
     var videosList: [Item] = []
 
+    let backButton: UIButton = {
+        var button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = .darkGray
+        return button
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
@@ -25,9 +32,18 @@ class VideosViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = .systemBackground
+
         view.addSubview(collectionView)
 
         self.edgesForExtendedLayout = []
+
+        backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
+        let backButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = backButtonItem
+    }
+
+    @objc private func handleBackButtonTapped() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     private func configureCollectionView() {

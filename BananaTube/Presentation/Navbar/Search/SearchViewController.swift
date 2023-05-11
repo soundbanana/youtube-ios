@@ -41,24 +41,25 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
         setupSearchView()
     }
 
     private func setupSearchView() {
+        view.backgroundColor = .systemBackground
+        
         view.addSubview(closeButton)
         view.addSubview(searchBar)
         view.addSubview(tableView)
 
         searchBar.delegate = self
-        closeButton.addTarget(self, action: #selector(close), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(handleCloseButtonTapped), for: .touchUpInside)
         setupTableView()
 
         NSLayoutConstraint.activate([
             closeButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 16),
-            closeButton.heightAnchor.constraint(equalToConstant: 25),
-            closeButton.widthAnchor.constraint(equalToConstant: 25),
+            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
+            closeButton.heightAnchor.constraint(equalToConstant: 22),
+            closeButton.widthAnchor.constraint(equalToConstant: 22),
 
             searchBar.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
             searchBar.leftAnchor.constraint(equalTo: closeButton.rightAnchor, constant: 5),
@@ -71,7 +72,7 @@ class SearchViewController: UIViewController {
         ])
     }
 
-    @objc private func close() {
+    @objc private func handleCloseButtonTapped() {
         self.dismiss(animated: false)
     }
 
