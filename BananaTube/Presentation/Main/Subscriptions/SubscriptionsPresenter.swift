@@ -62,4 +62,12 @@ class SubscriptionsPresenter {
         guard let item = subscriptions?[row] else { return }
         coordinator.showDetails(video: item)
     }
+
+    func showSearch() {
+        coordinator.showSearch(searchBarText: "")
+    }
+
+    func showProfile() {
+        coordinator.showProfile()
+    }
 }
