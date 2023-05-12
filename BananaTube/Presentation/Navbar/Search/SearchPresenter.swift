@@ -13,14 +13,20 @@ class SearchPresenter {
     var navigationController: UINavigationController?
     var coordinator: NavbarCoordinator
 
-    init(coordinator: NavbarCoordinator) {
-        self.coordinator = coordinator
-    }
-
     let session = URLSession.shared
     let parser = XMLParser()
 
     var predictionsList: [String] = []
+    var searchBarText: String
+
+    init(coordinator: NavbarCoordinator, searchBarText: String) {
+        self.coordinator = coordinator
+        self.searchBarText = searchBarText
+    }
+
+    func viewDidLoad() {
+        view?.update(searchBarText: searchBarText)
+    }
 
     func predict(searchText: String) async {
         let encodedTexts = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
@@ -47,8 +53,7 @@ class SearchPresenter {
     }
 
     func search(searchText: String) {
-        view?.dismiss(animated: false)
-        coordinator.showVideos(searchText: searchText)
+        coordinator.showVideosList(searchText: searchText)
     }
 
     func configureCell(cell: PredictionsTableViewCell, row: Int) {

@@ -12,10 +12,9 @@ class VideosPresenter {
     var navigationController: UINavigationController?
 
     var coordinator: NavbarCoordinator
-    var videosCoordinator = VideosCoordinator.shared
 
     var searchResult: SearchResult!
-    let searchText: String!
+    let searchText: String
     var items: [Item] = []
 
     let service = NetworkSearchService()
@@ -25,8 +24,8 @@ class VideosPresenter {
         self.searchText = searchText
     }
 
-    func showSearch() {
-        coordinator.showSearch()
+    func viewDidLoad() {
+        view?.update(searchBarText: searchText)
     }
 
     func obtainData() async {
@@ -38,7 +37,7 @@ class VideosPresenter {
                 print("Error: \(error)")
             }
         }
-        
+
         if let searchResult = searchResult {
             items = searchResult.items.map { searchItem in
                 return Item(
@@ -50,8 +49,6 @@ class VideosPresenter {
                     statistics: searchItem.statistics)
             }
         }
-
-        print("OBTAIN DATA \(String(describing: searchResult))\n")
 
         DispatchQueue.main.async {
             self.view?.videosList = self.items
@@ -88,10 +85,12 @@ class VideosPresenter {
         } else {
             liveBroadcast = false
         }
-
-        print(title)
-
         cell.show(title: title, subtitle: subtitle, imageURL: url, liveBroadcast: liveBroadcast)
+    }
+
+    func showSearch() {
+        print("SearchText \(searchText)")
+        coordinator.showSearch(searchBarText: searchText)
     }
 
     func showDetails(row: Int) {

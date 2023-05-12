@@ -64,7 +64,7 @@ class SubscriptionsPresenter {
     }
 
     func showSearch() {
-        coordinator.showSearch()
+        coordinator.showSearch(searchBarText: "")
     }
 
     func showProfile() {

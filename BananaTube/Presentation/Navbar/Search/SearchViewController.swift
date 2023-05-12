@@ -11,15 +11,10 @@ import SwiftUI
 class SearchViewController: UIViewController {
     var presenter: SearchPresenter!
 
-    private let closeButton: UIButton = {
-        let button = UIButton()
+    private let backButton: UIButton = {
+        var button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.imageView?.contentMode = .scaleAspectFit
-        button.contentVerticalAlignment = .fill
-        button.contentHorizontalAlignment = .fill
         button.tintColor = .darkGray
-        button.clipsToBounds = true
-        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
@@ -41,39 +36,33 @@ class SearchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSearchView()
+        setupViews()
+        configureTableView()
+        presenter.viewDidLoad()
     }
 
-    private func setupSearchView() {
+    func update(searchBarText: String) {
+        searchBar.text = searchBarText
+        Task {
+            await presenter.predict(searchText: searchBarText)
+            tableView.reloadData()
+        }
+    }
+
+    private func setupViews() {
         view.backgroundColor = .systemBackground
-        
-        view.addSubview(closeButton)
-        view.addSubview(searchBar)
         view.addSubview(tableView)
 
+        backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
+        let backButtonItem = UIBarButtonItem(customView: backButton)
+        navigationItem.leftBarButtonItem = backButtonItem
+
         searchBar.delegate = self
-        closeButton.addTarget(self, action: #selector(handleCloseButtonTapped), for: .touchUpInside)
-        setupTableView()
-
-        NSLayoutConstraint.activate([
-            closeButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5),
-            closeButton.heightAnchor.constraint(equalToConstant: 22),
-            closeButton.widthAnchor.constraint(equalToConstant: 22),
-
-            searchBar.centerYAnchor.constraint(equalTo: closeButton.centerYAnchor),
-            searchBar.leftAnchor.constraint(equalTo: closeButton.rightAnchor, constant: 5),
-            searchBar.rightAnchor.constraint(equalTo: view.rightAnchor),
-
-            tableView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+        navigationItem.titleView = searchBar
     }
 
-    @objc private func handleCloseButtonTapped() {
-        self.dismiss(animated: false)
+    @objc private func handleBackButtonTapped() {
+        self.navigationController?.popViewController(animated: false)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -92,11 +81,18 @@ extension SearchViewController: UISearchBarDelegate {
 }
 
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
-    func setupTableView() {
+    func configureTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "text")
         tableView.reloadData()
+
+        NSLayoutConstraint.activate([
+            tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),
+            tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
     }
 
     // MARK: - UITableViewDataSource

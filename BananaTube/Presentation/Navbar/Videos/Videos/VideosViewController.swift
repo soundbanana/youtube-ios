@@ -8,21 +8,31 @@
 import UIKit
 
 class VideosViewController: UIViewController {
-    var collectionView: UICollectionView! = nil
-
     var presenter: VideosPresenter!
+
+    var collectionView: UICollectionView! = nil
 
     var videosList: [Item] = []
 
-    let backButton: UIButton = {
+    private let backButton: UIButton = {
         var button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         button.tintColor = .darkGray
         return button
     }()
 
+    private let searchBar: UISearchBar = {
+        let search = UISearchBar()
+        search.placeholder = "Search BananaTube"
+        search.sizeToFit()
+        search.backgroundImage = UIImage()
+        search.translatesAutoresizingMaskIntoConstraints = false
+        return search
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        presenter.viewDidLoad()
         configureCollectionView()
         setupViews()
         Task {
@@ -32,14 +42,15 @@ class VideosViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = .systemBackground
-
         view.addSubview(collectionView)
-
         self.edgesForExtendedLayout = []
 
         backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
         let backButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = backButtonItem
+
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
     }
 
     @objc private func handleBackButtonTapped() {
@@ -53,6 +64,10 @@ class VideosViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+    }
+
+    func update(searchBarText: String) {
+        searchBar.text = searchBarText
     }
 }
 
@@ -103,5 +118,12 @@ extension VideosViewController: UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         presenter.showDetails(row: indexPath.row)
+    }
+}
+
+extension VideosViewController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        presenter.showSearch()
     }
 }
