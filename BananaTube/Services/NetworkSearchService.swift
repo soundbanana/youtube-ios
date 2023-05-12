@@ -44,7 +44,6 @@ class NetworkSearchService {
             }
 
             var stats: [Statistics] = []
-            print(videoIds)
             await getStatistics(videoIds: videoIds) { result in
                 switch result {
                 case .success(let statistics):
@@ -56,14 +55,9 @@ class NetworkSearchService {
                 }
             }
 
-            print("RESPONSE ITEMS \(response.items)")
-            print("STATS \(stats)\n")
-
             for i in 0..<response.items.count {
                 response.items[i].statistics = stats[i]
             }
-
-            print("RESPONSE \(response)\n")
 
             completion(.success(response))
         } catch {
@@ -81,13 +75,10 @@ class NetworkSearchService {
             return
         }
 
-        print(url.absoluteString)
-
         // !TODO Change name of model Subscriptions to smth else
         do {
             let (data, _) = try await session.data(from: url)
             let response = try decoder.decode(Subscriptions.self, from: data)
-            print("RESPONSE IN GET STATISTICS \(response)\n")
             completion(.success(response))
         } catch {
             completion(.failure(error))

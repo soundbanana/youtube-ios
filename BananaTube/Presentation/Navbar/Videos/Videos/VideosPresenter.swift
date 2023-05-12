@@ -89,7 +89,6 @@ class VideosPresenter {
     }
 
     func showSearch() {
-        print("SearchText \(searchText)")
         coordinator.showSearch(searchBarText: searchText)
     }
 

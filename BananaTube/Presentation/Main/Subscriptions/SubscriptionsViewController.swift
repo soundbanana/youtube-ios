@@ -18,7 +18,7 @@ class SubscriptionsViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
-//        presenter.obtainData()
+        presenter.obtainData()
     }
 
     private func setupViews() {
