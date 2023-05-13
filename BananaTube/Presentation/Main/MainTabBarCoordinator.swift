@@ -17,7 +17,7 @@ class MainTabBarCoordinator {
         tabBarController.tabBar.tintColor = .black
 
         tabBarController.viewControllers = [
-            home(),
+//            home(),
             subscriptions(),
             library()
         ]
@@ -53,6 +53,6 @@ class MainTabBarCoordinator {
             image: .init(systemName: "folder"),
             selectedImage: .init(systemName: "folder.fill")
         )
-        return controller
+        return LibraryCoordinator.shared.start(controller)
     }
 }
