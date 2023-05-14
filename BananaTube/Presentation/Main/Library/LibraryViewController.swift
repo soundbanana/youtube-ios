@@ -39,9 +39,9 @@ class LibraryViewController: UIViewController {
     }
 
     @objc func foo() {
-        CoreDataManager.shared.createVideo("testtesttest", url: "google.com")
-        print(CoreDataManager.shared.fetchVideos().first?.url)
-        print(CoreDataManager.shared.fetchVideo(with: "testtesttest")?.url)
+//        CoreDataManager.shared.createVideo("testtesttest", url: "google.com")
+//        print(CoreDataManager.shared.fetchVideos().first?.url)
+//        print(CoreDataManager.shared.fetchVideo(with: "testtesttest")?.url)
         Task {
             await presenter.obtainData()
         }

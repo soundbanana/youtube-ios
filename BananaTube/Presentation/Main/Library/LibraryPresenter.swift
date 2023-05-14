@@ -11,7 +11,9 @@ class LibraryPresenter {
     weak var view: LibraryViewController!
     let coordinator: LibraryCoordinator
 
-    let service = NetworkVideosService.shared
+    private let service = NetworkVideosService.shared
+
+    private var videosList: [Item] = []
 
     init(coordinator: LibraryCoordinator) {
         self.coordinator = coordinator
@@ -20,8 +22,18 @@ class LibraryPresenter {
     func viewDidLoad() { }
 
     func obtainData() async {
-        let result = await service.getRealVideos(videoIds: ["123"])
-        print(result)
+        let videos = await fetchVideos()
+        let videoIDs = videos.map { $0.id }
+        let result = await service.getRealVideos(videoIds: videoIDs)
+    }
+
+    func fetchVideos() async -> [Video] {
+        return await withUnsafeContinuation { continuation in
+            DispatchQueue.main.async {
+                let videos = CoreDataManager.shared.fetchVideos()
+                continuation.resume(returning: videos)
+            }
+        }
     }
 
     func showSearch() {

@@ -21,13 +21,12 @@ public final class CoreDataManager: NSObject {
         appDelegate.persistentContainer.viewContext
     }
 
-    public func createVideo(_ id: String, url: String?) {
+    public func createVideo(_ id: String) {
         guard let videoEntityDescription = NSEntityDescription.entity(forEntityName: "Video", in: context) else {
             return
         }
         let photo = Video(entity: videoEntityDescription, insertInto: context)
         photo.id = id
-        photo.url = url
 
         appDelegate.saveContext()
     }
@@ -46,18 +45,6 @@ public final class CoreDataManager: NSObject {
             let videos = try? context.fetch(fetchRequest) as? [Video]
             return videos?.first
         }
-    }
-
-    public func updataPhoto(with id: String, newUrl: String) {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
-        do {
-            guard let videos = try? context.fetch(fetchRequest) as? [Video],
-                let video = videos.first else { return }
-            video.url = newUrl
-        }
-
-        appDelegate.saveContext()
     }
 
     public func deletaAllVideos() {

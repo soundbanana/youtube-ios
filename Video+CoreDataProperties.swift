@@ -13,7 +13,6 @@ import CoreData
 
 extension Video {
     @NSManaged public var id: String
-    @NSManaged public var url: String?
 }
 
 extension Video: Identifiable { }
