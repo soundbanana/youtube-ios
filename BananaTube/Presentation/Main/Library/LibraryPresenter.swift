@@ -11,11 +11,18 @@ class LibraryPresenter {
     weak var view: LibraryViewController!
     let coordinator: LibraryCoordinator
 
+    let service = NetworkVideosService.shared
+
     init(coordinator: LibraryCoordinator) {
         self.coordinator = coordinator
     }
 
     func viewDidLoad() { }
+
+    func obtainData() async {
+        let result = await service.getRealVideos(videoIds: ["123"])
+        print(result)
+    }
 
     func showSearch() {
         coordinator.showSearch(searchBarText: "")
