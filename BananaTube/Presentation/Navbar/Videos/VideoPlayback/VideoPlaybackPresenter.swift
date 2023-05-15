@@ -33,7 +33,8 @@ class VideoPlaybackPresenter {
         let videoId = video.id
 
         view?.show(title: title, subtitle: subtitle, videoId: videoId)
-
+        
+        CoreDataManager.shared.deleteVideo(with: videoId)
         CoreDataManager.shared.createVideo(videoId)
     }
 }

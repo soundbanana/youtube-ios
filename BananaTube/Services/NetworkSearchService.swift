@@ -58,10 +58,11 @@ class NetworkSearchService {
                 }
             }
 
-            for i in 0..<response.items.count {
-                response.items[i].statistics = stats[i]
+            if stats.count == response.items.count {
+                for i in 0..<response.items.count {
+                    response.items[i].statistics = stats[i]
+                }
             }
-
             completion(.success(response))
         } catch {
             completion(.failure(error))

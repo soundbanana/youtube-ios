@@ -21,7 +21,7 @@ class LibraryCoordinator: NavbarCoordinator {
     }
 
     func showSearch(searchBarText: String) {
-        let presenter = SearchPresenter(coordinator: SubscriptionsCoordinator.shared, searchBarText: searchBarText)
+        let presenter = SearchPresenter(coordinator: LibraryCoordinator.shared, searchBarText: searchBarText)
         let viewController = SearchViewController()
 
         viewController.presenter = presenter
