@@ -20,14 +20,12 @@ class SubscriptionsPresenter {
 
     private let networkSubscriptionsService = NetworkSubscriptionsService.shared
 
-    func obtainData() {
-        Task {
-            await networkSubscriptionsService.getSubscriptions { result in
-                self.subscriptions = result
-                DispatchQueue.main.async { [self] in
-                    view?.subscriptionsList = self.subscriptions ?? []
-                    view?.collectionView.reloadData()
-                }
+    func obtainData() async {
+        await networkSubscriptionsService.getSubscriptions { result in
+            self.subscriptions = result
+            DispatchQueue.main.async { [self] in
+                view?.subscriptionsList = self.subscriptions ?? []
+                view?.collectionView.reloadData()
             }
         }
     }

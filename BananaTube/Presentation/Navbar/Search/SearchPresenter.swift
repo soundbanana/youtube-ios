@@ -57,7 +57,9 @@ class SearchPresenter {
     }
 
     func configureCell(cell: PredictionsTableViewCell, row: Int) {
-        cell.configure(title: predictionsList[row])
+        if row < predictionsList.count {
+            cell.configure(title: predictionsList[row])
+        }
     }
 
     func getPredictionsListSize() -> Int { predictionsList.count }

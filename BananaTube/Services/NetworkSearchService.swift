@@ -17,8 +17,11 @@ enum APIError: Error {
 }
 
 class NetworkSearchService {
+    static let shared = NetworkSearchService()
     let session = URLSession.shared
     let decoder = JSONDecoder()
+
+    private init() { }
 
     func getVideos(searchText: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/search"
@@ -55,17 +58,18 @@ class NetworkSearchService {
                 }
             }
 
-            for i in 0..<response.items.count {
-                response.items[i].statistics = stats[i]
+            if stats.count == response.items.count {
+                for i in 0..<response.items.count {
+                    response.items[i].statistics = stats[i]
+                }
             }
-
             completion(.success(response))
         } catch {
             completion(.failure(error))
         }
     }
 
-    func getStatistics(videoIds: [String], completion: @escaping (Result<Subscriptions, Error>) -> Void) async {
+    private func getStatistics(videoIds: [String], completion: @escaping (Result<Subscriptions, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/videos"
         let part = "statistics"
         let id = videoIds.joined(separator: "%2C")

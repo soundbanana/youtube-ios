@@ -17,7 +17,7 @@ class VideosPresenter {
     let searchText: String
     var items: [Item] = []
 
-    let service = NetworkSearchService()
+    let service = NetworkSearchService.shared
 
     init(coordinator: NavbarCoordinator, searchText: String) {
         self.coordinator = coordinator

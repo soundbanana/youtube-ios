@@ -21,6 +21,8 @@ class NetworkSubscriptionsService {
     let session = URLSession.shared
     let decoder = JSONDecoder()
 
+    let videosService = NetworkVideosService.shared
+
     @MainActor
     func getPlaylists() async -> [String] {
         var playlists: [String] = []
@@ -86,20 +88,6 @@ class NetworkSubscriptionsService {
         return videos
     }
 
-    func getRealVideos(videoIds: [String]) async -> [Item] {
-        var videos: [Item] = []
-
-        guard let purl = URL(string: "\(Constants.BASE_URL)/videos?part=snippet,statistics&id=\(videoIds.joined(separator: "%2C"))&maxResults=50&key=\(Constants.API_KEY)") else { return [] }
-        do {
-            let (contentDetails, _) = try await session.data(from: purl)
-            let response = try decoder.decode(Subscriptions.self, from: contentDetails)
-            videos = response.items
-        } catch {
-            print(error.localizedDescription)
-        }
-        return videos
-    }
-
     func getSubscriptions(completion: @escaping([Item]) -> Void) async {
         var result: [Item] = []
 
@@ -124,10 +112,10 @@ class NetworkSubscriptionsService {
             let chunks = Chuncks(chunk: allItems, n: 50)
 
             for chunk in chunks {
-                await allVids.append(contentsOf: (getRealVideos(videoIds: chunk)))
+                await allVids.append(contentsOf: (videosService.getRealVideos(videoIds: chunk)))
             }
         } else {
-            await allVids.append(contentsOf: (getRealVideos(videoIds: allItems)))
+            await allVids.append(contentsOf: (videosService.getRealVideos(videoIds: allItems)))
         }
 
         result = allVids.sorted { $0.snippet!.publishedAt > $1.snippet!.publishedAt }

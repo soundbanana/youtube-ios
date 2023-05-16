@@ -30,13 +30,14 @@ class VideoCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.font = label.font.withSize(16)
+        label.textColor = UIColor(named: "MainText")
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     let subtitleTextView: UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = UIColor(named: "AdditionalText")
         label.numberOfLines = 2
         label.font = label.font.withSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false

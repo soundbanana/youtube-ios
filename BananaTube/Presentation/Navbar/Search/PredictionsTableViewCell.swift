@@ -15,7 +15,7 @@ class PredictionsTableViewCell: UITableViewCell {
     private let searchIcon: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
-        imageView.tintColor = .systemGray
+        imageView.tintColor = UIColor(named: "MainText")
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
         return imageView
@@ -25,7 +25,7 @@ class PredictionsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 2
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .systemGray
+        label.textColor = UIColor(named: "MainText")
         return label
     }()
 
