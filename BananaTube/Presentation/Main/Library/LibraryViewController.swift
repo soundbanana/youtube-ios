@@ -12,16 +12,19 @@ class LibraryViewController: UIViewController {
 
     var collectionView: UICollectionView! = nil
 
-    override func viewDidAppear(_ animated: Bool) {
-        Task {
-            await presenter.viewDidLoad()
-        }
-    }
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
+        Task {
+            await presenter.viewDidLoad()
+        }
     }
 
     private func setupViews() {
@@ -31,6 +34,13 @@ class LibraryViewController: UIViewController {
         view.addSubview(collectionView)
 
         self.edgesForExtendedLayout = []
+    }
+
+    @objc private func refresh(sender: UIRefreshControl) {
+        Task {
+            await presenter.refreshData()
+        }
+        sender.endRefreshing()
     }
 
     func reloadData() {
@@ -45,6 +55,7 @@ class LibraryViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.backgroundColor = UIColor(named: "Background")
+        collectionView.refreshControl = refreshControl
         collectionView.reloadData()
     }
 
