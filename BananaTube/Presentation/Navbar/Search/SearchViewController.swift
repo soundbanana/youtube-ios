@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     private let backButton: UIButton = {
         var button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.tintColor = .darkGray
+        button.tintColor = UIColor(named: "MainText")
         return button
     }()
 
@@ -22,12 +22,14 @@ class SearchViewController: UIViewController {
         let search = UISearchBar()
         search.placeholder = "Search BananaTube"
         search.backgroundImage = UIImage()
+        search.tintColor = UIColor(named: "MainText")
         search.translatesAutoresizingMaskIntoConstraints = false
         return search
     }()
 
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.backgroundColor =  UIColor(named: "Background")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(PredictionsTableViewCell.self, forCellReuseIdentifier: PredictionsTableViewCell.identifier)
@@ -50,7 +52,7 @@ class SearchViewController: UIViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "Background")
         view.addSubview(tableView)
 
         backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
@@ -92,7 +94,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+            ])
     }
 
     // MARK: - UITableViewDataSource

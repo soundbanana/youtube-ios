@@ -17,7 +17,7 @@ class VideosViewController: UIViewController {
     private let backButton: UIButton = {
         var button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        button.tintColor = .darkGray
+        button.tintColor = UIColor(named: "MainText")
         return button
     }()
 

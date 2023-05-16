@@ -25,7 +25,7 @@ class LibraryViewController: UIViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "Background")
         setupNavigationBar()
 
         view.addSubview(collectionView)
@@ -44,23 +44,14 @@ class LibraryViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.reloadData()
     }
 
     private func setupNavigationBar() {
         createCustomNavigationBar()
 
-        let historyLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 150, height: 44))
-        historyLabel.text = "History"
-        historyLabel.textColor = .black
-        historyLabel.font = UIFont.boldSystemFont(ofSize: 24)
-
-        let historyView = UIView(frame: CGRect(x: 0, y: 0, width: 150, height: 41))
-        historyView.addSubview(historyLabel)
-
-        let historyButton = UIBarButtonItem(customView: historyView)
-
-        navigationItem.leftBarButtonItem = historyButton
+        navigationItem.leftBarButtonItem = createCustomTitle(text: "History", selector: nil)
 
         let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
         let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))
@@ -123,7 +114,6 @@ extension LibraryViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(1)
         presenter.showDetails(row: indexPath.row)
     }
 }

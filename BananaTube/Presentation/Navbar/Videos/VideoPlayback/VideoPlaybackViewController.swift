@@ -14,7 +14,7 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
 
     private let playerView: YTPlayerView = {
         let view = YTPlayerView()
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor(named: "Background")
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -22,6 +22,7 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 2
+        label.textColor = UIColor(named: "MainText")
         label.font = UIFont.boldSystemFont(ofSize: 20)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -29,7 +30,7 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
 
     private let subtitleTextView: UILabel = {
         let label = UILabel()
-        label.textColor = .gray
+        label.textColor = UIColor(named: "AdditionalText")
         label.numberOfLines = 2
         label.font = label.font.withSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -37,7 +38,7 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     }()
 
     override func viewDidLoad() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "Background")
         setupViews()
         presenter.configureData()
     }

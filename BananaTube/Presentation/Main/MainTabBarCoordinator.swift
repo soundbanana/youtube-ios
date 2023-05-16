@@ -32,27 +32,28 @@ class MainTabBarCoordinator {
             image: UIImage(systemName: "house"),
             selectedImage: UIImage(systemName: "house.fill")
         )
+        viewController.tabBarItem.badgeColor = UIColor(named: "MainText")
         let navigationController = UINavigationController(rootViewController: viewController)
         return navigationController
     }
 
     private func subscriptions() -> UIViewController {
-        let controller = SubscriptionsViewController()
-        controller.tabBarItem = .init(
+        let viewController = SubscriptionsViewController()
+        viewController.tabBarItem = .init(
             title: "Subscriptions",
             image: .init(systemName: "books.vertical"),
             selectedImage: .init(systemName: "books.vertical.fill")
         )
-        return SubscriptionsCoordinator.shared.start(controller)
+        return SubscriptionsCoordinator.shared.start(viewController)
     }
 
     private func library() -> UIViewController {
-        let controller = LibraryViewController()
-        controller.tabBarItem = .init(
+        let viewController = LibraryViewController()
+        viewController.tabBarItem = .init(
             title: "Library",
             image: .init(systemName: "folder"),
             selectedImage: .init(systemName: "folder.fill")
         )
-        return LibraryCoordinator.shared.start(controller)
+        return LibraryCoordinator.shared.start(viewController)
     }
 }

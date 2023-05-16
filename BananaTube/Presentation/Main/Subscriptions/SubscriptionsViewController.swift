@@ -18,9 +18,9 @@ class SubscriptionsViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
-//        Task {
-//            await presenter.obtainData()
-//        }
+        Task {
+            await presenter.obtainData()
+        }
     }
 
     private func setupViews() {
@@ -29,7 +29,7 @@ class SubscriptionsViewController: UIViewController {
 
         createCustomNavigationBar()
 
-        navigationItem.leftBarButtonItem = createCustomTitleButton(imageName: "light-icon", selector: nil)
+        navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
 
         let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
         let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))
