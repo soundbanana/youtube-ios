@@ -12,16 +12,19 @@ class LibraryViewController: UIViewController {
 
     var collectionView: UICollectionView! = nil
 
-    override func viewDidAppear(_ animated: Bool) {
-        Task {
-            await presenter.viewDidLoad()
-        }
-    }
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
+        Task {
+            await presenter.viewDidLoad()
+        }
     }
 
     private func setupViews() {
@@ -33,6 +36,13 @@ class LibraryViewController: UIViewController {
         self.edgesForExtendedLayout = []
     }
 
+    @objc private func refresh(sender: UIRefreshControl) {
+        Task {
+            await presenter.refreshData()
+            sender.endRefreshing()
+        }
+    }
+
     func reloadData() {
         collectionView.reloadData()
     }
@@ -40,11 +50,11 @@ class LibraryViewController: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.refreshControl = refreshControl
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.reloadData()
     }
 

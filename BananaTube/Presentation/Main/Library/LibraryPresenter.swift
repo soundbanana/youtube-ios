@@ -32,6 +32,11 @@ class LibraryPresenter {
         }
     }
 
+    func refreshData() async {
+        videosList = []
+        await obtainData()
+    }
+
     func getCollectionViewSize() -> Int {
         videosList.isEmpty ? 5 : videosList.count
     }
