@@ -29,7 +29,7 @@ class SearchViewController: UIViewController {
 
     private let tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.backgroundColor =  UIColor(named: "Background")
+        tableView.backgroundColor = UIColor(named: "Background")
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         tableView.register(PredictionsTableViewCell.self, forCellReuseIdentifier: PredictionsTableViewCell.identifier)
@@ -94,7 +94,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
             tableView.rightAnchor.constraint(equalTo: self.view.rightAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+        ])
     }
 
     // MARK: - UITableViewDataSource

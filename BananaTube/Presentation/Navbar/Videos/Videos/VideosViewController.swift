@@ -111,13 +111,17 @@ extension VideosViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell else {
             return UICollectionViewCell()
         }
+        print("\(indexPath.row) + \(videosList.count)")
         presenter.configureCell(cell: cell, row: indexPath.row)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        presenter.showDetails(row: indexPath.row)
+        Task{
+            await presenter.obtainData()
+        }
+//        presenter.showDetails(row: indexPath.row)
     }
 }
 

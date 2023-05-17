@@ -23,18 +23,21 @@ class NetworkSearchService {
 
     private init() { }
 
-    func getVideos(searchText: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
+    func getVideos(searchText: String, nextPageToken: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/search"
         let part = "snippet"
-        let maxResults = "10"
+        let maxResults = "3"
         let order = "viewCount"
         let type = "video"
+        let pageToken = nextPageToken
         let q = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)
 
-        guard let url = URL(string: "\(mainPart)?part=\(part)&maxResults=\(maxResults)&key=\(Constants.API_KEY)&order=\(order)&q=\(q!)&type=\(type)") else {
+        guard let url = URL(string: "\(mainPart)?part=\(part)&maxResults=\(maxResults)&key=\(Constants.API_KEY)&order=\(order)&q=\(q!)&type=\(type)&pageToken=\(pageToken)") else {
             completion(.failure(NetworkError.invalidURL))
             return
         }
+
+        print(url.absoluteString)
 
         do {
             let (data, _) = try await session.data(from: url)

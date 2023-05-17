@@ -22,9 +22,9 @@ class SubscriptionsViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
-        Task {
-            await presenter.viewDidLoad()
-        }
+//        Task {
+//            await presenter.viewDidLoad()
+//        }
     }
 
     private func setupViews() {

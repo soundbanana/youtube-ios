@@ -16,6 +16,7 @@ class VideosPresenter {
     var searchResult: SearchResult!
     let searchText: String
     var items: [Item] = []
+    var nextPageToken: String = ""
 
     let service = NetworkSearchService.shared
 
@@ -29,17 +30,18 @@ class VideosPresenter {
     }
 
     func obtainData() async {
-        await service.getVideos(searchText: searchText) { result in
+        await service.getVideos(searchText: searchText, nextPageToken: nextPageToken) { result in
             switch result {
             case .success(let searchResult):
                 self.searchResult = searchResult
+                self.nextPageToken = searchResult.nextPageToken
             case .failure(let error):
                 print("Error: \(error)")
             }
         }
 
         if let searchResult = searchResult {
-            items = searchResult.items.map { searchItem in
+            let result = searchResult.items.map { searchItem in
                 return Item(
                     kind: searchItem.kind,
                     etag: searchItem.etag,
@@ -48,6 +50,7 @@ class VideosPresenter {
                     contentDetails: nil,
                     statistics: searchItem.statistics)
             }
+            items.append(contentsOf: result)
         }
 
         DispatchQueue.main.async {
@@ -57,6 +60,7 @@ class VideosPresenter {
     }
 
     func configureCell(cell: VideoCollectionViewCell, row: Int) {
+        
         guard let snippet = items[row].snippet else {
             print("No snippet provided")
             return
