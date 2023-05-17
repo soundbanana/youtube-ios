@@ -39,8 +39,8 @@ class LibraryViewController: UIViewController {
     @objc private func refresh(sender: UIRefreshControl) {
         Task {
             await presenter.refreshData()
+            sender.endRefreshing()
         }
-        sender.endRefreshing()
     }
 
     func reloadData() {
@@ -50,12 +50,11 @@ class LibraryViewController: UIViewController {
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.refreshControl = refreshControl
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor(named: "Background")
-        collectionView.refreshControl = refreshControl
         collectionView.reloadData()
     }
 

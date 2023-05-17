@@ -12,14 +12,18 @@ class SubscriptionsViewController: UIViewController {
 
     var presenter: SubscriptionsPresenter!
 
-    var subscriptionsList: [Item] = []
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
+        return refreshControl
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
         Task {
-            await presenter.obtainData()
+            await presenter.viewDidLoad()
         }
     }
 
@@ -39,13 +43,26 @@ class SubscriptionsViewController: UIViewController {
         self.edgesForExtendedLayout = []
     }
 
+    @objc private func refresh(sender: UIRefreshControl) {
+        Task {
+            await presenter.refreshData()
+            sender.endRefreshing()
+        }
+    }
+
+    func reloadData() {
+        collectionView.reloadData()
+    }
+
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
+        collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.refreshControl = refreshControl
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.reloadData()
     }
 
     @objc func showSearch() {
@@ -90,10 +107,7 @@ extension SubscriptionsViewController: UICollectionViewDelegate { }
 
 extension SubscriptionsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if subscriptionsList.isEmpty {
-            return 20
-        }
-        return subscriptionsList.count
+        return presenter.getCollectionViewSize()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
