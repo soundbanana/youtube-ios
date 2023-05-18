@@ -61,6 +61,7 @@ class SearchViewController: UIViewController {
 
         searchBar.delegate = self
         navigationItem.titleView = searchBar
+        searchBar.becomeFirstResponder()
     }
 
     @objc private func handleBackButtonTapped() {
