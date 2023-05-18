@@ -44,7 +44,7 @@ class LibraryCoordinator: NavbarCoordinator {
     func showVideosList(searchText: String) {
         navigationController?.popViewController(animated: false)
 
-        let presenter = VideosPresenter(coordinator: SubscriptionsCoordinator.shared, searchText: searchText)
+        let presenter = VideosPresenter(coordinator: LibraryCoordinator.shared, searchText: searchText)
         let viewController = VideosViewController()
 
         viewController.presenter = presenter

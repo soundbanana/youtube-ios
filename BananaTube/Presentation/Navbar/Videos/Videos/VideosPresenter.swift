@@ -60,7 +60,6 @@ class VideosPresenter {
     }
 
     func configureCell(cell: VideoCollectionViewCell, row: Int) {
-        
         guard let snippet = items[row].snippet else {
             print("No snippet provided")
             return
