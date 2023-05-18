@@ -10,9 +10,7 @@ import UIKit
 class VideosViewController: UIViewController {
     var presenter: VideosPresenter!
 
-    var collectionView: UICollectionView! = nil
-
-    var videosList: [Item] = []
+    private var collectionView: UICollectionView! = nil
 
     private let backButton: UIButton = {
         var button = UIButton(type: .system)
@@ -51,6 +49,10 @@ class VideosViewController: UIViewController {
 
         searchBar.delegate = self
         navigationItem.titleView = searchBar
+    }
+
+    func reloadData() {
+        collectionView.reloadData()
     }
 
     @objc private func handleBackButtonTapped() {
@@ -104,24 +106,28 @@ extension VideosViewController: UICollectionViewDelegate { }
 
 extension VideosViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return videosList.count
+        return presenter.getCollectionViewSize()
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollectionViewCell", for: indexPath) as? VideoCollectionViewCell else {
             return UICollectionViewCell()
         }
-        print("\(indexPath.row) + \(videosList.count)")
         presenter.configureCell(cell: cell, row: indexPath.row)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        Task{
-            await presenter.obtainData()
+        presenter.showDetails(row: indexPath.row)
+    }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        if presenter.startPagination(row: indexPath.row) {
+            Task {
+                await presenter.obtainData()
+            }
         }
-//        presenter.showDetails(row: indexPath.row)
     }
 }
 
