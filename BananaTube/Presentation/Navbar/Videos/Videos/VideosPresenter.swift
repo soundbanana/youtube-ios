@@ -15,7 +15,8 @@ class VideosPresenter {
 
     var searchResult: SearchResult!
     let searchText: String
-    var items: [Item] = []
+    var videosList: [Item] = []
+    var nextPageToken: String = ""
 
     let service = NetworkSearchService.shared
 
@@ -29,17 +30,18 @@ class VideosPresenter {
     }
 
     func obtainData() async {
-        await service.getVideos(searchText: searchText) { result in
+        await service.getVideos(searchText: searchText, nextPageToken: nextPageToken) { result in
             switch result {
             case .success(let searchResult):
                 self.searchResult = searchResult
+                self.nextPageToken = searchResult.nextPageToken
             case .failure(let error):
                 print("Error: \(error)")
             }
         }
 
         if let searchResult = searchResult {
-            items = searchResult.items.map { searchItem in
+            let result = searchResult.items.map { searchItem in
                 return Item(
                     kind: searchItem.kind,
                     etag: searchItem.etag,
@@ -48,20 +50,28 @@ class VideosPresenter {
                     contentDetails: nil,
                     statistics: searchItem.statistics)
             }
+            videosList.append(contentsOf: result)
         }
 
         DispatchQueue.main.async {
-            self.view?.videosList = self.items
-            self.view?.collectionView.reloadData()
+            self.view?.reloadData()
         }
     }
 
+    func getCollectionViewSize() -> Int {
+        return videosList.count
+    }
+
+    func startPagination(row: Int) -> Bool {
+        return row == videosList.count - 1 ? true : false
+    }
+
     func configureCell(cell: VideoCollectionViewCell, row: Int) {
-        guard let snippet = items[row].snippet else {
+        guard let snippet = videosList[row].snippet else {
             print("No snippet provided")
             return
         }
-        guard let statistics = items[row].statistics
+        guard let statistics = videosList[row].statistics
             else {
             print("No statistics provided")
             return
@@ -93,7 +103,7 @@ class VideosPresenter {
     }
 
     func showDetails(row: Int) {
-        let item = items[row]
+        let item = videosList[row]
         coordinator.showDetails(video: item)
     }
 }

@@ -14,7 +14,10 @@ public final class CoreDataManager: NSObject {
     private override init() { }
 
     private var appDelegate: AppDelegate {
-        UIApplication.shared.delegate as! AppDelegate
+        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Unable to access AppDelegate instance.")
+        }
+        return delegate
     }
 
     private var context: NSManagedObjectContext {
