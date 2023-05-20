@@ -23,6 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // Show the app's signed-in state.
                 print("Already signed in")
                 GoogleServices.youtubeService.authorizer = user!.fetcherAuthorizer
+                guard let userEmail = user?.profile?.email else {
+                    return
+                }
+                Constants.USER_EMAIL = userEmail
             }
         }
         return true

@@ -37,8 +37,6 @@ class NetworkSearchService {
             return
         }
 
-        print(url.absoluteString)
-
         do {
             let (data, _) = try await session.data(from: url)
             var response = try decoder.decode(SearchResult.self, from: data)

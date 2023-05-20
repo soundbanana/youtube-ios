@@ -33,8 +33,10 @@ class VideoPlaybackPresenter {
         let videoId = video.id
 
         view?.show(title: title, subtitle: subtitle, videoId: videoId)
-        
-        CoreDataManager.shared.deleteVideo(with: videoId)
-        CoreDataManager.shared.createVideo(videoId)
+
+        if Constants.USER_EMAIL.isEmpty {
+            CoreDataManager.shared.deleteVideo(with: videoId, userEmail: Constants.USER_EMAIL)
+            CoreDataManager.shared.createVideo(videoId, userEmail: Constants.USER_EMAIL)
+        }
     }
 }

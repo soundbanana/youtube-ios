@@ -40,10 +40,20 @@ class ProfilePresenter {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
             GoogleServices.youtubeService.authorizer = user.fetcherAuthorizer
 
-            Auth.auth().signIn(with: credential) { result, _ in
-                print(result?.user.email ?? "No user found")
-                // TODO add alert when sign in is failed
-                self.view?.dismiss(animated: true)
+            Auth.auth().signIn(with: credential) { result, error in
+                if error != nil {
+                    print("Error while signing in \(String(describing: error!.localizedDescription))")
+                    return
+                } else {
+                    guard let userEmail = result?.user.email else {
+                        print("No email found")
+                        return
+                    }
+                    Constants.USER_EMAIL = userEmail
+                    print(userEmail)
+                    // TODO add alert when sign in is failed
+                    self.view?.dismiss(animated: true)
+                }
             }
         }
     }
