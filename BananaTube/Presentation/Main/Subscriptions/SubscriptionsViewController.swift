@@ -51,7 +51,9 @@ class SubscriptionsViewController: UIViewController {
     }
 
     func reloadData() {
-        collectionView.reloadData()
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
 
     private func configureCollectionView() {

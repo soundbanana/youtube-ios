@@ -50,7 +50,7 @@ class ProfilePresenter {
                         return
                     }
                     Constants.USER_EMAIL = userEmail
-                    print(userEmail)
+                    print("USER EMAIL \(userEmail)")
                     // TODO add alert when sign in is failed
                     self.view?.dismiss(animated: true)
                 }
@@ -59,11 +59,10 @@ class ProfilePresenter {
     }
 
     func signOut() {
-        let firebaseAuth = Auth.auth()
-
         do {
-            try firebaseAuth.signOut()
+            try Auth.auth().signOut()
             GIDSignIn.sharedInstance.signOut()
+            Constants.USER_EMAIL = ""
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
@@ -72,19 +71,17 @@ class ProfilePresenter {
     }
 
     func configureData() {
-        guard let currentUser = Auth.auth().currentUser else {
-            view?.setupSignInView()
-            return
-        }
-        view?.setupProfileView()
-
-        let title = currentUser.displayName!
-        let email = currentUser.email!
-
-        // Just for better quality
-        GIDSignIn.sharedInstance.restorePreviousSignIn { [self] user, error in
-            guard error == nil || user == nil else { return }
-            guard let imageURL = user?.profile?.imageURL(withDimension: 0) else { return }
+        GIDSignIn.sharedInstance.restorePreviousSignIn { [self] user, _ in
+            guard user != nil else {
+                view?.setupSignInView()
+                return
+            }
+            view?.setupProfileView()
+            guard let title = user?.profile?.name,
+                let email = user?.profile?.email,
+                let imageURL = user?.profile?.imageURL(withDimension: 0) else {
+                return
+            }
             view?.show(title: title, email: email, imageURL: imageURL)
         }
     }
