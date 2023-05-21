@@ -17,24 +17,11 @@ class MainTabBarCoordinator {
         tabBarController.tabBar.tintColor = .black
 
         tabBarController.viewControllers = [
-//            home(),
             subscriptions(),
             library()
         ]
 
         return tabBarController
-    }
-
-    private func home() -> UIViewController {
-        let viewController = HomeViewController()
-        viewController.tabBarItem = .init(
-            title: "Home",
-            image: UIImage(systemName: "house"),
-            selectedImage: UIImage(systemName: "house.fill")
-        )
-        viewController.tabBarItem.badgeColor = UIColor(named: "MainText")
-        let navigationController = UINavigationController(rootViewController: viewController)
-        return navigationController
     }
 
     private func subscriptions() -> UIViewController {
