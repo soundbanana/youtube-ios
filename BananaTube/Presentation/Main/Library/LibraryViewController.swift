@@ -38,7 +38,7 @@ class LibraryViewController: UIViewController {
 
     @objc private func refresh(sender: UIRefreshControl) {
         Task {
-            await presenter.refreshData()
+            await presenter.obtainData()
             sender.endRefreshing()
         }
     }
@@ -46,6 +46,8 @@ class LibraryViewController: UIViewController {
     func reloadData() {
         collectionView.reloadData()
     }
+
+    func setupViewState() { }
 
     private func configureCollectionView() {
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())

@@ -9,7 +9,7 @@ import Foundation
 
 protocol NavbarCoordinator {
     func showSearch(searchBarText: String)
-    func showProfile(delegate: ProfilePresenterDelegate)
+    func showProfile()
     func showVideosList(searchText: String)
     func showDetails(video: Item)
 }

@@ -41,13 +41,12 @@ class SubscriptionsCoordinator: NavbarCoordinator {
         navigationController?.pushViewController(viewController, animated: false)
     }
 
-    func showProfile(delegate: ProfilePresenterDelegate) {
+    func showProfile() {
         let presenter = ProfilePresenter()
         let viewController = ProfileViewController()
 
         viewController.presenter = presenter
         presenter.view = viewController
-        presenter.delegate = delegate
 
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.present(viewController, animated: true)

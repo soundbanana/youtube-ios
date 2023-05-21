@@ -6,39 +6,66 @@
 //
 
 import Foundation
+import Combine
 
 class LibraryPresenter {
-    weak var view: LibraryViewController!
+    weak var view: LibraryViewController?
     let coordinator: LibraryCoordinator
+
+    private var videosList: [Item] = []
+    var screenState: ScreenState = .unauthorized
 
     private let service = NetworkVideosService.shared
 
-    private var videosList: [Item] = []
+    private var cancellables = Set<AnyCancellable>()
 
     init(coordinator: LibraryCoordinator) {
         self.coordinator = coordinator
+
+        UserStore.shared.userStatePublisher
+            .sink { state in
+            self.handleUserStateChange(state: state)
+            }
+            .store(in: &cancellables)
+    }
+
+    func handleUserStateChange(state: State) {
+        // Handle sign-in and sign-out state changes in the LibraryPresenter
+        switch state {
+        case .authorized:
+            print("Lib authorized")
+        case .unauthorized:
+            print("Lib unauthorized")
+        }
     }
 
     func viewDidLoad() async {
+        if Constants.USER_EMAIL.isEmpty {
+            screenState = .unauthorized
+        } else {
+            screenState = .authorized
+        }
         await obtainData()
     }
 
     func obtainData() async {
-        let videos = await fetchVideos()
-        let videoIDs = videos.map { $0.id }
-        videosList = await service.getRealVideos(videoIds: videoIDs).reversed()
-        DispatchQueue.main.async { [self] in
-            view?.reloadData()
+        switch screenState {
+        case .authorized:
+            let videos = await fetchVideos()
+            let videoIDs = videos.map { $0.id }
+            videosList = await service.getRealVideos(videoIds: videoIDs).reversed()
+
+        case .unauthorized:
+            videosList = []
+        }
+
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.setupViewState()
         }
     }
 
-    func refreshData() async {
-        videosList = []
-        await obtainData()
-    }
-
     func getCollectionViewSize() -> Int {
-        videosList.isEmpty ? 5 : videosList.count
+        videosList.count
     }
 
     func fetchVideos() async -> [Video] {
@@ -90,6 +117,32 @@ class LibraryPresenter {
     }
 
     func showProfile() {
-//        coordinator.showProfile()
+        coordinator.showProfile()
     }
 }
+
+//// MARK: - ProfilePresenterDelegate
+//
+//extension LibraryPresenter: AuthenticationStateDelegate {
+//    func didSignIn() {
+//        screenState = .authorized
+//        print("LIB RECIEVED AUTHORIZED")
+////
+////        Task {
+////            await obtainData()
+////        }
+////
+////        DispatchQueue.main.async {
+////            self.view?.setupViewState()
+////        }
+//    }
+//
+//    func didSignOut() {
+//        screenState = .unauthorized
+//        print("LIB RECIEVED UNAUTHORIZED")
+////        videosList = []
+////        DispatchQueue.main.async {
+////            self.view?.setupViewState()
+////        }
+//    }
+//}

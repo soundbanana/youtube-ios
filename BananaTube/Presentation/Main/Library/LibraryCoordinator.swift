@@ -30,7 +30,7 @@ class LibraryCoordinator: NavbarCoordinator {
         navigationController?.pushViewController(viewController, animated: false)
     }
 
-    func showProfile(delegate: ProfilePresenterDelegate) {
+    func showProfile() {
         let presenter = ProfilePresenter()
         let viewController = ProfileViewController()
 

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Combine
 
 enum ScreenState {
     case authorized
@@ -23,8 +24,25 @@ class SubscriptionsPresenter {
 
     private let networkSubscriptionsService = NetworkSubscriptionsService.shared
 
+    private var cancellables = Set<AnyCancellable>()
+
     init(coordinator: SubscriptionsCoordinator) {
         self.coordinator = coordinator
+        UserStore.shared.userStatePublisher
+            .sink { state in
+            self.handleUserStateChange(state: state)
+            }
+            .store(in: &cancellables)
+    }
+
+    func handleUserStateChange(state: State) {
+        // Handle sign-in and sign-out state changes in the LibraryPresenter
+        switch state {
+        case .authorized:
+            print("Sub authorized")
+        case .unauthorized:
+            print("Sub unauthorized")
+        }
     }
 
     func viewDidLoad() async {
@@ -95,36 +113,39 @@ class SubscriptionsPresenter {
     }
 
     func showProfile() {
-        coordinator.showProfile(delegate: self)
+        coordinator.showProfile()
     }
 }
 
-// MARK: - ProfilePresenterDelegate
-
-extension SubscriptionsPresenter: ProfilePresenterDelegate {
-    func didSignIn() {
-        screenState = .authorized
-
-        Task {
-            DispatchQueue.main.async {
-                self.view?.setupViewState()
-                self.view?.showLoadingIndicator(true) // Show loading indicator on the view
-            }
-
-            await obtainData()
-
-            DispatchQueue.main.async {
-                self.view?.showLoadingIndicator(false) // Show loading indicator on the view
-
-            }
-        }
-    }
-
-    func didSignOut() {
-        screenState = .unauthorized
-        videosList = []
-        DispatchQueue.main.async {
-            self.view?.setupViewState()
-        }
-    }
-}
+// // MARK: - ProfilePresenterDelegate
+//
+//extension SubscriptionsPresenter: AuthenticationStateDelegate {
+//    func didSignIn() {
+//        screenState = .authorized
+//
+//        print("SUB RECIEVED AUTHORIZED")
+//
+////        Task {
+////            DispatchQueue.main.async {
+////                self.view?.setupViewState()
+////                self.view?.showLoadingIndicator(true) // Show loading indicator on the view
+////            }
+////
+////            await obtainData()
+////
+////            DispatchQueue.main.async {
+////                self.view?.showLoadingIndicator(false) // Show loading indicator on the view
+////
+////            }
+////        }
+//    }
+//
+//    func didSignOut() {
+//        screenState = .unauthorized
+//        print("SUB RECIEVED UNAUTHORIZED")
+////        videosList = []
+////        DispatchQueue.main.async {
+////            self.view?.setupViewState()
+////        }
+//    }
+// }
