@@ -104,13 +104,22 @@ class SubscriptionsPresenter {
 extension SubscriptionsPresenter: ProfilePresenterDelegate {
     func didSignIn() {
         screenState = .authorized
+
         Task {
+            DispatchQueue.main.async {
+                self.view?.setupViewState()
+                self.view?.showLoadingIndicator(true) // Show loading indicator on the view
+            }
+
             await obtainData()
-        }
-        DispatchQueue.main.async {
-            self.view?.setupViewState()
+
+            DispatchQueue.main.async {
+                self.view?.showLoadingIndicator(false) // Show loading indicator on the view
+
+            }
         }
     }
+
     func didSignOut() {
         screenState = .unauthorized
         videosList = []

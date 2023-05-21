@@ -10,6 +10,8 @@ import UIKit
 class SubscriptionsViewController: UIViewController {
     var presenter: SubscriptionsPresenter!
 
+    private var activityIndicator: UIActivityIndicatorView!
+
     lazy var collectionView: UICollectionView! = nil
 
     lazy var noUserLabel: UILabel = {
@@ -31,8 +33,11 @@ class SubscriptionsViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
+        setupLoadingIndicator()
         Task {
+            showLoadingIndicator(true)
             await presenter.viewDidLoad()
+            showLoadingIndicator(false)
         }
     }
 
@@ -59,6 +64,37 @@ class SubscriptionsViewController: UIViewController {
         ])
     }
 
+    private func configureCollectionView() {
+        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = UIColor(named: "Background")
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.refreshControl = refreshControl
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.reloadData()
+    }
+
+    private func setupLoadingIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    func showLoadingIndicator(_ show: Bool) {
+        if show {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+
     @objc private func refresh(sender: UIRefreshControl) {
         Task {
             await presenter.obtainData()
@@ -78,17 +114,6 @@ class SubscriptionsViewController: UIViewController {
             collectionView.isHidden = true
             noUserLabel.isHidden = false
         }
-    }
-
-    private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = UIColor(named: "Background")
-        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
-        collectionView.refreshControl = refreshControl
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.reloadData()
     }
 
     @objc func showSearch() {
