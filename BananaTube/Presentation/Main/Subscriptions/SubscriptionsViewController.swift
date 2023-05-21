@@ -8,9 +8,18 @@
 import UIKit
 
 class SubscriptionsViewController: UIViewController {
-    var collectionView: UICollectionView! = nil
-
     var presenter: SubscriptionsPresenter!
+
+    lazy var collectionView: UICollectionView! = nil
+
+    lazy var noUserLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No account provided"
+        label.textColor = UIColor(named: "MainText")
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -29,9 +38,8 @@ class SubscriptionsViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        view.addSubview(collectionView)
-
         createCustomNavigationBar()
+        view.addSubview(collectionView)
 
         navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
 
@@ -43,16 +51,32 @@ class SubscriptionsViewController: UIViewController {
         self.edgesForExtendedLayout = []
     }
 
+    private func setupNoUserView() {
+        view.addSubview(noUserLabel)
+        NSLayoutConstraint.activate([
+            noUserLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noUserLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
     @objc private func refresh(sender: UIRefreshControl) {
         Task {
-            await presenter.refreshData()
+            await presenter.obtainData()
             sender.endRefreshing()
         }
     }
 
-    func reloadData() {
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
+    func setupViewState() {
+        switch presenter.screenState {
+        case .authorized:
+            collectionView.isHidden = false
+            noUserLabel.isHidden = true
+            collectionView.reloadData()
+
+        case .unauthorized:
+            setupNoUserView()
+            collectionView.isHidden = true
+            noUserLabel.isHidden = false
         }
     }
 

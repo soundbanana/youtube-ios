@@ -12,6 +12,7 @@ import GoogleAPIClientForREST
 
 class ProfilePresenter {
     weak var view: ProfileViewController?
+    weak var delegate: ProfilePresenterDelegate?
     var navigationController: UINavigationController?
 
     func signIn() {
@@ -52,6 +53,7 @@ class ProfilePresenter {
                     Constants.USER_EMAIL = userEmail
                     print("USER EMAIL \(userEmail)")
                     // TODO add alert when sign in is failed
+                    self.delegate?.didSignIn()
                     self.view?.dismiss(animated: true)
                 }
             }
@@ -67,6 +69,7 @@ class ProfilePresenter {
             print("Error signing out: %@", signOutError)
         }
 
+        self.delegate?.didSignOut()
         self.view?.dismiss(animated: true)
     }
 

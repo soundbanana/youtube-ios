@@ -7,11 +7,17 @@
 
 import UIKit
 
+enum ScreenState {
+    case authorized
+    case unauthorized
+}
+
 class SubscriptionsPresenter {
     weak var view: SubscriptionsViewController?
     var navigationController: UINavigationController?
 
     private var videosList: [Item] = []
+    var screenState: ScreenState = .unauthorized
 
     let coordinator: SubscriptionsCoordinator
 
@@ -22,25 +28,30 @@ class SubscriptionsPresenter {
     }
 
     func viewDidLoad() async {
+        if Constants.USER_EMAIL.isEmpty {
+            screenState = .unauthorized
+        } else {
+            screenState = .authorized
+        }
         await obtainData()
     }
 
     func obtainData() async {
-        await networkSubscriptionsService.getSubscriptions { result in
-            self.videosList = result
+        if screenState == .authorized {
+            await networkSubscriptionsService.getSubscriptions { result in
+                self.videosList = result
+            }
+        } else {
+            videosList = []
         }
-        DispatchQueue.main.async { [self] in
-            view?.reloadData()
-        }
-    }
 
-    func refreshData() async {
-        videosList = []
-        await obtainData()
+        DispatchQueue.main.async { [weak self] in
+            self?.view?.setupViewState()
+        }
     }
 
     func getCollectionViewSize() -> Int {
-        videosList.isEmpty ? 5 : videosList.count
+        videosList.count
     }
 
     func configureCell(cell: VideoCollectionViewCell, row: Int) {
@@ -84,6 +95,27 @@ class SubscriptionsPresenter {
     }
 
     func showProfile() {
-        coordinator.showProfile()
+        coordinator.showProfile(delegate: self)
+    }
+}
+
+// MARK: - ProfilePresenterDelegate
+
+extension SubscriptionsPresenter: ProfilePresenterDelegate {
+    func didSignIn() {
+        screenState = .authorized
+        Task {
+            await obtainData()
+        }
+        DispatchQueue.main.async {
+            self.view?.setupViewState()
+        }
+    }
+    func didSignOut() {
+        screenState = .unauthorized
+        videosList = []
+        DispatchQueue.main.async {
+            self.view?.setupViewState()
+        }
     }
 }

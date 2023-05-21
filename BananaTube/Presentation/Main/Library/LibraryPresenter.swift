@@ -90,6 +90,6 @@ class LibraryPresenter {
     }
 
     func showProfile() {
-        coordinator.showProfile()
+//        coordinator.showProfile()
     }
 }
