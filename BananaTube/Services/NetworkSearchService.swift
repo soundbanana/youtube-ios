@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum NetworkError: Error {
-    case invalidURL
-}
-
 enum APIError: Error {
     case invalidResponse
     case apiError(String)
@@ -26,7 +22,7 @@ class NetworkSearchService {
     func getVideos(searchText: String, nextPageToken: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/search"
         let part = "snippet"
-        let maxResults = "3"
+        let maxResults = "5"
         let order = "viewCount"
         let type = "video"
         let pageToken = nextPageToken
