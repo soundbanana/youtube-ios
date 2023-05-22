@@ -6,39 +6,64 @@
 //
 
 import Foundation
+import Combine
 
 class LibraryPresenter {
-    weak var view: LibraryViewController!
+    weak var view: LibraryView?
     let coordinator: LibraryCoordinator
+
+    private var videosList: [Item] = []
+    var screenState: ScreenState = .unauthorized
 
     private let service = NetworkVideosService.shared
 
-    private var videosList: [Item] = []
+    private var cancellables = Set<AnyCancellable>()
 
     init(coordinator: LibraryCoordinator) {
         self.coordinator = coordinator
+
+        UserStore.shared.userStatePublisher
+            .sink { state in
+            self.handleUserStateChange(state: state)
+            }
+            .store(in: &cancellables)
     }
 
-    func viewDidLoad() async {
-        await obtainData()
-    }
-
-    func obtainData() async {
-        let videos = await fetchVideos()
-        let videoIDs = videos.map { $0.id }
-        videosList = await service.getRealVideos(videoIds: videoIDs).reversed()
-        DispatchQueue.main.async { [self] in
-            view?.reloadData()
+    func handleUserStateChange(state: State) {
+        switch state {
+        case .authorized:
+            screenState = .authorized
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.showAuthorizedState()
+            }
+        case .unauthorized:
+            screenState = .unauthorized
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.showUnauthorizedState()
+            }
+        }
+        Task {
+            await obtainData()
         }
     }
 
-    func refreshData() async {
-        videosList = []
-        await obtainData()
+    func obtainData() async {
+        switch screenState {
+        case .authorized:
+            let videos = await fetchVideos()
+            let videoIDs = videos.map { $0.id }
+            videosList = await service.getRealVideos(videoIds: videoIDs).reversed()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.reloadData()
+            }
+
+        case .unauthorized:
+            videosList = []
+        }
     }
 
     func getCollectionViewSize() -> Int {
-        videosList.isEmpty ? 5 : videosList.count
+        videosList.count
     }
 
     func fetchVideos() async -> [Video] {

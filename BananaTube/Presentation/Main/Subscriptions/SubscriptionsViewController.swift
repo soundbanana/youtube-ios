@@ -8,9 +8,20 @@
 import UIKit
 
 class SubscriptionsViewController: UIViewController {
-    var collectionView: UICollectionView! = nil
-
     var presenter: SubscriptionsPresenter!
+
+    private var activityIndicator: UIActivityIndicatorView!
+
+    lazy var collectionView: UICollectionView! = nil
+
+    lazy var noUserLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No account provided"
+        label.textColor = UIColor(named: "MainText")
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -22,16 +33,18 @@ class SubscriptionsViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         setupViews()
+        setupLoadingIndicator()
         Task {
-            await presenter.viewDidLoad()
+            showLoadingIndicator(true)
+            await presenter.obtainData()
+            showLoadingIndicator(false)
         }
     }
 
     private func setupViews() {
-        view.backgroundColor = .systemBackground
-        view.addSubview(collectionView)
-
+        view.backgroundColor = UIColor(named: "Background")
         createCustomNavigationBar()
+        view.addSubview(collectionView)
 
         navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
 
@@ -43,15 +56,12 @@ class SubscriptionsViewController: UIViewController {
         self.edgesForExtendedLayout = []
     }
 
-    @objc private func refresh(sender: UIRefreshControl) {
-        Task {
-            await presenter.refreshData()
-            sender.endRefreshing()
-        }
-    }
-
-    func reloadData() {
-        collectionView.reloadData()
+    private func setupNoUserView() {
+        view.addSubview(noUserLabel)
+        NSLayoutConstraint.activate([
+            noUserLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noUserLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 
     private func configureCollectionView() {
@@ -63,6 +73,47 @@ class SubscriptionsViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.reloadData()
+    }
+
+    private func setupLoadingIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
+
+    func showLoadingIndicator(_ show: Bool) {
+        if show {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+    }
+
+    @objc private func refresh(sender: UIRefreshControl) {
+        Task {
+            await presenter.obtainData()
+            sender.endRefreshing()
+        }
+    }
+
+    func setupViewState() {
+        switch presenter.screenState {
+        case .authorized:
+            collectionView.isHidden = false
+            noUserLabel.isHidden = true
+            collectionView.reloadData()
+
+        case .unauthorized:
+            setupNoUserView()
+            collectionView.isHidden = true
+            noUserLabel.isHidden = false
+        }
     }
 
     @objc func showSearch() {

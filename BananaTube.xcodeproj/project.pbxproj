@@ -29,12 +29,13 @@
 		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
 		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
 		FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942BB29D6A784007D361B /* LibraryViewController.swift */; };
+		FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */; };
+		FFDC77162A1ABCAA00FF2FAA /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */; };
 		FFE8ABEA2A10E266005D7D4D /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABE82A10E266005D7D4D /* CoreData.xcdatamodeld */; };
 		FFE8ABEF2A10E595005D7D4D /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */; };
 		FFE8ABF12A10F0E0005D7D4D /* NetworkVideosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */; };
 		FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */; };
 		FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */; };
-		FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFEEC0E229D4279700CBF948 /* HomeViewController.swift */; };
 		FFEEC0E829D4279800CBF948 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E729D4279800CBF948 /* Assets.xcassets */; };
 		FFEEC0EB29D4279800CBF948 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFEEC0E929D4279800CBF948 /* LaunchScreen.storyboard */; };
 		FFF76EA129FD06D700FB0C00 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */; };
@@ -74,13 +75,14 @@
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		FFC942BB29D6A784007D361B /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
+		FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		FFE8ABE92A10E266005D7D4D /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideosService.swift; sourceTree = "<group>"; };
 		FFEEC0DB29D4279700CBF948 /* BananaTube.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BananaTube.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FFEEC0E229D4279700CBF948 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		FFEEC0E729D4279800CBF948 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FFEEC0EA29D4279800CBF948 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FFEEC0EC29D4279800CBF948 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -160,6 +162,8 @@
 				FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */,
 				FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */,
 				FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */,
+				FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */,
+				FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -173,14 +177,6 @@
 				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		FFC276FB29EC516A0056075D /* Home */ = {
-			isa = PBXGroup;
-			children = (
-				FFEEC0E229D4279700CBF948 /* HomeViewController.swift */,
-			);
-			path = Home;
 			sourceTree = "<group>";
 		};
 		FFC276FC29EC51750056075D /* Subscriptions */ = {
@@ -289,7 +285,6 @@
 			isa = PBXGroup;
 			children = (
 				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
-				FFC276FB29EC516A0056075D /* Home */,
 				FFC276FD29EC51830056075D /* Library */,
 				FFC276FC29EC51750056075D /* Subscriptions */,
 			);
@@ -452,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF0838522A0EE1480048FB21 /* LibraryCoordinator.swift in Sources */,
+				FFDC77162A1ABCAA00FF2FAA /* UserStore.swift in Sources */,
 				FFF7A3BF2A07EA2900BD6186 /* SearchResult.swift in Sources */,
 				FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */,
 				FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */,
@@ -459,7 +455,6 @@
 				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
 				FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */,
 				FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */,
-				FFEEC0E329D4279700CBF948 /* HomeViewController.swift in Sources */,
 				FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
 				FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */,
@@ -474,6 +469,7 @@
 				FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */,
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */,
+				FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,

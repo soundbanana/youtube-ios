@@ -19,10 +19,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error != nil || user == nil {
                 // Show the app's signed-out state.
                 print("Need sign in")
+                UserStore.shared.signOut()
             } else {
                 // Show the app's signed-in state.
                 print("Already signed in")
                 GoogleServices.youtubeService.authorizer = user!.fetcherAuthorizer
+                guard let userEmail = user?.profile?.email else {
+                    return
+                }
+                UserStore.shared.signIn()
+                Constants.USER_EMAIL = userEmail
             }
         }
         return true
