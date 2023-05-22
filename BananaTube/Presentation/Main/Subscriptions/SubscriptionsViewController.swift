@@ -36,7 +36,7 @@ class SubscriptionsViewController: UIViewController {
         setupLoadingIndicator()
         Task {
             showLoadingIndicator(true)
-            await presenter.viewDidLoad()
+            await presenter.obtainData()
             showLoadingIndicator(false)
         }
     }

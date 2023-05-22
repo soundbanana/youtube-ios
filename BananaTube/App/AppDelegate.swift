@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if error != nil || user == nil {
                 // Show the app's signed-out state.
                 print("Need sign in")
+                UserStore.shared.signOut()
             } else {
                 // Show the app's signed-in state.
                 print("Already signed in")
@@ -26,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard let userEmail = user?.profile?.email else {
                     return
                 }
-                Constants.USER_EMAIL = userEmail
+                UserStore.shared.signIn()
             }
         }
         return true

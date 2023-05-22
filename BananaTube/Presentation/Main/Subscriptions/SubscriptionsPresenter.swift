@@ -39,19 +39,25 @@ class SubscriptionsPresenter {
         // Handle sign-in and sign-out state changes in the LibraryPresenter
         switch state {
         case .authorized:
-            print("Sub authorized")
-        case .unauthorized:
-            print("Sub unauthorized")
-        }
-    }
-
-    func viewDidLoad() async {
-        if Constants.USER_EMAIL.isEmpty {
-            screenState = .unauthorized
-        } else {
             screenState = .authorized
+            Task {
+                DispatchQueue.main.async {
+                    self.view?.setupViewState()
+                    self.view?.showLoadingIndicator(true)
+                }
+
+                await obtainData()
+
+                DispatchQueue.main.async {
+                    self.view?.showLoadingIndicator(false)
+                }
+            }
+        case .unauthorized:
+            screenState = .unauthorized
+            Task {
+                await obtainData()
+            }
         }
-        await obtainData()
     }
 
     func obtainData() async {
@@ -116,36 +122,3 @@ class SubscriptionsPresenter {
         coordinator.showProfile()
     }
 }
-
-// // MARK: - ProfilePresenterDelegate
-//
-//extension SubscriptionsPresenter: AuthenticationStateDelegate {
-//    func didSignIn() {
-//        screenState = .authorized
-//
-//        print("SUB RECIEVED AUTHORIZED")
-//
-////        Task {
-////            DispatchQueue.main.async {
-////                self.view?.setupViewState()
-////                self.view?.showLoadingIndicator(true) // Show loading indicator on the view
-////            }
-////
-////            await obtainData()
-////
-////            DispatchQueue.main.async {
-////                self.view?.showLoadingIndicator(false) // Show loading indicator on the view
-////
-////            }
-////        }
-//    }
-//
-//    func didSignOut() {
-//        screenState = .unauthorized
-//        print("SUB RECIEVED UNAUTHORIZED")
-////        videosList = []
-////        DispatchQueue.main.async {
-////            self.view?.setupViewState()
-////        }
-//    }
-// }
