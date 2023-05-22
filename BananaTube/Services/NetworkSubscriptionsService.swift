@@ -35,8 +35,6 @@ class NetworkSubscriptionsService {
             throw NetworkError.invalidURL
         }
 
-        print(url.absoluteString)
-
         let (data, _) = try await session.data(from: url)
         let response = try decoder.decode(Subscriptions.self, from: data)
 
@@ -52,11 +50,8 @@ class NetworkSubscriptionsService {
             throw NetworkError.invalidURL
         }
 
-        print(url.absoluteString)
-
         let (contentDetails, _) = try await session.data(from: url)
         let response = try decoder.decode(ChannelListResponse.self, from: contentDetails)
-        print(response.items)
 
         let playlists = response.items
             .compactMap { $0.contentDetails.relatedPlaylists.uploads }
@@ -73,14 +68,12 @@ class NetworkSubscriptionsService {
             throw NetworkError.invalidURL
         }
 
-        print(url.absoluteString)
-
         let (playlistItems, _) = try await session.data(from: url)
-        let response = try decoder.decode(Subscriptions.self, from: playlistItems)
+        let response = try decoder.decode(PlaylistItems.self, from: playlistItems)
 
         let videoIds = response.items
             .filter { $0.kind == "youtube#playlistItem" }
-            .compactMap { $0.contentDetails?.videoId }
+            .compactMap { $0.contentDetails.videoId }
 
         return videoIds
     }
@@ -89,7 +82,6 @@ class NetworkSubscriptionsService {
         do {
             let subscriptions = try await getSubscriptionsChannels()
             let playlists = try await getPlaylists(subscriptions: subscriptions)
-            print(1333)
 
             var allItems: [String] = []
 

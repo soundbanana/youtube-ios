@@ -87,7 +87,6 @@ class SubscriptionsPresenter {
             return
         }
         guard let snippet = videosList[row].snippet else { return }
-        print(snippet)
         guard let statistics = videosList[row].statistics else { return }
 
         let title = snippet.title

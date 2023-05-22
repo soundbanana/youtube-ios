@@ -32,6 +32,7 @@
 		FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */; };
 		FFDC77162A1ABCAA00FF2FAA /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */; };
 		FFDC77182A1BD35B00FF2FAA /* ChannelListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */; };
+		FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77192A1BEC4A00FF2FAA /* PlaylistItem.swift */; };
 		FFE8ABEA2A10E266005D7D4D /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABE82A10E266005D7D4D /* CoreData.xcdatamodeld */; };
 		FFE8ABEF2A10E595005D7D4D /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */; };
 		FFE8ABF12A10F0E0005D7D4D /* NetworkVideosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */; };
@@ -79,6 +80,7 @@
 		FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListResponse.swift; sourceTree = "<group>"; };
+		FFDC77192A1BEC4A00FF2FAA /* PlaylistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItem.swift; sourceTree = "<group>"; };
 		FFE8ABE92A10E266005D7D4D /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideosService.swift; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				FFC276F529E9ADC40056075D /* Subscriptions.swift */,
 				FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */,
 				FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */,
+				FFDC77192A1BEC4A00FF2FAA /* PlaylistItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */,
 				FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
+				FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,

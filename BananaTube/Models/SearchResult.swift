@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchResult: Decodable {
+struct SearchResult: Codable {
     let kind: String
     let etag: String
     let nextPageToken: String
@@ -16,7 +16,7 @@ struct SearchResult: Decodable {
     var items: [SearchItem]
 }
 
-struct SearchItem: Decodable {
+struct SearchItem: Codable {
     let kind: String
     let etag: String
     let id: Identity
@@ -24,7 +24,7 @@ struct SearchItem: Decodable {
     var statistics: Statistics?
 }
 
-struct Identity: Decodable {
+struct Identity: Codable {
     let kind: String?
     let videoId: String
 }
