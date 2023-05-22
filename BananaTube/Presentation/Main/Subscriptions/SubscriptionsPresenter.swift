@@ -63,7 +63,13 @@ class SubscriptionsPresenter {
         switch screenState {
         case .authorized:
             await networkSubscriptionsService.getSubscriptions { result in
-                self.videosList = result
+                switch result {
+                case .success(let videos):
+                    self.videosList = videos
+                case .failure(let error):
+                    // Handle the error case as needed
+                    print("Error: \(error)")
+                }
             }
         case .unauthorized:
             videosList = []
