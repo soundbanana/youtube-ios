@@ -53,9 +53,7 @@ class SubscriptionsPresenter {
             }
         case .unauthorized:
             screenState = .unauthorized
-            Task {
-                await obtainData()
-            }
+            videosList = []
         }
     }
 
@@ -89,6 +87,7 @@ class SubscriptionsPresenter {
             return
         }
         guard let snippet = videosList[row].snippet else { return }
+        print(snippet)
         guard let statistics = videosList[row].statistics else { return }
 
         let title = snippet.title
@@ -100,6 +99,8 @@ class SubscriptionsPresenter {
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
         let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
+
+        let channelThumbnail = snippet.thumbnails.default_thumbnail
 
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 

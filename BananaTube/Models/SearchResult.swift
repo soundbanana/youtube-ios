@@ -20,7 +20,7 @@ struct SearchItem: Decodable {
     let kind: String
     let etag: String
     let id: Identity
-    let snippet: Snippet
+    let snippet: Snippet?
     var statistics: Statistics?
 }
 

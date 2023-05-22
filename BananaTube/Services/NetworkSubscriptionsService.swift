@@ -35,6 +35,8 @@ class NetworkSubscriptionsService {
             throw NetworkError.invalidURL
         }
 
+        print(url.absoluteString)
+
         let (data, _) = try await session.data(from: url)
         let response = try decoder.decode(Subscriptions.self, from: data)
 
@@ -50,11 +52,14 @@ class NetworkSubscriptionsService {
             throw NetworkError.invalidURL
         }
 
+        print(url.absoluteString)
+
         let (contentDetails, _) = try await session.data(from: url)
-        let response = try decoder.decode(Subscriptions.self, from: contentDetails)
+        let response = try decoder.decode(ChannelListResponse.self, from: contentDetails)
+        print(response.items)
 
         let playlists = response.items
-            .compactMap { $0.contentDetails?.relatedPlaylists?.uploads }
+            .compactMap { $0.contentDetails.relatedPlaylists.uploads }
 
         return playlists
     }
@@ -64,9 +69,11 @@ class NetworkSubscriptionsService {
             return []
         }
 
-        guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=20&key=\(Constants.API_KEY)") else {
+        guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=1&key=\(Constants.API_KEY)") else {
             throw NetworkError.invalidURL
         }
+
+        print(url.absoluteString)
 
         let (playlistItems, _) = try await session.data(from: url)
         let response = try decoder.decode(Subscriptions.self, from: playlistItems)
@@ -82,6 +89,7 @@ class NetworkSubscriptionsService {
         do {
             let subscriptions = try await getSubscriptionsChannels()
             let playlists = try await getPlaylists(subscriptions: subscriptions)
+            print(1333)
 
             var allItems: [String] = []
 
