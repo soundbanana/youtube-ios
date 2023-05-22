@@ -31,6 +31,9 @@
 		FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942BB29D6A784007D361B /* LibraryViewController.swift */; };
 		FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */; };
 		FFDC77162A1ABCAA00FF2FAA /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */; };
+		FFDC77182A1BD35B00FF2FAA /* ChannelListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */; };
+		FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77192A1BEC4A00FF2FAA /* PlaylistItem.swift */; };
+		FFDC771C2A1BF36E00FF2FAA /* VideoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC771B2A1BF36E00FF2FAA /* VideoList.swift */; };
 		FFE8ABEA2A10E266005D7D4D /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABE82A10E266005D7D4D /* CoreData.xcdatamodeld */; };
 		FFE8ABEF2A10E595005D7D4D /* Video+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */; };
 		FFE8ABF12A10F0E0005D7D4D /* NetworkVideosService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */; };
@@ -77,6 +80,9 @@
 		FFC942BB29D6A784007D361B /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
 		FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
+		FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListResponse.swift; sourceTree = "<group>"; };
+		FFDC77192A1BEC4A00FF2FAA /* PlaylistItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItem.swift; sourceTree = "<group>"; };
+		FFDC771B2A1BF36E00FF2FAA /* VideoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoList.swift; sourceTree = "<group>"; };
 		FFE8ABE92A10E266005D7D4D /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Video+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideosService.swift; sourceTree = "<group>"; };
@@ -130,8 +136,8 @@
 		FF586AAA29F6F3C4005D44BF /* VideoPlayback */ = {
 			isa = PBXGroup;
 			children = (
-				FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */,
 				FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */,
+				FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */,
 			);
 			path = VideoPlayback;
 			sourceTree = "<group>";
@@ -139,8 +145,8 @@
 		FF5FA1C729FB0D240040672B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				FF5FA1C829FB140E0040672B /* ProfileViewController.swift */,
 				FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */,
+				FF5FA1C829FB140E0040672B /* ProfileViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -148,9 +154,12 @@
 		FFC276F429E9A9110056075D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */,
 				FFC276EE29E9A59E0056075D /* Constants.swift */,
-				FFC276F529E9ADC40056075D /* Subscriptions.swift */,
+				FFDC77192A1BEC4A00FF2FAA /* PlaylistItem.swift */,
 				FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */,
+				FFC276F529E9ADC40056075D /* Subscriptions.swift */,
+				FFDC771B2A1BF36E00FF2FAA /* VideoList.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -158,11 +167,11 @@
 		FFC276F929EC50990056075D /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				FF78A7C82A023622002A4B9F /* GoogleServices.swift */,
-				FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */,
-				FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */,
-				FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */,
 				FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */,
+				FF78A7C82A023622002A4B9F /* GoogleServices.swift */,
+				FFF7A3BC2A07DFC300BD6186 /* NetworkSearchService.swift */,
+				FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */,
+				FFE8ABF02A10F0E0005D7D4D /* NetworkVideosService.swift */,
 				FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */,
 			);
 			path = Services;
@@ -182,10 +191,10 @@
 		FFC276FC29EC51750056075D /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
-				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
-				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
-				FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */,
 				FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */,
+				FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */,
+				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
+				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
 			);
 			path = Subscriptions;
 			sourceTree = "<group>";
@@ -193,9 +202,9 @@
 		FFC276FD29EC51830056075D /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
-				FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */,
 				FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */,
+				FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */,
+				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
 			);
 			path = Library;
 			sourceTree = "<group>";
@@ -232,13 +241,13 @@
 			isa = PBXGroup;
 			children = (
 				FFEEC0F229D428A800CBF948 /* App */,
+				FFB87A882A10DF2D00BD0CAE /* CoreDataManager.swift */,
 				FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */,
 				FFEEC0EC29D4279800CBF948 /* Info.plist */,
 				FFC276F429E9A9110056075D /* Models */,
 				FFC276FA29EC50B40056075D /* Presentation */,
 				FFC276F929EC50990056075D /* Services */,
 				FFEEC0F429D428CE00CBF948 /* Storyboards */,
-				FFB87A882A10DF2D00BD0CAE /* CoreDataManager.swift */,
 			);
 			path = BananaTube;
 			sourceTree = "<group>";
@@ -247,8 +256,8 @@
 			isa = PBXGroup;
 			children = (
 				FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */,
-				FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */,
 				FFEEC0E729D4279800CBF948 /* Assets.xcassets */,
+				FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -264,9 +273,9 @@
 		FFF7A3B72A07B07B00BD6186 /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */,
 				FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */,
 				FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */,
-				FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -274,9 +283,9 @@
 		FFF7A3C22A08117C00BD6186 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */,
-				FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */,
 				FFB125DE2A09A309002907FD /* VideosCoordinator.swift */,
+				FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */,
+				FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -284,8 +293,8 @@
 		FFF7A3C72A0833A900BD6186 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
 				FFC276FD29EC51830056075D /* Library */,
+				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
 				FFC276FC29EC51750056075D /* Subscriptions */,
 			);
 			path = Main;
@@ -305,8 +314,8 @@
 		FFF7A3C92A08342E00BD6186 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				FFF7A3C22A08117C00BD6186 /* Videos */,
 				FF586AAA29F6F3C4005D44BF /* VideoPlayback */,
+				FFF7A3C22A08117C00BD6186 /* Videos */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -454,7 +463,9 @@
 				FFF7A3B92A07B09300BD6186 /* SearchPresenter.swift in Sources */,
 				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
 				FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */,
+				FFDC77182A1BD35B00FF2FAA /* ChannelListResponse.swift in Sources */,
 				FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */,
+				FFDC771C2A1BF36E00FF2FAA /* VideoList.swift in Sources */,
 				FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
 				FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */,
@@ -471,6 +482,7 @@
 				FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */,
 				FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
+				FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,

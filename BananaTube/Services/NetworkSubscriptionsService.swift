@@ -51,10 +51,10 @@ class NetworkSubscriptionsService {
         }
 
         let (contentDetails, _) = try await session.data(from: url)
-        let response = try decoder.decode(Subscriptions.self, from: contentDetails)
+        let response = try decoder.decode(ChannelListResponse.self, from: contentDetails)
 
         let playlists = response.items
-            .compactMap { $0.contentDetails?.relatedPlaylists?.uploads }
+            .compactMap { $0.contentDetails.relatedPlaylists.uploads }
 
         return playlists
     }
@@ -64,16 +64,16 @@ class NetworkSubscriptionsService {
             return []
         }
 
-        guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=20&key=\(Constants.API_KEY)") else {
+        guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=1&key=\(Constants.API_KEY)") else {
             throw NetworkError.invalidURL
         }
 
         let (playlistItems, _) = try await session.data(from: url)
-        let response = try decoder.decode(Subscriptions.self, from: playlistItems)
+        let response = try decoder.decode(PlaylistItems.self, from: playlistItems)
 
         let videoIds = response.items
             .filter { $0.kind == "youtube#playlistItem" }
-            .compactMap { $0.contentDetails?.videoId }
+            .compactMap { $0.contentDetails.videoId }
 
         return videoIds
     }

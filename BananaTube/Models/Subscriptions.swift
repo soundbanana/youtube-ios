@@ -51,11 +51,6 @@ struct Statistics: Codable {
     let commentCount: String?
 }
 
-struct RelatedPlaylists: Codable {
-    let likes: String
-    let uploads: String
-}
-
 struct ResourceId: Codable {
     let kind: String
     let channelId: String

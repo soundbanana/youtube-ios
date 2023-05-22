@@ -48,7 +48,7 @@ class NetworkSearchService {
                 switch result {
                 case .success(let statistics):
                     for item in statistics.items {
-                        stats.append(item.statistics!)
+                        stats.append(item.statistics)
                     }
                 case .failure(let error):
                     print("Error while getting statistics: \(error.localizedDescription)")
@@ -66,7 +66,7 @@ class NetworkSearchService {
         }
     }
 
-    private func getStatistics(videoIds: [String], completion: @escaping (Result<Subscriptions, Error>) -> Void) async {
+    private func getStatistics(videoIds: [String], completion: @escaping (Result<VideoList, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/videos"
         let part = "statistics"
         let id = videoIds.joined(separator: "%2C")
@@ -79,7 +79,7 @@ class NetworkSearchService {
         // !TODO Change name of model Subscriptions to smth else
         do {
             let (data, _) = try await session.data(from: url)
-            let response = try decoder.decode(Subscriptions.self, from: data)
+            let response = try decoder.decode(VideoList.self, from: data)
             completion(.success(response))
         } catch {
             completion(.failure(error))
