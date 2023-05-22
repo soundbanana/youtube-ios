@@ -7,10 +7,34 @@
 
 import UIKit
 
-class LibraryViewController: UIViewController {
+protocol LibraryView: AnyObject {
+    func showAuthorizedState()
+    func showUnauthorizedState()
+    func reloadData()
+}
+
+class LibraryViewController: UIViewController, LibraryView {
     var presenter: LibraryPresenter!
 
-    var collectionView: UICollectionView! = nil
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.backgroundColor = UIColor(named: "Background")
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.reloadData()
+        return collectionView
+    }()
+
+    lazy var noUserLabel: UILabel = {
+        let label = UILabel()
+        label.text = "No account provided"
+        label.textColor = UIColor(named: "MainText")
+        label.textAlignment = .center
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -20,43 +44,50 @@ class LibraryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
         setupViews()
+        collectionView.refreshControl = refreshControl
         Task {
-            await presenter.viewDidLoad()
+            await presenter.obtainData()
         }
+    }
+
+    func showAuthorizedState() {
+        collectionView.isHidden = false
+        noUserLabel.isHidden = true
+        collectionView.reloadData()
+    }
+
+    func showUnauthorizedState() {
+        setupNoUserView()
+        collectionView.isHidden = true
+        noUserLabel.isHidden = false
     }
 
     private func setupViews() {
         view.backgroundColor = UIColor(named: "Background")
         setupNavigationBar()
-
         view.addSubview(collectionView)
 
         self.edgesForExtendedLayout = []
+    }
+
+    func setupNoUserView() {
+        view.addSubview(noUserLabel)
+        NSLayoutConstraint.activate([
+            noUserLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            noUserLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
 
     @objc private func refresh(sender: UIRefreshControl) {
         Task {
             await presenter.obtainData()
             sender.endRefreshing()
+            collectionView.reloadData()
         }
     }
 
     func reloadData() {
-        collectionView.reloadData()
-    }
-
-    func setupViewState() { }
-
-    private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = UIColor(named: "Background")
-        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
-        collectionView.refreshControl = refreshControl
-        collectionView.dataSource = self
-        collectionView.delegate = self
         collectionView.reloadData()
     }
 

@@ -43,13 +43,14 @@ class AuthenticationManager {
             let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
             GoogleServices.youtubeService.authorizer = user.fetcherAuthorizer
 
-            Auth.auth().signIn(with: credential) { _, error in
-                if error != nil {
+            Auth.auth().signIn(with: credential) { result, error in
+                if error != nil || result == nil {
                     print("Error while signing in \(String(describing: error!.localizedDescription))")
                     completion(error)
                 } else {
                     self.state = .authorized
                     UserStore.shared.signIn()
+                    Constants.USER_EMAIL = result!.user.email!
                     completion(nil)
                 }
             }
@@ -64,7 +65,7 @@ class AuthenticationManager {
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
         }
-        
+
         self.state = .unauthorized
         UserStore.shared.signOut()
     }

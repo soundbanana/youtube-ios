@@ -36,7 +36,6 @@ class SubscriptionsPresenter {
     }
 
     func handleUserStateChange(state: State) {
-        // Handle sign-in and sign-out state changes in the LibraryPresenter
         switch state {
         case .authorized:
             screenState = .authorized
@@ -61,11 +60,12 @@ class SubscriptionsPresenter {
     }
 
     func obtainData() async {
-        if screenState == .authorized {
+        switch screenState {
+        case .authorized:
             await networkSubscriptionsService.getSubscriptions { result in
                 self.videosList = result
             }
-        } else {
+        case .unauthorized:
             videosList = []
         }
 

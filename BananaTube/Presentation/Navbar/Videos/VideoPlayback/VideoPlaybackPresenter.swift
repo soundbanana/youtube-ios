@@ -35,6 +35,7 @@ class VideoPlaybackPresenter {
         view?.show(title: title, subtitle: subtitle, videoId: videoId)
 
         if !Constants.USER_EMAIL.isEmpty {
+            print("USER_EMAIL: \(Constants.USER_EMAIL)")
             CoreDataManager.shared.deleteVideo(with: videoId, userEmail: Constants.USER_EMAIL)
             CoreDataManager.shared.createVideo(videoId, userEmail: Constants.USER_EMAIL)
         }

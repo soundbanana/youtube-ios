@@ -42,7 +42,7 @@ class SubscriptionsViewController: UIViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "Background")
         createCustomNavigationBar()
         view.addSubview(collectionView)
 

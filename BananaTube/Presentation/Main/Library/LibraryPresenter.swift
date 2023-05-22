@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class LibraryPresenter {
-    weak var view: LibraryViewController?
+    weak var view: LibraryView?
     let coordinator: LibraryCoordinator
 
     private var videosList: [Item] = []
@@ -30,22 +30,21 @@ class LibraryPresenter {
     }
 
     func handleUserStateChange(state: State) {
-        // Handle sign-in and sign-out state changes in the LibraryPresenter
         switch state {
         case .authorized:
-            print("Lib authorized")
-        case .unauthorized:
-            print("Lib unauthorized")
-        }
-    }
-
-    func viewDidLoad() async {
-        if Constants.USER_EMAIL.isEmpty {
-            screenState = .unauthorized
-        } else {
             screenState = .authorized
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.showAuthorizedState()
+            }
+        case .unauthorized:
+            screenState = .unauthorized
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.showUnauthorizedState()
+            }
         }
-        await obtainData()
+        Task {
+            await obtainData()
+        }
     }
 
     func obtainData() async {
@@ -54,13 +53,12 @@ class LibraryPresenter {
             let videos = await fetchVideos()
             let videoIDs = videos.map { $0.id }
             videosList = await service.getRealVideos(videoIds: videoIDs).reversed()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.reloadData()
+            }
 
         case .unauthorized:
             videosList = []
-        }
-
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.setupViewState()
         }
     }
 
@@ -120,29 +118,3 @@ class LibraryPresenter {
         coordinator.showProfile()
     }
 }
-
-//// MARK: - ProfilePresenterDelegate
-//
-//extension LibraryPresenter: AuthenticationStateDelegate {
-//    func didSignIn() {
-//        screenState = .authorized
-//        print("LIB RECIEVED AUTHORIZED")
-////
-////        Task {
-////            await obtainData()
-////        }
-////
-////        DispatchQueue.main.async {
-////            self.view?.setupViewState()
-////        }
-//    }
-//
-//    func didSignOut() {
-//        screenState = .unauthorized
-//        print("LIB RECIEVED UNAUTHORIZED")
-////        videosList = []
-////        DispatchQueue.main.async {
-////            self.view?.setupViewState()
-////        }
-//    }
-//}

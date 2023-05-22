@@ -28,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     return
                 }
                 UserStore.shared.signIn()
+                Constants.USER_EMAIL = userEmail
             }
         }
         return true
