@@ -41,7 +41,7 @@ class SubscriptionsPresenter {
             screenState = .authorized
             Task {
                 DispatchQueue.main.async {
-                    self.view?.setupViewState()
+                    self.view?.showAuthorizedState()
                     self.view?.showLoadingIndicator(true)
                 }
 
@@ -49,11 +49,15 @@ class SubscriptionsPresenter {
 
                 DispatchQueue.main.async {
                     self.view?.showLoadingIndicator(false)
+                    self.view?.reloadData()
                 }
             }
         case .unauthorized:
             screenState = .unauthorized
             videosList = []
+            DispatchQueue.main.async {
+                self.view?.showUnauthorizedState()
+            }
         }
     }
 
@@ -65,16 +69,11 @@ class SubscriptionsPresenter {
                 case .success(let videos):
                     self.videosList = videos
                 case .failure(let error):
-                    // Handle the error case as needed
                     print("Error: \(error)")
                 }
             }
         case .unauthorized:
             videosList = []
-        }
-
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.setupViewState()
         }
     }
 
@@ -87,6 +86,7 @@ class SubscriptionsPresenter {
             return
         }
         guard let snippet = videosList[row].snippet else { return }
+
         guard let statistics = videosList[row].statistics else { return }
 
         let title = snippet.title

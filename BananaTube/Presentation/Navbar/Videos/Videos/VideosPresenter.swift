@@ -99,7 +99,7 @@ class VideosPresenter {
     }
 
     func showSearch() {
-//        coordinator.showSearch(searchBarText: searchText)
+        coordinator.showSearch(searchBarText: searchText)
     }
 
     func showDetails(row: Int) {
