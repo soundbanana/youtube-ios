@@ -15,6 +15,7 @@
 		FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1C829FB140E0040672B /* ProfileViewController.swift */; };
 		FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */; };
 		FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78A7C82A023622002A4B9F /* GoogleServices.swift */; };
+		FF804D412A1D7662001CA28A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF804D402A1D7662001CA28A /* ApiError.swift */; };
 		FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */; };
 		FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */; };
 		FFB125DF2A09A309002907FD /* VideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DE2A09A309002907FD /* VideosCoordinator.swift */; };
@@ -64,6 +65,7 @@
 		FF5FA1C829FB140E0040672B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		FF78A7C82A023622002A4B9F /* GoogleServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServices.swift; sourceTree = "<group>"; };
+		FF804D402A1D7662001CA28A /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsTableViewCell.swift; sourceTree = "<group>"; };
 		FFB125DE2A09A309002907FD /* VideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCoordinator.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				FFF7A3BE2A07EA2900BD6186 /* SearchResult.swift */,
 				FFC276F529E9ADC40056075D /* Subscriptions.swift */,
 				FFDC771B2A1BF36E00FF2FAA /* VideoList.swift */,
+				FF804D402A1D7662001CA28A /* ApiError.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				FFDC77182A1BD35B00FF2FAA /* ChannelListResponse.swift in Sources */,
 				FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */,
 				FFDC771C2A1BF36E00FF2FAA /* VideoList.swift in Sources */,
+				FF804D412A1D7662001CA28A /* ApiError.swift in Sources */,
 				FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
 				FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */,

@@ -69,13 +69,24 @@ class NetworkSubscriptionsService {
         }
 
         let (playlistItems, _) = try await session.data(from: url)
-        let response = try decoder.decode(PlaylistItems.self, from: playlistItems)
 
-        let videoIds = response.items
-            .filter { $0.kind == "youtube#playlistItem" }
-            .compactMap { $0.contentDetails.videoId }
+        do {
+            let response = try decoder.decode(PlaylistItems.self, from: playlistItems)
 
-        return videoIds
+            let videoIds = response.items
+                .filter { $0.kind == "youtube#playlistItem" }
+                .compactMap { $0.contentDetails.videoId }
+
+            return videoIds
+        } catch let error {
+            if let responseError = try? decoder.decode(APIError.self, from: playlistItems) {
+                // Handle the playlist not found error locally
+                print("Playlist not found: \(responseError)")
+                return []
+            } else {
+                throw error
+            }
+        }
     }
 
     func getSubscriptions(completion: @escaping (Result<[Item], Error>) -> Void) async {
