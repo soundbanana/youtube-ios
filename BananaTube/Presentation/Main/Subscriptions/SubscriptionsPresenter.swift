@@ -15,12 +15,10 @@ enum ScreenState {
 
 class SubscriptionsPresenter {
     weak var view: SubscriptionsViewController?
-    var navigationController: UINavigationController?
+    let coordinator: SubscriptionsCoordinator
 
     private var videosList: [Item] = []
     var screenState: ScreenState = .unauthorized
-
-    let coordinator: SubscriptionsCoordinator
 
     private let networkSubscriptionsService = NetworkSubscriptionsService.shared
 
@@ -98,9 +96,7 @@ class SubscriptionsPresenter {
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
         let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
-
-        let channelThumbnail = snippet.thumbnails.default_thumbnail
-
+        
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
         let liveBroadcast: Bool

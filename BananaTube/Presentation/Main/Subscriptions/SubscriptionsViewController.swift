@@ -14,7 +14,7 @@ class SubscriptionsViewController: UIViewController {
 
     lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
@@ -41,7 +41,6 @@ class SubscriptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        collectionView.refreshControl = refreshControl
         setupLoadingIndicator()
         Task {
             showLoadingIndicator(true)
@@ -61,6 +60,7 @@ class SubscriptionsViewController: UIViewController {
     }
 
     func showAuthorizedState() {
+        setupAuthorizedView()
         collectionView.isHidden = false
         noUserLabel.isHidden = true
     }
@@ -72,11 +72,20 @@ class SubscriptionsViewController: UIViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = UIColor(named: "Background")
+//        view.backgroundColor = UIColor(named: "Background")
+        view.backgroundColor = .green
         setupNavigationBar()
-        view.addSubview(collectionView)
+    }
 
-        self.edgesForExtendedLayout = []
+    private func setupAuthorizedView() {
+        view.addSubview(collectionView)
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        collectionView.refreshControl = refreshControl
     }
 
     private func setupNoUserView() {
@@ -108,7 +117,7 @@ class SubscriptionsViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-        createCustomNavigationBar()
+//        createCustomNavigationBar()
 
         navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
 
@@ -119,7 +128,6 @@ class SubscriptionsViewController: UIViewController {
     }
 
     func reloadData() {
-        collectionView.refreshControl?.endRefreshing()
         collectionView.reloadData()
     }
 

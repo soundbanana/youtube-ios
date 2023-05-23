@@ -14,9 +14,10 @@ enum Action {
 
 extension UIViewController {
     func createCustomNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .systemBackground
-        navigationController?.view.backgroundColor = .systemBackground
-        navigationController?.navigationBar.isTranslucent = false
+//        navigationController?.navigationBar.backgroundColor = .green
+//        navigationController?.view.backgroundColor = .green
+//        navigationController?.navigationBar.tintColor = .blue
+//        navigationController?.navigationBar.isTranslucent = false
     }
 
     func createCustomTitle(text: String, selector: Selector?) -> UIBarButtonItem {
