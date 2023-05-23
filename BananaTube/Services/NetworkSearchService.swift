@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum APIError: Error {
-    case invalidResponse
-    case apiError(String)
-}
-
 class NetworkSearchService {
     static let shared = NetworkSearchService()
     let session = URLSession.shared

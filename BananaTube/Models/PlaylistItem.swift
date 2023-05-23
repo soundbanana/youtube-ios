@@ -10,13 +10,13 @@ import Foundation
 struct PlaylistItems: Decodable {
     let kind: String
     let etag: String
-    let nextPageToken: String
+    let nextPageToken: String?
     var items: [PlaylistItem]
     let pageInfo: PageInfo
 }
 
 struct PlaylistItem: Codable {
-    let kind: String
+    let kind: String?
     let etag: String
     let id: String
     let contentDetails: PlaylistItemsContentDetails
