@@ -42,13 +42,6 @@ class SubscriptionsViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupLoadingIndicator()
-        Task {
-            showLoadingIndicator(true)
-            await presenter.obtainData()
-            showLoadingIndicator(false)
-
-            collectionView.reloadData()
-        }
     }
 
     func showLoadingIndicator(_ show: Bool) {
@@ -60,25 +53,26 @@ class SubscriptionsViewController: UIViewController {
     }
 
     func showAuthorizedState() {
+        noUserLabel.removeFromSuperview()
         setupAuthorizedView()
-        collectionView.isHidden = false
-        noUserLabel.isHidden = true
+        setupNavigationBar()
     }
 
     func showUnauthorizedState() {
+        collectionView.removeFromSuperview()
         setupNoUserView()
-        collectionView.isHidden = true
-        noUserLabel.isHidden = false
+        setupNavigationBar()
     }
 
     private func setupViews() {
-//        view.backgroundColor = UIColor(named: "Background")
-        view.backgroundColor = .green
+        view.backgroundColor = UIColor(named: "Background")
         setupNavigationBar()
     }
 
     private func setupAuthorizedView() {
         view.addSubview(collectionView)
+        view.addSubview(activityIndicator)
+        self.edgesForExtendedLayout = []
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -106,6 +100,7 @@ class SubscriptionsViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
+        view.bringSubviewToFront(activityIndicator)
     }
 
     @objc private func refresh(sender: UIRefreshControl) {
@@ -117,7 +112,7 @@ class SubscriptionsViewController: UIViewController {
     }
 
     private func setupNavigationBar() {
-//        createCustomNavigationBar()
+        createCustomNavigationBar()
 
         navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
 

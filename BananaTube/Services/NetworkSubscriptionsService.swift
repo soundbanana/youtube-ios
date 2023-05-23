@@ -64,7 +64,7 @@ class NetworkSubscriptionsService {
             return []
         }
 
-        guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=1&key=\(Constants.API_KEY)") else {
+        guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=10&key=\(Constants.API_KEY)") else {
             throw NetworkError.invalidURL
         }
 

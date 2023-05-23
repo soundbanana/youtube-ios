@@ -37,12 +37,13 @@ class SubscriptionsPresenter {
         switch state {
         case .authorized:
             screenState = .authorized
-            Task {
-                DispatchQueue.main.async {
-                    self.view?.showAuthorizedState()
-                    self.view?.showLoadingIndicator(true)
-                }
 
+            DispatchQueue.main.async {
+                self.view?.showLoadingIndicator(true)
+                self.view?.showAuthorizedState()
+            }
+
+            Task {
                 await obtainData()
 
                 DispatchQueue.main.async {
@@ -55,6 +56,7 @@ class SubscriptionsPresenter {
             videosList = []
             DispatchQueue.main.async {
                 self.view?.showUnauthorizedState()
+                self.view?.reloadData()
             }
         }
     }
@@ -96,7 +98,7 @@ class SubscriptionsPresenter {
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
         let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
-        
+
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
         let liveBroadcast: Bool

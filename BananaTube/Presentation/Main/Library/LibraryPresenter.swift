@@ -48,6 +48,7 @@ class LibraryPresenter {
             videosList = []
             DispatchQueue.main.async {
                 self.view?.showUnauthorizedState()
+                self.view?.reloadData()
             }
         }
     }

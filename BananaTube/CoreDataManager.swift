@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+@MainActor
 public final class CoreDataManager: NSObject {
     public static let shared = CoreDataManager()
     private override init() { }

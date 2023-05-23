@@ -50,26 +50,25 @@ class LibraryViewController: UIViewController, LibraryView {
     }
 
     func showAuthorizedState() {
+        noUserLabel.removeFromSuperview()
         setupAuthorizedView()
-        collectionView.isHidden = false
-        noUserLabel.isHidden = true
+        setupNavigationBar()
     }
 
     func showUnauthorizedState() {
+        collectionView.removeFromSuperview()
         setupNoUserView()
-        collectionView.isHidden = true
-        noUserLabel.isHidden = false
+        setupNavigationBar()
     }
 
     private func setupViews() {
-//        view.backgroundColor = UIColor(named: "Background")
-        view.backgroundColor = .green
-
+        view.backgroundColor = UIColor(named: "Background")
         setupNavigationBar()
     }
 
     private func setupAuthorizedView() {
         view.addSubview(collectionView)
+        self.edgesForExtendedLayout = []
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
@@ -96,8 +95,7 @@ class LibraryViewController: UIViewController, LibraryView {
     }
 
     private func setupNavigationBar() {
-//        createCustomNavigationBar()
-
+        createCustomNavigationBar()
         navigationItem.leftBarButtonItem = createCustomTitle(text: "History", selector: nil)
 
         let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
