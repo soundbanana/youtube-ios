@@ -14,7 +14,7 @@ class MainTabBarCoordinator {
     func start() -> UIViewController {
         let tabBarController = UITabBarController()
         self.tabBarController = tabBarController
-        tabBarController.tabBar.tintColor = .black
+        customizeTabBarAppearance()
 
         tabBarController.viewControllers = [
             subscriptions(),
@@ -28,7 +28,7 @@ class MainTabBarCoordinator {
         let viewController = SubscriptionsViewController()
         viewController.tabBarItem = .init(
             title: "Subscriptions",
-            image: .init(systemName: "books.vertical"),
+            image: UIImage(systemName: "books.vertical"),
             selectedImage: .init(systemName: "books.vertical.fill")
         )
         return SubscriptionsCoordinator.shared.start(viewController)
@@ -38,9 +38,19 @@ class MainTabBarCoordinator {
         let viewController = LibraryViewController()
         viewController.tabBarItem = .init(
             title: "Library",
-            image: .init(systemName: "folder"),
+            image: UIImage(systemName: "folder"),
             selectedImage: .init(systemName: "folder.fill")
         )
         return LibraryCoordinator.shared.start(viewController)
+    }
+
+    private func customizeTabBarAppearance() {
+        if let tabBar = tabBarController?.tabBar {
+            tabBar.isTranslucent = false
+            tabBar.tintColor = UIColor(named: "MainText")
+            tabBar.barTintColor = UIColor(named: "Background")
+            tabBar.backgroundImage = UIImage()
+            tabBar.shadowImage = UIImage()
+        }
     }
 }

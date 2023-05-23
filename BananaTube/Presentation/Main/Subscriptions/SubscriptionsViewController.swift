@@ -12,7 +12,16 @@ class SubscriptionsViewController: UIViewController {
 
     private var activityIndicator: UIActivityIndicatorView!
 
-    lazy var collectionView: UICollectionView! = nil
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = UIColor(named: "Background")
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.reloadData()
+        return collectionView
+    }()
 
     lazy var noUserLabel: UILabel = {
         let label = UILabel()
@@ -31,29 +40,46 @@ class SubscriptionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureCollectionView()
         setupViews()
         setupLoadingIndicator()
-        Task {
-            showLoadingIndicator(true)
-            await presenter.obtainData()
-            showLoadingIndicator(false)
+    }
+
+    func showLoadingIndicator(_ show: Bool) {
+        if show {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
         }
+    }
+
+    func showAuthorizedState() {
+        noUserLabel.removeFromSuperview()
+        setupAuthorizedView()
+        setupNavigationBar()
+    }
+
+    func showUnauthorizedState() {
+        collectionView.removeFromSuperview()
+        setupNoUserView()
+        setupNavigationBar()
     }
 
     private func setupViews() {
         view.backgroundColor = UIColor(named: "Background")
-        createCustomNavigationBar()
+        setupNavigationBar()
+    }
+
+    private func setupAuthorizedView() {
         view.addSubview(collectionView)
-
-        navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
-
-        let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
-        let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))
-
-        navigationItem.rightBarButtonItems = [accountButton, searchButton]
-
+        view.addSubview(activityIndicator)
         self.edgesForExtendedLayout = []
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        collectionView.refreshControl = refreshControl
     }
 
     private func setupNoUserView() {
@@ -62,17 +88,6 @@ class SubscriptionsViewController: UIViewController {
             noUserLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             noUserLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-
-    private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = UIColor(named: "Background")
-        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
-        collectionView.refreshControl = refreshControl
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.reloadData()
     }
 
     private func setupLoadingIndicator() {
@@ -85,35 +100,30 @@ class SubscriptionsViewController: UIViewController {
             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
-    }
-
-    func showLoadingIndicator(_ show: Bool) {
-        if show {
-            activityIndicator.startAnimating()
-        } else {
-            activityIndicator.stopAnimating()
-        }
+        view.bringSubviewToFront(activityIndicator)
     }
 
     @objc private func refresh(sender: UIRefreshControl) {
         Task {
             await presenter.obtainData()
             sender.endRefreshing()
+            collectionView.reloadData()
         }
     }
 
-    func setupViewState() {
-        switch presenter.screenState {
-        case .authorized:
-            collectionView.isHidden = false
-            noUserLabel.isHidden = true
-            collectionView.reloadData()
+    private func setupNavigationBar() {
+        createCustomNavigationBar()
 
-        case .unauthorized:
-            setupNoUserView()
-            collectionView.isHidden = true
-            noUserLabel.isHidden = false
-        }
+        navigationItem.leftBarButtonItem = createCustomTitle(text: "🍌BananaTube", selector: nil)
+
+        let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
+        let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))
+
+        navigationItem.rightBarButtonItems = [accountButton, searchButton]
+    }
+
+    func reloadData() {
+        collectionView.reloadData()
     }
 
     @objc func showSearch() {

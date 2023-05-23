@@ -13,12 +13,14 @@ protocol LibraryView: AnyObject {
     func reloadData()
 }
 
+// Логин, выйти из приложения. Снова запустить и выйти. Фантомный collectionView
+
 class LibraryViewController: UIViewController, LibraryView {
     var presenter: LibraryPresenter!
 
-    lazy var collectionView: UICollectionView = {
+    private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
@@ -45,33 +47,38 @@ class LibraryViewController: UIViewController, LibraryView {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        collectionView.refreshControl = refreshControl
-        Task {
-            await presenter.obtainData()
-        }
     }
 
     func showAuthorizedState() {
-        collectionView.isHidden = false
-        noUserLabel.isHidden = true
-        collectionView.reloadData()
+        noUserLabel.removeFromSuperview()
+        setupAuthorizedView()
+        setupNavigationBar()
     }
 
     func showUnauthorizedState() {
+        collectionView.removeFromSuperview()
         setupNoUserView()
-        collectionView.isHidden = true
-        noUserLabel.isHidden = false
+        setupNavigationBar()
     }
 
     private func setupViews() {
         view.backgroundColor = UIColor(named: "Background")
         setupNavigationBar()
-        view.addSubview(collectionView)
-
-        self.edgesForExtendedLayout = []
     }
 
-    func setupNoUserView() {
+    private func setupAuthorizedView() {
+        view.addSubview(collectionView)
+        self.edgesForExtendedLayout = []
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+        collectionView.refreshControl = refreshControl
+    }
+
+    private func setupNoUserView() {
         view.addSubview(noUserLabel)
         NSLayoutConstraint.activate([
             noUserLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -87,19 +94,18 @@ class LibraryViewController: UIViewController, LibraryView {
         }
     }
 
-    func reloadData() {
-        collectionView.reloadData()
-    }
-
     private func setupNavigationBar() {
         createCustomNavigationBar()
-
         navigationItem.leftBarButtonItem = createCustomTitle(text: "History", selector: nil)
 
         let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
         let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))
 
         navigationItem.rightBarButtonItems = [accountButton, searchButton]
+    }
+
+    func reloadData() {
+        collectionView.reloadData()
     }
 
     @objc func showSearch() {

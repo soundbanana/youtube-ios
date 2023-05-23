@@ -8,6 +8,7 @@
 import UIKit
 import CoreData
 
+@MainActor
 public final class CoreDataManager: NSObject {
     public static let shared = CoreDataManager()
     private override init() { }
@@ -36,11 +37,11 @@ public final class CoreDataManager: NSObject {
         appDelegate.saveContext()
     }
 
-    public func fetchVideos() -> [Video] {
+    public func fetchVideos(for userEmail: String) -> [Video] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         do {
             if let videos = try context.fetch(fetchRequest) as? [Video] {
-                return videos
+                return videos.filter { $0.userEmail == userEmail }
             }
         } catch {
             print("Error fetching videos: \(error.localizedDescription)")

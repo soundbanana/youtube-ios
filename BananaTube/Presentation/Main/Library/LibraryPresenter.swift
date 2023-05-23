@@ -21,7 +21,6 @@ class LibraryPresenter {
 
     init(coordinator: LibraryCoordinator) {
         self.coordinator = coordinator
-
         UserStore.shared.userStatePublisher
             .sink { state in
             self.handleUserStateChange(state: state)
@@ -33,17 +32,24 @@ class LibraryPresenter {
         switch state {
         case .authorized:
             screenState = .authorized
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.showAuthorizedState()
+            Task {
+                DispatchQueue.main.async {
+                    self.view?.showAuthorizedState()
+                }
+
+                await obtainData()
+
+                DispatchQueue.main.async {
+                    self.view?.reloadData()
+                }
             }
         case .unauthorized:
             screenState = .unauthorized
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.showUnauthorizedState()
+            videosList = []
+            DispatchQueue.main.async {
+                self.view?.showUnauthorizedState()
+                self.view?.reloadData()
             }
-        }
-        Task {
-            await obtainData()
         }
     }
 
@@ -53,10 +59,6 @@ class LibraryPresenter {
             let videos = await fetchVideos()
             let videoIDs = videos.map { $0.id }
             videosList = await service.getRealVideos(videoIds: videoIDs).reversed()
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.reloadData()
-            }
-
         case .unauthorized:
             videosList = []
         }
@@ -69,7 +71,7 @@ class LibraryPresenter {
     func fetchVideos() async -> [Video] {
         return await withUnsafeContinuation { continuation in
             DispatchQueue.main.async {
-                let videos = CoreDataManager.shared.fetchVideos()
+                let videos = CoreDataManager.shared.fetchVideos(for: Constants.USER_EMAIL)
                 continuation.resume(returning: videos)
             }
         }

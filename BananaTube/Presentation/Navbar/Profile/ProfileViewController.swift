@@ -19,24 +19,27 @@ class ProfileViewController: UIViewController {
         button.imageView?.contentMode = .scaleAspectFit
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill
-        button.tintColor = .black
+        button.tintColor = UIColor(named: "MainText")
         button.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
 
-    let logoImageView: UIImageView = {
-        let imageView = UIImageView(image: UIImage(named: "light-icon"))
-        imageView.contentMode = .scaleAspectFit
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        return imageView
+    let logoLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.text = "🍌BananaTube"
+        titleLabel.textColor = UIColor(named: "MainText")
+        titleLabel.font = UIFont.boldSystemFont(ofSize: 50)
+        titleLabel.textAlignment = .center
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        return titleLabel
     }()
 
     let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 75
-        imageView.backgroundColor = .black
+        imageView.backgroundColor = UIColor(named: "MainText")
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -46,6 +49,7 @@ class ProfileViewController: UIViewController {
         label.numberOfLines = 2
         label.text = "Surname Name"
         label.textAlignment = .center
+        label.textColor = UIColor(named: "MainText")
         label.font = label.font.withSize(28)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -56,6 +60,7 @@ class ProfileViewController: UIViewController {
         label.numberOfLines = 1
         label.text = "sample@sample.com"
         label.textAlignment = .center
+        label.textColor = UIColor(named: "MainText")
         label.font = label.font.withSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -73,7 +78,7 @@ class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor(named: "Background")
         presenter.configureData()
     }
 
@@ -127,16 +132,16 @@ class ProfileViewController: UIViewController {
 
         view.addSubview(signInButton)
         view.addSubview(closeButton)
-        view.addSubview(logoImageView)
+        view.addSubview(logoLabel)
 
         NSLayoutConstraint.activate([
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
-            logoImageView.heightAnchor.constraint(equalToConstant: 100),
-            logoImageView.widthAnchor.constraint(equalToConstant: 300),
+            logoLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            logoLabel.heightAnchor.constraint(equalToConstant: 100),
+            logoLabel.leftAnchor.constraint(equalTo: view.leftAnchor),
+            logoLabel.rightAnchor.constraint(equalTo: view.rightAnchor),
 
-            signInButton.topAnchor.constraint(equalTo: logoImageView.bottomAnchor, constant: 10),
-            signInButton.centerXAnchor.constraint(equalTo: logoImageView.centerXAnchor),
+            signInButton.topAnchor.constraint(equalTo: logoLabel.bottomAnchor, constant: 10),
+            signInButton.centerXAnchor.constraint(equalTo: logoLabel.centerXAnchor),
 
             closeButton.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 10),
             closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor)

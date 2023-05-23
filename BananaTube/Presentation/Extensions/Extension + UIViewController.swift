@@ -14,8 +14,10 @@ enum Action {
 
 extension UIViewController {
     func createCustomNavigationBar() {
-        navigationController?.navigationBar.backgroundColor = .systemBackground
-        navigationController?.view.backgroundColor = .systemBackground
+        navigationController?.navigationBar.backgroundColor = UIColor(named: "Background")
+        navigationController?.view.backgroundColor = UIColor(named: "Background")
+        navigationController?.navigationBar.barTintColor = UIColor(named: "Background")
+        navigationController?.navigationBar.shadowImage = .init()
         navigationController?.navigationBar.isTranslucent = false
     }
 

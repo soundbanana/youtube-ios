@@ -15,12 +15,10 @@ enum ScreenState {
 
 class SubscriptionsPresenter {
     weak var view: SubscriptionsViewController?
-    var navigationController: UINavigationController?
+    let coordinator: SubscriptionsCoordinator
 
     private var videosList: [Item] = []
     var screenState: ScreenState = .unauthorized
-
-    let coordinator: SubscriptionsCoordinator
 
     private let networkSubscriptionsService = NetworkSubscriptionsService.shared
 
@@ -39,21 +37,27 @@ class SubscriptionsPresenter {
         switch state {
         case .authorized:
             screenState = .authorized
-            Task {
-                DispatchQueue.main.async {
-                    self.view?.setupViewState()
-                    self.view?.showLoadingIndicator(true)
-                }
 
+            DispatchQueue.main.async {
+                self.view?.showLoadingIndicator(true)
+                self.view?.showAuthorizedState()
+            }
+
+            Task {
                 await obtainData()
 
                 DispatchQueue.main.async {
                     self.view?.showLoadingIndicator(false)
+                    self.view?.reloadData()
                 }
             }
         case .unauthorized:
             screenState = .unauthorized
             videosList = []
+            DispatchQueue.main.async {
+                self.view?.showUnauthorizedState()
+                self.view?.reloadData()
+            }
         }
     }
 
@@ -65,16 +69,11 @@ class SubscriptionsPresenter {
                 case .success(let videos):
                     self.videosList = videos
                 case .failure(let error):
-                    // Handle the error case as needed
                     print("Error: \(error)")
                 }
             }
         case .unauthorized:
             videosList = []
-        }
-
-        DispatchQueue.main.async { [weak self] in
-            self?.view?.setupViewState()
         }
     }
 
@@ -87,6 +86,7 @@ class SubscriptionsPresenter {
             return
         }
         guard let snippet = videosList[row].snippet else { return }
+
         guard let statistics = videosList[row].statistics else { return }
 
         let title = snippet.title
@@ -98,8 +98,6 @@ class SubscriptionsPresenter {
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
         let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
-
-        let channelThumbnail = snippet.thumbnails.default_thumbnail
 
         guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 
