@@ -11,6 +11,7 @@
 		861CE7A1E9C01EC828E2404A /* Pods_BananaTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F07E0315E9913325B8DE4F5 /* Pods_BananaTubeTests.framework */; };
 		FF0838502A0EE13B0048FB21 /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */; };
 		FF0838522A0EE1480048FB21 /* LibraryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */; };
+		FF1FBB9A2A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FBB992A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift */; };
 		FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */; };
 		FF47C2F22A211100006F3988 /* ChannelListResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47C2F12A211100006F3988 /* ChannelListResponseTests.swift */; };
 		FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */; };
@@ -73,6 +74,7 @@
 		9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaTube.debug.xcconfig"; path = "Target Support Files/Pods-BananaTube/Pods-BananaTube.debug.xcconfig"; sourceTree = "<group>"; };
 		FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
 		FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
+		FF1FBB992A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemListResponseTests.swift; sourceTree = "<group>"; };
 		FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF47C2E72A21109E006F3988 /* BananaTubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BananaTubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF47C2F12A211100006F3988 /* ChannelListResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListResponseTests.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				FF47C2F12A211100006F3988 /* ChannelListResponseTests.swift */,
+				FF1FBB992A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift */,
 			);
 			path = ModelsTests;
 			sourceTree = "<group>";
@@ -576,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF47C2F22A211100006F3988 /* ChannelListResponseTests.swift in Sources */,
+				FF1FBB9A2A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
