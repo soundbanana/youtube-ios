@@ -36,6 +36,7 @@ class NetworkSubscriptionsService {
         }
 
         let (data, _) = try await session.data(from: url)
+        print(url.absoluteString)
         let response = try decoder.decode(Subscriptions.self, from: data)
 
         let subscriptions = response.items
@@ -51,6 +52,7 @@ class NetworkSubscriptionsService {
         }
 
         let (contentDetails, _) = try await session.data(from: url)
+        print(url.absoluteString)
         let response = try decoder.decode(ChannelListResponse.self, from: contentDetails)
 
         let playlists = response.items
@@ -67,6 +69,8 @@ class NetworkSubscriptionsService {
         guard let url = URL(string: "\(Constants.BASE_URL)/playlistItems?part=contentDetails&playlistId=\(playlist)&maxResults=10&key=\(Constants.API_KEY)") else {
             throw NetworkError.invalidURL
         }
+
+        print(url.absoluteString)
 
         let (playlistItems, _) = try await session.data(from: url)
 
