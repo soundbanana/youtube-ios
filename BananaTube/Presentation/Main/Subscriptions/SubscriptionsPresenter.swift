@@ -7,6 +7,7 @@
 
 import UIKit
 import Combine
+import GoogleSignIn
 
 enum ScreenState {
     case authorized
@@ -64,7 +65,8 @@ class SubscriptionsPresenter {
     func obtainData() async {
         switch screenState {
         case .authorized:
-            await networkSubscriptionsService.getSubscriptions { result in
+            let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString
+            await networkSubscriptionsService.getSubscriptions(accessToken: accessToken) { result in
                 switch result {
                 case .success(let videos):
                     self.videosList = videos

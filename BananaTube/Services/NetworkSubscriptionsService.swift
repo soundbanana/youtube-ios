@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import GoogleSignIn
 
 enum ObtainSubscriptionsResult {
     case success(posts: [String])
@@ -26,8 +25,8 @@ class NetworkSubscriptionsService {
 
     let videosService = NetworkVideosService.shared
 
-    func getSubscriptionsChannels() async throws -> [String] {
-        guard let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString else {
+    func getSubscriptionsChannels(accessToken: String?) async throws -> [String] {
+        guard let accessToken = accessToken else {
             throw NetworkError.unauthorized
         }
 
@@ -36,7 +35,6 @@ class NetworkSubscriptionsService {
         }
 
         let (data, _) = try await session.data(from: url)
-        print(url.absoluteString)
         let response = try decoder.decode(Subscriptions.self, from: data)
 
         let subscriptions = response.items
@@ -70,8 +68,6 @@ class NetworkSubscriptionsService {
             throw NetworkError.invalidURL
         }
 
-        print(url.absoluteString)
-
         let (playlistItems, _) = try await session.data(from: url)
 
         do {
@@ -93,9 +89,9 @@ class NetworkSubscriptionsService {
         }
     }
 
-    func getSubscriptions(completion: @escaping (Result<[Item], Error>) -> Void) async {
+    func getSubscriptions(accessToken: String?, completion: @escaping (Result<[Item], Error>) -> Void) async {
         do {
-            let subscriptions = try await getSubscriptionsChannels()
+            let subscriptions = try await getSubscriptionsChannels(accessToken: accessToken)
             let playlists = try await getPlaylists(subscriptions: subscriptions)
 
             var allItems: [String] = []
