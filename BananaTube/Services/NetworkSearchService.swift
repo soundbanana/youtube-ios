@@ -71,7 +71,6 @@ class NetworkSearchService {
             return
         }
 
-        // !TODO Change name of model Subscriptions to smth else
         do {
             let (data, _) = try await session.data(from: url)
             let response = try decoder.decode(VideoList.self, from: data)

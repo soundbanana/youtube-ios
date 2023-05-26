@@ -38,7 +38,7 @@ class NetworkSubscriptionsServiceTests: XCTestCase {
         XCTAssertFalse(playlists.isEmpty)
     }
 
-    func testGetPlaylists_InvalidURL() async throws {
+    func testGetPlaylists_KeyNotFound() async throws {
         // Given
         let service = NetworkSubscriptionsService.shared
 
