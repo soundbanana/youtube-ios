@@ -19,6 +19,8 @@
 		FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */; };
 		FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78A7C82A023622002A4B9F /* GoogleServices.swift */; };
 		FF7D87212A224EEA006748E0 /* NetworkVideosServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */; };
+		FF7D87232A2252C5006748E0 /* AuthenticationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D87222A2252C5006748E0 /* AuthenticationManagerTests.swift */; };
+		FF7D87262A22563F006748E0 /* MockAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D87252A22563F006748E0 /* MockAuthenticationManager.swift */; };
 		FF804D412A1D7662001CA28A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF804D402A1D7662001CA28A /* ApiError.swift */; };
 		FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */; };
 		FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */; };
@@ -88,6 +90,8 @@
 		FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		FF78A7C82A023622002A4B9F /* GoogleServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServices.swift; sourceTree = "<group>"; };
 		FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideosServiceTests.swift; sourceTree = "<group>"; };
+		FF7D87222A2252C5006748E0 /* AuthenticationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerTests.swift; sourceTree = "<group>"; };
+		FF7D87252A22563F006748E0 /* MockAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationManager.swift; sourceTree = "<group>"; };
 		FF804D402A1D7662001CA28A /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		FF47C2E82A21109E006F3988 /* BananaTubeTests */ = {
 			isa = PBXGroup;
 			children = (
+				FF7D87242A22562A006748E0 /* MockServices */,
 				FFDE7E5B2A212CC8003CC621 /* ServicesTests */,
 				FF47C2F02A2110EB006F3988 /* ModelsTests */,
 			);
@@ -205,6 +210,14 @@
 				FF5FA1C829FB140E0040672B /* ProfileViewController.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		FF7D87242A22562A006748E0 /* MockServices */ = {
+			isa = PBXGroup;
+			children = (
+				FF7D87252A22563F006748E0 /* MockAuthenticationManager.swift */,
+			);
+			path = MockServices;
 			sourceTree = "<group>";
 		};
 		FFC276F429E9A9110056075D /* Models */ = {
@@ -280,6 +293,7 @@
 				FFDE7E5C2A212CD0003CC621 /* NetworkSubscriptionsServiceTests.swift */,
 				FFDE7E5E2A21440F003CC621 /* NetworkSearchServiceTests.swift */,
 				FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */,
+				FF7D87222A2252C5006748E0 /* AuthenticationManagerTests.swift */,
 			);
 			path = ServicesTests;
 			sourceTree = "<group>";
@@ -595,7 +609,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF7D87232A2252C5006748E0 /* AuthenticationManagerTests.swift in Sources */,
 				FFDE7E5D2A212CD0003CC621 /* NetworkSubscriptionsServiceTests.swift in Sources */,
+				FF7D87262A22563F006748E0 /* MockAuthenticationManager.swift in Sources */,
 				FF47C2F22A211100006F3988 /* ChannelListResponseTests.swift in Sources */,
 				FFDE7E5F2A21440F003CC621 /* NetworkSearchServiceTests.swift in Sources */,
 				FF1FBB9A2A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift in Sources */,
