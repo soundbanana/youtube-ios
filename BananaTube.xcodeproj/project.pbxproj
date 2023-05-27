@@ -18,6 +18,7 @@
 		FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1C829FB140E0040672B /* ProfileViewController.swift */; };
 		FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */; };
 		FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF78A7C82A023622002A4B9F /* GoogleServices.swift */; };
+		FF7D87212A224EEA006748E0 /* NetworkVideosServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */; };
 		FF804D412A1D7662001CA28A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF804D402A1D7662001CA28A /* ApiError.swift */; };
 		FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */; };
 		FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */; };
@@ -86,6 +87,7 @@
 		FF5FA1C829FB140E0040672B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
 		FF78A7C82A023622002A4B9F /* GoogleServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleServices.swift; sourceTree = "<group>"; };
+		FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideosServiceTests.swift; sourceTree = "<group>"; };
 		FF804D402A1D7662001CA28A /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 			children = (
 				FFDE7E5C2A212CD0003CC621 /* NetworkSubscriptionsServiceTests.swift */,
 				FFDE7E5E2A21440F003CC621 /* NetworkSearchServiceTests.swift */,
+				FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */,
 			);
 			path = ServicesTests;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				FF47C2F22A211100006F3988 /* ChannelListResponseTests.swift in Sources */,
 				FFDE7E5F2A21440F003CC621 /* NetworkSearchServiceTests.swift in Sources */,
 				FF1FBB9A2A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift in Sources */,
+				FF7D87212A224EEA006748E0 /* NetworkVideosServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
