@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "A18B0B33-1A32-420C-8D09-F5151E0DFBBF",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:BananaTube.xcodeproj",
+          "identifier" : "FFEEC0DA29D4279700CBF948",
+          "name" : "BananaTube"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:BananaTube.xcodeproj",
+        "identifier" : "FF47C2E62A21109E006F3988",
+        "name" : "BananaTubeTests"
+      }
+    }
+  ],
+  "version" : 1
+}

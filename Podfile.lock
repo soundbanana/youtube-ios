@@ -1,27 +1,27 @@
 PODS:
-  - AppAuth (1.6.1):
-    - AppAuth/Core (= 1.6.1)
-    - AppAuth/ExternalUserAgent (= 1.6.1)
-  - AppAuth/Core (1.6.1)
-  - AppAuth/ExternalUserAgent (1.6.1):
+  - AppAuth (1.6.2):
+    - AppAuth/Core (= 1.6.2)
+    - AppAuth/ExternalUserAgent (= 1.6.2)
+  - AppAuth/Core (1.6.2)
+  - AppAuth/ExternalUserAgent (1.6.2):
     - AppAuth/Core
-  - Firebase/Auth (10.8.0):
+  - Firebase/Auth (10.10.0):
     - Firebase/CoreOnly
-    - FirebaseAuth (~> 10.8.0)
-  - Firebase/CoreOnly (10.8.0):
-    - FirebaseCore (= 10.8.0)
-  - FirebaseAppCheckInterop (10.7.0)
-  - FirebaseAuth (10.8.0):
+    - FirebaseAuth (~> 10.10.0)
+  - Firebase/CoreOnly (10.10.0):
+    - FirebaseCore (= 10.10.0)
+  - FirebaseAppCheckInterop (10.10.0)
+  - FirebaseAuth (10.10.0):
     - FirebaseAppCheckInterop (~> 10.0)
     - FirebaseCore (~> 10.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 7.8)
     - GoogleUtilities/Environment (~> 7.8)
     - GTMSessionFetcher/Core (< 4.0, >= 2.1)
-  - FirebaseCore (10.8.0):
+  - FirebaseCore (10.10.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
-  - FirebaseCoreInternal (10.8.0):
+  - FirebaseCoreInternal (10.10.0):
     - "GoogleUtilities/NSData+zlib (~> 7.8)"
   - GoogleAPIClientForREST/Core (3.0.0):
     - GTMSessionFetcher/Full (< 4.0, >= 1.6.1)
@@ -53,10 +53,10 @@ PODS:
   - GTMSessionFetcher/Core (3.1.1)
   - GTMSessionFetcher/Full (3.1.1):
     - GTMSessionFetcher/Core
-  - Kingfisher (7.6.2)
+  - Kingfisher (7.7.0)
   - PromisesObjC (2.2.0)
   - SwiftLint (0.46.5)
-  - SWXMLHash (7.0.0)
+  - SWXMLHash (7.0.2)
   - youtube-ios-player-helper (1.0.4)
 
 DEPENDENCIES:
@@ -88,23 +88,23 @@ SPEC REPOS:
     - youtube-ios-player-helper
 
 SPEC CHECKSUMS:
-  AppAuth: e48b432bb4ba88b10cb2bcc50d7f3af21e78b9c2
-  Firebase: b49ef44e5ec9a3d0c1f6450f410337e97872279c
-  FirebaseAppCheckInterop: 8e907eea79958960a8bd2058e067f31e03a7914b
-  FirebaseAuth: 28e6fff787467cd15ab51c8c7aa904003b2f57aa
-  FirebaseCore: e78636a990b54be427ce300aa09a0e359f4e0e87
-  FirebaseCoreInternal: fa2899eb1f340054858d289e5a0fb935a0a74e52
+  AppAuth: 3bb1d1cd9340bd09f5ed189fb00b1cc28e1e8570
+  Firebase: facd334e557a979bd03a0b58d90fd56b52b8aba0
+  FirebaseAppCheckInterop: 7d3521f56872cf74a01792c0a095a30e054ff6ae
+  FirebaseAuth: 5ddbe23ebc4e647469261f5c59cd12a04f37c8e6
+  FirebaseCore: d027ff503d37edb78db98429b11f580a24a7df2a
+  FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleAPIClientForREST: 77c1fea751a6b572af8d8a224a5990f92ff80010
   GoogleSignIn: b232380cf495a429b8095d3178a8d5855b42e842
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
-  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
+  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
-  SWXMLHash: cf8682ebf12f124e77554d6a5f9170830626d99e
+  SWXMLHash: dd733a457e9c4fe93b1538654057aefae4acb382
   youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: fcaa5efd629145d9db7b37816e0ad2d83dd50f6c
+PODFILE CHECKSUM: 34742c5adf8b53a4d61070af9d1b1ac67eed335c
 
 COCOAPODS: 1.12.0

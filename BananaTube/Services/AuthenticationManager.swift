@@ -10,12 +10,18 @@ import Firebase
 import GoogleSignIn
 import GoogleAPIClientForREST
 
+protocol AuthenticationManagerProtocol {
+    func signIn(withPresenting presentingViewController: UIViewController, completion: @escaping (Error?) -> Void)
+    func signOut()
+    func configureAuthorization(completion: @escaping (_ user: GIDGoogleUser?) -> Void)
+}
+
 enum State {
     case authorized
     case unauthorized
 }
 
-class AuthenticationManager {
+class AuthenticationManager: AuthenticationManagerProtocol {
     static let shared = AuthenticationManager()
 
     private(set) var state: State = .unauthorized

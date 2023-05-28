@@ -22,6 +22,7 @@ class SearchViewController: UIViewController {
         let search = UISearchBar()
         search.placeholder = "Search BananaTube"
         search.backgroundImage = UIImage()
+        search.backgroundColor = UIColor(named: "Background")
         search.tintColor = UIColor(named: "MainText")
         search.translatesAutoresizingMaskIntoConstraints = false
         return search

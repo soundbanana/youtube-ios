@@ -41,6 +41,7 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
         view.backgroundColor = UIColor(named: "Background")
         setupViews()
         presenter.configureData()
+        createCustomNavigationBar()
     }
 
     func show(title: String, subtitle: String, videoId: String) {
@@ -58,10 +59,10 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
 
     func setConstraints() {
         NSLayoutConstraint.activate([
-            playerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            playerView.topAnchor.constraint(equalTo: view.topAnchor),
             playerView.heightAnchor.constraint(equalToConstant: 215),
-            playerView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            playerView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            playerView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            playerView.rightAnchor.constraint(equalTo: view.rightAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: playerView.bottomAnchor, constant: 15),
             titleLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 5),

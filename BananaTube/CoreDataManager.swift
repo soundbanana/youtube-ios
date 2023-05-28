@@ -8,39 +8,41 @@
 import UIKit
 import CoreData
 
-@MainActor
-public final class CoreDataManager: NSObject {
+final class CoreDataManager {
     public static let shared = CoreDataManager()
-    private override init() { }
 
-    private var appDelegate: AppDelegate {
-        guard let delegate = UIApplication.shared.delegate as? AppDelegate else {
-            fatalError("Unable to access AppDelegate instance.")
+    private lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "CoreData")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Failed to load persistent stores: \(error)")
+            }
         }
-        return delegate
+        return container
+    }()
+
+    private var viewContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
     }
 
-    private var context: NSManagedObjectContext {
-        appDelegate.persistentContainer.viewContext
-    }
+    private init() { }
 
     // MARK: - Video CRUD
 
-    public func createVideo(_ id: String, userEmail: String) {
-        guard let videoEntityDescription = NSEntityDescription.entity(forEntityName: "Video", in: context) else {
-            return
-        }
-        let video = Video(entity: videoEntityDescription, insertInto: context)
-        video.id = id
-        video.userEmail = userEmail
+    public func createVideo(id: String, userEmail: String) {
+        viewContext.performAndWait {
+            let video = Video(context: viewContext)
+            video.id = id
+            video.userEmail = userEmail
 
-        appDelegate.saveContext()
+            saveContext()
+        }
     }
 
-    public func fetchVideos(for userEmail: String) -> [Video] {
+    public func fetchVideos(userEmail: String) -> [Video] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         do {
-            if let videos = try context.fetch(fetchRequest) as? [Video] {
+            if let videos = try viewContext.fetch(fetchRequest) as? [Video] {
                 return videos.filter { $0.userEmail == userEmail }
             }
         } catch {
@@ -49,11 +51,11 @@ public final class CoreDataManager: NSObject {
         return []
     }
 
-    public func fetchVideo(with id: String) -> Video? {
+    public func fetchVideo(id: String) -> Video? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         do {
-            if let videos = try context.fetch(fetchRequest) as? [Video] {
+            if let videos = try viewContext.fetch(fetchRequest) as? [Video] {
                 return videos.first
             }
         } catch {
@@ -65,26 +67,51 @@ public final class CoreDataManager: NSObject {
     public func deleteAllVideos() {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         do {
-            if let videos = try context.fetch(fetchRequest) as? [Video] {
-                videos.forEach { context.delete($0) }
-                appDelegate.saveContext()
+            if let videos = try viewContext.fetch(fetchRequest) as? [Video] {
+                videos.forEach { viewContext.delete($0) }
+                saveContext()
             }
         } catch {
             print("Error deleting all videos: \(error.localizedDescription)")
         }
     }
 
-    public func deleteVideo(with id: String, userEmail: String) {
+    public func deleteAllVideosOfUser(userEmail: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
+        fetchRequest.predicate = NSPredicate(format: "userEmail == %@", userEmail)
+        do {
+            if let videos = try viewContext.fetch(fetchRequest) as? [Video] {
+                videos.forEach { viewContext.delete($0) }
+                saveContext()
+            }
+        } catch {
+            print("Error deleting all videos of user \(userEmail): \(error.localizedDescription)")
+        }
+    }
+
+    public func deleteVideo(id: String, userEmail: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         fetchRequest.predicate = NSPredicate(format: "id == %@ AND userEmail == %@", id, userEmail)
         do {
-            if let videos = try context.fetch(fetchRequest) as? [Video],
+            if let videos = try viewContext.fetch(fetchRequest) as? [Video],
                 let video = videos.first {
-                context.delete(video)
-                appDelegate.saveContext()
+                viewContext.delete(video)
+                saveContext()
             }
         } catch {
             print("Error deleting video: \(error.localizedDescription)")
+        }
+    }
+
+    // MARK: - Core Data Helpers
+
+    private func saveContext() {
+        if viewContext.hasChanges {
+            do {
+                try viewContext.save()
+            } catch {
+                print("Error saving context: \(error.localizedDescription)")
+            }
         }
     }
 }

@@ -12,6 +12,16 @@ target 'BananaTube' do
     pod 'SWXMLHash'
 end
 
+target 'BananaTubeTests' do
+    pod 'SwiftLint', '~> 0.46.2'   
+    pod 'Kingfisher', '~> 7.0'
+    pod 'youtube-ios-player-helper'
+    pod 'GoogleSignIn'
+    pod 'GoogleAPIClientForREST/YouTube'
+    pod 'Firebase/Auth'
+    pod 'SWXMLHash'
+end
+
 post_install do |installer|
     installer.generated_projects.each do |project|
         project.targets.each do |target|

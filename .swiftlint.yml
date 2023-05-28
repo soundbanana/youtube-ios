@@ -1,7 +1,7 @@
 excluded:
   - Pods
   - DerivedData
-  - Tests
+  - BananaTubeTests
   - /**/Generated
 
 disabled_rules:
