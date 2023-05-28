@@ -29,7 +29,7 @@ final class CoreDataManager {
 
     // MARK: - Video CRUD
 
-    public func createVideo(with id: String, userEmail: String) {
+    public func createVideo(id: String, userEmail: String) {
         viewContext.performAndWait {
             let video = Video(context: viewContext)
             video.id = id
@@ -39,7 +39,7 @@ final class CoreDataManager {
         }
     }
 
-    public func fetchVideos(for userEmail: String) -> [Video] {
+    public func fetchVideos(userEmail: String) -> [Video] {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         do {
             if let videos = try viewContext.fetch(fetchRequest) as? [Video] {
@@ -51,7 +51,7 @@ final class CoreDataManager {
         return []
     }
 
-    public func fetchVideo(with id: String) -> Video? {
+    public func fetchVideo(id: String) -> Video? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         fetchRequest.predicate = NSPredicate(format: "id == %@", id)
         do {
@@ -76,7 +76,20 @@ final class CoreDataManager {
         }
     }
 
-    public func deleteVideo(with id: String, userEmail: String) {
+    public func deleteAllVideosOfUser(userEmail: String) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
+        fetchRequest.predicate = NSPredicate(format: "userEmail == %@", userEmail)
+        do {
+            if let videos = try viewContext.fetch(fetchRequest) as? [Video] {
+                videos.forEach { viewContext.delete($0) }
+                saveContext()
+            }
+        } catch {
+            print("Error deleting all videos of user \(userEmail): \(error.localizedDescription)")
+        }
+    }
+
+    public func deleteVideo(id: String, userEmail: String) {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Video")
         fetchRequest.predicate = NSPredicate(format: "id == %@ AND userEmail == %@", id, userEmail)
         do {

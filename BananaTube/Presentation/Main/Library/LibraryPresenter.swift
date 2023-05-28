@@ -71,7 +71,7 @@ class LibraryPresenter {
     func fetchVideos() async -> [Video] {
         return await withUnsafeContinuation { continuation in
             DispatchQueue.main.async {
-                let videos = CoreDataManager.shared.fetchVideos(for: Constants.USER_EMAIL)
+                let videos = CoreDataManager.shared.fetchVideos(userEmail: Constants.USER_EMAIL)
                 continuation.resume(returning: videos)
             }
         }

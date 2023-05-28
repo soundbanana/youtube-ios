@@ -12,6 +12,7 @@ import CoreData
 
 class CoreDataManagerTests: XCTestCase {
     var coreDataManager: CoreDataManager!
+    let userEmail = "test@example.com"
 
     override func setUp() {
         super.setUp()
@@ -22,8 +23,7 @@ class CoreDataManagerTests: XCTestCase {
     override func tearDown() {
         super.tearDown()
 
-        // Clean up any created videos after each test
-        coreDataManager.deleteAllVideos()
+        coreDataManager.deleteAllVideosOfUser(userEmail: userEmail)
     }
 
     // MARK: - Video CRUD Tests
@@ -31,29 +31,25 @@ class CoreDataManagerTests: XCTestCase {
     func testCreateVideo() {
         // Given
         let id = "123"
-        let userEmail = "test@example.com"
 
         // When
-        coreDataManager.createVideo(with: id, userEmail: userEmail)
+        coreDataManager.createVideo(id: id, userEmail: userEmail)
 
         // Then
-        let videos = coreDataManager.fetchVideos(for: userEmail)
+        let videos = coreDataManager.fetchVideos(userEmail: userEmail)
         XCTAssertEqual(videos.count, 1)
         XCTAssertEqual(videos[0].id, id)
         XCTAssertEqual(videos[0].userEmail, userEmail)
     }
 
     func testFetchVideos_Success() {
-        // Given
-        let userEmail = "test@example.com"
-
         // Create test videos
-        coreDataManager.createVideo(with: "1", userEmail: userEmail)
-        coreDataManager.createVideo(with: "2", userEmail: "other@example.com")
-        coreDataManager.createVideo(with: "3", userEmail: userEmail)
+        coreDataManager.createVideo(id: "1", userEmail: userEmail)
+        coreDataManager.createVideo(id: "2", userEmail: "other@example.com")
+        coreDataManager.createVideo(id: "3", userEmail: userEmail)
 
         // When
-        let videos = coreDataManager.fetchVideos(for: userEmail)
+        let videos = coreDataManager.fetchVideos(userEmail: userEmail)
 
         // Then
         XCTAssertEqual(videos.count, 2)
@@ -66,20 +62,19 @@ class CoreDataManagerTests: XCTestCase {
         let userEmail = "nosuchuser@example.com"
 
         // When
-        let videos = coreDataManager.fetchVideos(for: userEmail)
+        let videos = coreDataManager.fetchVideos(userEmail: userEmail)
         XCTAssertEqual(videos, [])
     }
 
     func testFetchVideoWithID_Success() {
         // Given
         let id = "123"
-        let userEmail = "test@example.com"
 
         // Create a test video
-        coreDataManager.createVideo(with: id, userEmail: userEmail)
+        coreDataManager.createVideo(id: id, userEmail: userEmail)
 
         // When
-        let video = coreDataManager.fetchVideo(with: id)
+        let video = coreDataManager.fetchVideo(id: id)
 
         // Then
         XCTAssertNotNil(video)
@@ -92,42 +87,38 @@ class CoreDataManagerTests: XCTestCase {
         let id = "notExistId"
 
         // When
-        let video = coreDataManager.fetchVideo(with: id)
+        let video = coreDataManager.fetchVideo(id: id)
 
         // Then
         XCTAssertNil(video)
     }
 
     func testDeleteAllVideos() {
-        // Given
-        let userEmail = "test@example.com"
-
         // Create test videos
-        coreDataManager.createVideo(with: "1", userEmail: userEmail)
-        coreDataManager.createVideo(with: "2", userEmail: "other@example.com")
-        coreDataManager.createVideo(with: "3", userEmail: userEmail)
+        coreDataManager.createVideo(id: "1", userEmail: userEmail)
+        coreDataManager.createVideo(id: "2", userEmail: "other@example.com")
+        coreDataManager.createVideo(id: "3", userEmail: userEmail)
 
         // When
         coreDataManager.deleteAllVideos()
 
         // Then
-        let videos = coreDataManager.fetchVideos(for: userEmail)
+        let videos = coreDataManager.fetchVideos(userEmail: userEmail)
         XCTAssertEqual(videos.count, 0)
     }
 
     func testDeleteVideoWithID() {
         // Given
         let id = "123"
-        let userEmail = "test@example.com"
 
         // Create a test video
-        coreDataManager.createVideo(with: id, userEmail: userEmail)
+        coreDataManager.createVideo(id: id, userEmail: userEmail)
 
         // When
-        coreDataManager.deleteVideo(with: id, userEmail: userEmail)
+        coreDataManager.deleteVideo(id: id, userEmail: userEmail)
 
         // Then
-        let video = coreDataManager.fetchVideo(with: id)
+        let video = coreDataManager.fetchVideo(id: id)
         XCTAssertNil(video)
     }
 }
