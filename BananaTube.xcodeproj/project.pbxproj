@@ -94,6 +94,7 @@
 		FF7D87222A2252C5006748E0 /* AuthenticationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerTests.swift; sourceTree = "<group>"; };
 		FF7D87252A22563F006748E0 /* MockAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockAuthenticationManager.swift; sourceTree = "<group>"; };
 		FF7D87282A233A1B006748E0 /* CoreDataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManagerTests.swift; sourceTree = "<group>"; };
+		FF7D872A2A23563B006748E0 /* Unit Tests.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = "Unit Tests.xctestplan"; sourceTree = SOURCE_ROOT; };
 		FF804D402A1D7662001CA28A /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsTableViewCell.swift; sourceTree = "<group>"; };
@@ -230,6 +231,15 @@
 			path = CoreDataTests;
 			sourceTree = "<group>";
 		};
+		FF7D872B2A235654006748E0 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */,
+				FFE8ABE82A10E266005D7D4D /* CoreData.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		FFC276F429E9A9110056075D /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,13 +322,13 @@
 		FFEEC0D229D4279700CBF948 = {
 			isa = PBXGroup;
 			children = (
-				FFE8ABEE2A10E595005D7D4D /* Video+CoreDataProperties.swift */,
-				FFE8ABE82A10E266005D7D4D /* CoreData.xcdatamodeld */,
+				FF7D872A2A23563B006748E0 /* Unit Tests.xctestplan */,
+				FF7D872B2A235654006748E0 /* CoreData */,
 				FFEEC0DD29D4279700CBF948 /* BananaTube */,
 				FF47C2E82A21109E006F3988 /* BananaTubeTests */,
-				FFEEC0DC29D4279700CBF948 /* Products */,
-				02DDDB3562339E56BAE22EFC /* Pods */,
 				E127A1A62BC470D4620EDB62 /* Frameworks */,
+				02DDDB3562339E56BAE22EFC /* Pods */,
+				FFEEC0DC29D4279700CBF948 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -787,7 +797,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -841,7 +851,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
