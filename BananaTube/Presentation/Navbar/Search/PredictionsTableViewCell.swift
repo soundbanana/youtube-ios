@@ -31,6 +31,7 @@ class PredictionsTableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = UIColor(named: "Background")
         contentView.addSubview(searchIcon)
         contentView.addSubview(titleLabel)
     }

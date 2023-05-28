@@ -10,7 +10,16 @@ import UIKit
 class VideosViewController: UIViewController {
     var presenter: VideosPresenter!
 
-    private var collectionView: UICollectionView! = nil
+    lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.backgroundColor = UIColor(named: "Background")
+        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.reloadData()
+        return collectionView
+    }()
 
     private let backButton: UIButton = {
         var button = UIButton(type: .system)
@@ -23,6 +32,7 @@ class VideosViewController: UIViewController {
         let search = UISearchBar()
         search.placeholder = "Search BananaTube"
         search.sizeToFit()
+        search.backgroundColor = UIColor(named: "Background")
         search.backgroundImage = UIImage()
         search.translatesAutoresizingMaskIntoConstraints = false
         return search
@@ -31,7 +41,6 @@ class VideosViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.viewDidLoad()
-        configureCollectionView()
         setupViews()
         Task {
             await presenter.obtainData()
@@ -39,9 +48,8 @@ class VideosViewController: UIViewController {
     }
 
     private func setupViews() {
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = UIColor(named: "Background")
         view.addSubview(collectionView)
-        self.edgesForExtendedLayout = []
 
         backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
         let backButtonItem = UIBarButtonItem(customView: backButton)
@@ -57,15 +65,6 @@ class VideosViewController: UIViewController {
 
     @objc private func handleBackButtonTapped() {
         self.navigationController?.popViewController(animated: true)
-    }
-
-    private func configureCollectionView() {
-        collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
-        collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        collectionView.backgroundColor = .systemBackground
-        collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
-        collectionView.dataSource = self
-        collectionView.delegate = self
     }
 
     func update(searchBarText: String) {
