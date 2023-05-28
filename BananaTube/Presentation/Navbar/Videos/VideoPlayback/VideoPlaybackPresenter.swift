@@ -37,7 +37,7 @@ class VideoPlaybackPresenter {
         if !Constants.USER_EMAIL.isEmpty {
             DispatchQueue.main.async {
                 CoreDataManager.shared.deleteVideo(with: videoId, userEmail: Constants.USER_EMAIL)
-                CoreDataManager.shared.createVideo(videoId, userEmail: Constants.USER_EMAIL)
+                CoreDataManager.shared.createVideo(with: videoId, userEmail: Constants.USER_EMAIL)
             }
         }
     }
