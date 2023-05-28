@@ -43,7 +43,7 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(videos[0].userEmail, userEmail)
     }
 
-    func testFetchVideos() {
+    func testFetchVideos_Success() {
         // Given
         let userEmail = "test@example.com"
 
@@ -61,7 +61,16 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertEqual(videos[1].id, "3")
     }
 
-    func testFetchVideoWithID() {
+    func testFetchVideos_EmptyArray() {
+        // Given
+        let userEmail = "nosuchuser@example.com"
+
+        // When
+        let videos = coreDataManager.fetchVideos(for: userEmail)
+        XCTAssertEqual(videos, [])
+    }
+
+    func testFetchVideoWithID_Success() {
         // Given
         let id = "123"
         let userEmail = "test@example.com"
@@ -76,6 +85,17 @@ class CoreDataManagerTests: XCTestCase {
         XCTAssertNotNil(video)
         XCTAssertEqual(video?.id, id)
         XCTAssertEqual(video?.userEmail, userEmail)
+    }
+
+    func testFetchVideoWithID_Nil() {
+        // Given
+        let id = "notExistId"
+
+        // When
+        let video = coreDataManager.fetchVideo(with: id)
+
+        // Then
+        XCTAssertNil(video)
     }
 
     func testDeleteAllVideos() {

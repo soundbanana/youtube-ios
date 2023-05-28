@@ -182,8 +182,8 @@
 			isa = PBXGroup;
 			children = (
 				FF7D87272A233A0D006748E0 /* CoreDataTests */,
-				FFDE7E5B2A212CC8003CC621 /* ServicesTests */,
 				FF47C2F02A2110EB006F3988 /* ModelsTests */,
+				FFDE7E5B2A212CC8003CC621 /* ServicesTests */,
 			);
 			path = BananaTubeTests;
 			sourceTree = "<group>";
@@ -311,10 +311,10 @@
 			isa = PBXGroup;
 			children = (
 				FF7D87242A22562A006748E0 /* MockServices */,
-				FFDE7E5C2A212CD0003CC621 /* NetworkSubscriptionsServiceTests.swift */,
-				FFDE7E5E2A21440F003CC621 /* NetworkSearchServiceTests.swift */,
-				FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */,
 				FF7D87222A2252C5006748E0 /* AuthenticationManagerTests.swift */,
+				FFDE7E5E2A21440F003CC621 /* NetworkSearchServiceTests.swift */,
+				FFDE7E5C2A212CD0003CC621 /* NetworkSubscriptionsServiceTests.swift */,
+				FF7D87202A224EEA006748E0 /* NetworkVideosServiceTests.swift */,
 			);
 			path = ServicesTests;
 			sourceTree = "<group>";
