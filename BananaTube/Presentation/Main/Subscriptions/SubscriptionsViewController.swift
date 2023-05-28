@@ -7,8 +7,15 @@
 
 import UIKit
 
-class SubscriptionsViewController: UIViewController {
-    var presenter: SubscriptionsPresenter!
+protocol SubscriptionsView: AnyObject {
+    func showLoadingIndicator(_ show: Bool)
+    func showAuthorizedState()
+    func showUnauthorizedState()
+    func reloadData()
+}
+
+class SubscriptionsViewController: UIViewController, SubscriptionsView {
+    var presenter: SubscriptionsPresenterProtocol!
 
     private var activityIndicator: UIActivityIndicatorView!
 

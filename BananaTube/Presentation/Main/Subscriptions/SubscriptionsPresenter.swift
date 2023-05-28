@@ -14,11 +14,21 @@ enum ScreenState {
     case unauthorized
 }
 
-class SubscriptionsPresenter {
-    weak var view: SubscriptionsViewController?
+protocol SubscriptionsPresenterProtocol {
+    func handleUserStateChange(state: State)
+    func obtainData() async
+    func getCollectionViewSize() -> Int
+    func configureCell(cell: VideoCollectionViewCell, row: Int)
+    func showDetails(row: Int)
+    func showSearch()
+    func showProfile()
+}
+
+class SubscriptionsPresenter: SubscriptionsPresenterProtocol {
+    weak var view: SubscriptionsView?
     let coordinator: SubscriptionsCoordinator
 
-    private var videosList: [Item] = []
+    private(set) var videosList: [Item] = []
     var screenState: ScreenState = .unauthorized
 
     private let networkSubscriptionsService = NetworkSubscriptionsService.shared
@@ -28,8 +38,8 @@ class SubscriptionsPresenter {
     init(coordinator: SubscriptionsCoordinator) {
         self.coordinator = coordinator
         UserStore.shared.userStatePublisher
-            .sink { state in
-            self.handleUserStateChange(state: state)
+            .sink { [weak self] state in
+            self?.handleUserStateChange(state: state)
             }
             .store(in: &cancellables)
     }
@@ -39,25 +49,25 @@ class SubscriptionsPresenter {
         case .authorized:
             screenState = .authorized
 
-            DispatchQueue.main.async {
-                self.view?.showLoadingIndicator(true)
-                self.view?.showAuthorizedState()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.showLoadingIndicator(true)
+                self?.view?.showAuthorizedState()
             }
 
             Task {
                 await obtainData()
 
-                DispatchQueue.main.async {
-                    self.view?.showLoadingIndicator(false)
-                    self.view?.reloadData()
+                DispatchQueue.main.async { [weak self] in
+                    self?.view?.showLoadingIndicator(false)
+                    self?.view?.reloadData()
                 }
             }
         case .unauthorized:
             screenState = .unauthorized
             videosList = []
-            DispatchQueue.main.async {
-                self.view?.showUnauthorizedState()
-                self.view?.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.view?.showUnauthorizedState()
+                self?.view?.reloadData()
             }
         }
     }
@@ -114,7 +124,7 @@ class SubscriptionsPresenter {
     }
 
     func showDetails(row: Int) {
-        if videosList.capacity > row {
+        if videosList.indices.contains(row) {
             let item = videosList[row]
             coordinator.showDetails(video: item)
         }
