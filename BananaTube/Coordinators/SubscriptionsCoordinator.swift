@@ -26,9 +26,11 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
         let presenter = SubscriptionsPresenter(coordinator: self)
         viewController.presenter = presenter
         presenter.view = viewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.navigationController = navigationController
 
         parentTabBarController?.addViewController(
-            viewController: viewController,
+            viewController: navigationController,
             title: "subscriptions_tab_bar_item".localized,
             image: UIImage(systemName: "books.vertical")
         )
@@ -51,14 +53,14 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showProfile() {
-//        let presenter = ProfilePresenter()
-//        let viewController = ProfileViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        viewController.modalPresentationStyle = .fullScreen
-//        navigationController?.present(viewController, animated: true)
+        let presenter = ProfilePresenter()
+        let viewController = ProfileViewController()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewController, animated: true)
     }
 
     func showVideosList(searchText: String) {

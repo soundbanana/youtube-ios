@@ -26,9 +26,11 @@ class LibraryCoordinator: CoordinatorProtocol, NavbarCoordinator {
         let presenter = LibraryPresenter(coordinator: self)
         viewController.presenter = presenter
         presenter.view = viewController
+        let navigationController = UINavigationController(rootViewController: viewController)
+        self.navigationController = navigationController
 
         parentTabBarController?.addViewController(
-            viewController: viewController,
+            viewController: navigationController,
             title: "library_tab_bar_item".localized,
             image: UIImage(systemName: "folder")
         )

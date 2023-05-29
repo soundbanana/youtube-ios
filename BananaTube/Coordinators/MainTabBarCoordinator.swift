@@ -16,6 +16,10 @@ class MainTabBarCoordinator: CoordinatorProtocol {
         var tabBar = UITabBarController()
         tabBar.tabBar.tintColor = UIColor(named: "MainText")
         tabBar.tabBar.barTintColor = UIColor(named: "Background")
+        tabBar.tabBar.isTranslucent = false
+        tabBar.tabBar.backgroundImage = UIImage()
+        tabBar.tabBar.shadowImage = UIImage()
+
         return tabBar
     }()
 
