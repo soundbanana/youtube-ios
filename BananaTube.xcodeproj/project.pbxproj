@@ -34,6 +34,7 @@
 		FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */; };
 		FFB125DF2A09A309002907FD /* VideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DE2A09A309002907FD /* VideosCoordinator.swift */; };
 		FFB87A892A10DF2D00BD0CAE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB87A882A10DF2D00BD0CAE /* CoreDataManager.swift */; };
+		FFBA0FDB2A2511C900B97874 /* VideoPlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */; };
 		FFC276EF29E9A59E0056075D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276EE29E9A59E0056075D /* Constants.swift */; };
 		FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */; };
 		FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F529E9ADC40056075D /* Subscriptions.swift */; };
@@ -116,6 +117,7 @@
 		FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsTableViewCell.swift; sourceTree = "<group>"; };
 		FFB125DE2A09A309002907FD /* VideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCoordinator.swift; sourceTree = "<group>"; };
 		FFB87A882A10DF2D00BD0CAE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackCoordinator.swift; sourceTree = "<group>"; };
 		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FFC276F029E9A6220056075D /* NetworkSubscriptionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsService.swift; sourceTree = "<group>"; };
 		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */,
 				FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */,
 				FFB125DE2A09A309002907FD /* VideosCoordinator.swift */,
+				FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -711,6 +714,7 @@
 				FFB87A892A10DF2D00BD0CAE /* CoreDataManager.swift in Sources */,
 				FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */,
 				FFB125DF2A09A309002907FD /* VideosCoordinator.swift in Sources */,
+				FFBA0FDB2A2511C900B97874 /* VideoPlaybackCoordinator.swift in Sources */,
 				FF169C9F2A24EF8E00D191FB /* CoordinatorProtocol.swift in Sources */,
 				FFE8ABEF2A10E595005D7D4D /* Video+CoreDataProperties.swift in Sources */,
 				FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */,

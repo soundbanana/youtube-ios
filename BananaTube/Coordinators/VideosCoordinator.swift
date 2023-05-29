@@ -12,12 +12,12 @@ class VideosCoordinator {
     private var navigationController: UINavigationController?
 
     func showDetails(video: Item) {
-        let presenter = VideoPlaybackPresenter(video: video)
-        let viewController = VideoPlaybackViewController()
-
-        viewController.presenter = presenter
-        presenter.view = viewController
-
-        navigationController?.pushViewController(viewController, animated: true)
+//        let presenter = VideoPlaybackPresenter(video: video)
+//        let viewController = VideoPlaybackViewController()
+//
+//        viewController.presenter = presenter
+//        presenter.view = viewController
+//
+//        navigationController?.pushViewController(viewController, animated: true)
     }
 }

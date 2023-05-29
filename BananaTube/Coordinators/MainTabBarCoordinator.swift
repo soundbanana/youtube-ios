@@ -59,17 +59,6 @@ class MainTabBarCoordinator: CoordinatorProtocol {
         finishHandlers.append(finishHandler)
         childCoordinators.finishAll(animated: animated, completion: nil)
     }
-
-//
-//    private func library() -> UIViewController {
-//        let viewController = LibraryViewController()
-//        viewController.tabBarItem = .init(
-//            title: "library_tab_bar_item".localized,
-//            image: UIImage(systemName: "folder"),
-//            selectedImage: .init(systemName: "folder.fill")
-//        )
-//        return LibraryCoordinator.shared.start(viewController)
-//    }
 }
 
 extension UITabBarController {

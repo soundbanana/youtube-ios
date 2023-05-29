@@ -76,12 +76,14 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showDetails(video: Item) {
-//        let presenter = VideoPlaybackPresenter(video: video)
-//        let viewController = VideoPlaybackViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        navigationController?.pushViewController(viewController, animated: true)
+        let coordinator = VideoPlaybackCoordinator(
+            navigationController: navigationController,
+            resolver: resolver,
+            video: video
+        ) { [weak self] in
+            self?.childCoordinators.removeCoordinator(ofType: LibraryCoordinator.self)
+        }
+        coordinator.start(animated: true)
+        childCoordinators.append(coordinator)
     }
 }

@@ -8,11 +8,13 @@
 import UIKit
 
 class VideoPlaybackPresenter {
-    weak var view: VideoPlaybackViewController?
-    var video: Item
-    var navigationController: UINavigationController?
+    private weak var view: VideoPlaybackViewController?
+    private let coordinator: VideoPlaybackCoordinator
+    private var video: Item
 
-    init(video: Item) {
+    init(view: VideoPlaybackViewController, coordinator: VideoPlaybackCoordinator, video: Item) {
+        self.view = view
+        self.coordinator = coordinator
         self.video = video
     }
 

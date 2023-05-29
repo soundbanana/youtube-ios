@@ -53,14 +53,14 @@ class LibraryCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showProfile() {
-//        let presenter = ProfilePresenter()
-//        let viewController = ProfileViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        viewController.modalPresentationStyle = .fullScreen
-//        navigationController?.present(viewController, animated: true)
+        let presenter = ProfilePresenter()
+        let viewController = ProfileViewController()
+
+        viewController.presenter = presenter
+        presenter.view = viewController
+
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewController, animated: true)
     }
 
     func showVideosList(searchText: String) {
@@ -76,12 +76,14 @@ class LibraryCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showDetails(video: Item) {
-//        let presenter = VideoPlaybackPresenter(video: video)
-//        let viewController = VideoPlaybackViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        navigationController?.pushViewController(viewController, animated: true)
+        let coordinator = VideoPlaybackCoordinator(
+            navigationController: navigationController,
+            resolver: resolver,
+            video: video
+        ) { [weak self] in
+            self?.childCoordinators.removeCoordinator(ofType: LibraryCoordinator.self)
+        }
+        coordinator.start(animated: true)
+        childCoordinators.append(coordinator)
     }
 }
