@@ -6,12 +6,10 @@
 //
 
 import UIKit
+import Swinject
 
 class SubscriptionsCoordinator: NavbarCoordinator {
-    static let shared: SubscriptionsCoordinator = .init()
-    private var navigationController: UINavigationController?
-
-    func start(_ viewController: SubscriptionsViewController) -> UIViewController {
+    func start(_ viewController: SubscriptionsViewController) {
         let presenter = SubscriptionsPresenter(coordinator: SubscriptionsCoordinator.shared)
         viewController.presenter = presenter
         presenter.view = viewController
@@ -27,7 +25,7 @@ class SubscriptionsCoordinator: NavbarCoordinator {
         viewController.presenter = presenter
         presenter.view = viewController
 
-        navigationController?.pushViewController(viewController, animated: false)
+        navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showProfile() {

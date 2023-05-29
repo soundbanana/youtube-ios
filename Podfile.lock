@@ -56,6 +56,7 @@ PODS:
   - Kingfisher (7.7.0)
   - PromisesObjC (2.2.0)
   - SwiftLint (0.46.5)
+  - Swinject (2.8.3)
   - SWXMLHash (7.0.2)
   - youtube-ios-player-helper (1.0.4)
 
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - GoogleSignIn
   - Kingfisher (~> 7.0)
   - SwiftLint (~> 0.46.2)
+  - Swinject
   - SWXMLHash
   - youtube-ios-player-helper
 
@@ -84,6 +86,7 @@ SPEC REPOS:
     - Kingfisher
     - PromisesObjC
     - SwiftLint
+    - Swinject
     - SWXMLHash
     - youtube-ios-player-helper
 
@@ -102,9 +105,10 @@ SPEC CHECKSUMS:
   Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SwiftLint: 2c16e8fa99dac2e440dc0c70ea74d2532048f6cf
+  Swinject: 893c9a543000ac2f10ee4cbaf0933c6992c935d5
   SWXMLHash: dd733a457e9c4fe93b1538654057aefae4acb382
   youtube-ios-player-helper: e9b97535e816db3152179d84d999bc1807ecd689
 
-PODFILE CHECKSUM: 34742c5adf8b53a4d61070af9d1b1ac67eed335c
+PODFILE CHECKSUM: 13567ef954c45811551b85222e495e6a7bbfe9cd
 
 COCOAPODS: 1.12.0

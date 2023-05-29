@@ -49,8 +49,20 @@ class VideosViewController: UIViewController {
 
     private func setupViews() {
         view.backgroundColor = UIColor(named: "Background")
+        setupNavigationBar()
         view.addSubview(collectionView)
+        self.edgesForExtendedLayout = []
 
+        NSLayoutConstraint.activate([
+            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
+            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+        ])
+    }
+
+    private func setupNavigationBar() {
+        createCustomNavigationBar()
         backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
         let backButtonItem = UIBarButtonItem(customView: backButton)
         navigationItem.leftBarButtonItem = backButtonItem

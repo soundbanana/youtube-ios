@@ -45,31 +45,31 @@ class SubscriptionsPresenter: SubscriptionsPresenterProtocol {
     }
 
     func handleUserStateChange(state: State) {
-        switch state {
-        case .authorized:
-            screenState = .authorized
-
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.showLoadingIndicator(true)
-                self?.view?.showAuthorizedState()
-            }
-
-            Task {
-                await obtainData()
-
-                DispatchQueue.main.async { [weak self] in
-                    self?.view?.showLoadingIndicator(false)
-                    self?.view?.reloadData()
-                }
-            }
-        case .unauthorized:
-            screenState = .unauthorized
-            videosList = []
-            DispatchQueue.main.async { [weak self] in
-                self?.view?.showUnauthorizedState()
-                self?.view?.reloadData()
-            }
-        }
+//        switch state {
+//        case .authorized:
+//            screenState = .authorized
+//
+//            DispatchQueue.main.async { [weak self] in
+//                self?.view?.showLoadingIndicator(true)
+//                self?.view?.showAuthorizedState()
+//            }
+//
+//            Task {
+//                await obtainData()
+//
+//                DispatchQueue.main.async { [weak self] in
+//                    self?.view?.showLoadingIndicator(false)
+//                    self?.view?.reloadData()
+//                }
+//            }
+//        case .unauthorized:
+//            screenState = .unauthorized
+//            videosList = []
+//            DispatchQueue.main.async { [weak self] in
+//                self?.view?.showUnauthorizedState()
+//                self?.view?.reloadData()
+//            }
+//        }
     }
 
     func obtainData() async {
