@@ -79,7 +79,6 @@ class SubscriptionsViewController: UIViewController, SubscriptionsView {
     private func setupAuthorizedView() {
         view.addSubview(collectionView)
         view.addSubview(activityIndicator)
-        self.edgesForExtendedLayout = []
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),

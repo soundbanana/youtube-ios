@@ -11,7 +11,7 @@ import Swinject
 class AppCoordinator: CoordinatorProtocol {
     private var window: UIWindow
     private var resolver: Resolver
-    private var childCoordinators: [CoordinatorProtocol]
+    private var childCoordinators: [CoordinatorProtocol] = []
 
     init(window: UIWindow, resolver: Resolver) {
         self.window = window

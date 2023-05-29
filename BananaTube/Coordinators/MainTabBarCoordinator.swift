@@ -14,11 +14,8 @@ class MainTabBarCoordinator: CoordinatorProtocol {
     private var resolver: Resolver
     private var tabBarController: UITabBarController = {
         var tabBar = UITabBarController()
-        tabBar.tabBar.isTranslucent = false
         tabBar.tabBar.tintColor = UIColor(named: "MainText")
         tabBar.tabBar.barTintColor = UIColor(named: "Background")
-        tabBar.tabBar.backgroundImage = UIImage()
-        tabBar.tabBar.shadowImage = UIImage()
         return tabBar
     }()
 
@@ -34,7 +31,7 @@ class MainTabBarCoordinator: CoordinatorProtocol {
     func start(animated: Bool) {
         window.rootViewController = tabBarController
         let subscriptionsCoordinator = SubscriptionsCoordinator(
-            window: tabBarController,
+            tabBarController: tabBarController,
             resolver: resolver
         ) { [weak self] in
             self?.childCoordinators.removeCoordinator(ofType: SubscriptionsCoordinator.self)
@@ -46,7 +43,6 @@ class MainTabBarCoordinator: CoordinatorProtocol {
 
         subscriptionsCoordinator.start(animated: false)
         childCoordinators.append(subscriptionsCoordinator)
-
     }
 
     func finish(animated: Bool, completion: (() -> Void)?) {
@@ -55,35 +51,28 @@ class MainTabBarCoordinator: CoordinatorProtocol {
         childCoordinators.finishAll(animated: animated, completion: nil)
     }
 
+//
+//    private func library() -> UIViewController {
+//        let viewController = LibraryViewController()
+//        viewController.tabBarItem = .init(
+//            title: "library_tab_bar_item".localized,
+//            image: UIImage(systemName: "folder"),
+//            selectedImage: .init(systemName: "folder.fill")
+//        )
+//        return LibraryCoordinator.shared.start(viewController)
+//    }
+}
 
-
-    private func subscriptions() -> UIViewController {
-        let viewController = SubscriptionsViewController()
+extension UITabBarController {
+    func addViewController(viewController: UIViewController, title: String, image: UIImage?, selectedImage: UIImage?) {
+        viewController.title = title
         viewController.tabBarItem = .init(
-            title: "subscriptions_tab_bar_item".localized,
-            image: UIImage(systemName: "books.vertical"),
-            selectedImage: .init(systemName: "books.vertical.fill")
+            title: title,
+            image: image,
+            selectedImage: selectedImage
         )
-        return SubscriptionsCoordinator.shared.start(viewController)
-    }
-
-    private func library() -> UIViewController {
-        let viewController = LibraryViewController()
-        viewController.tabBarItem = .init(
-            title: "library_tab_bar_item".localized,
-            image: UIImage(systemName: "folder"),
-            selectedImage: .init(systemName: "folder.fill")
-        )
-        return LibraryCoordinator.shared.start(viewController)
-    }
-
-    private func customizeTabBarAppearance() {
-        if let tabBar = tabBarController?.tabBar {
-            tabBar.isTranslucent = false
-            tabBar.tintColor = UIColor(named: "MainText")
-            tabBar.barTintColor = UIColor(named: "Background")
-            tabBar.backgroundImage = UIImage()
-            tabBar.shadowImage = UIImage()
-        }
+        var viewControllers = self.viewControllers ?? []
+        viewControllers.append(viewController)
+        setViewControllers(viewControllers, animated: true)
     }
 }
