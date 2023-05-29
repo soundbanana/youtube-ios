@@ -68,7 +68,6 @@ class LibraryViewController: UIViewController, LibraryView {
 
     private func setupAuthorizedView() {
         view.addSubview(collectionView)
-        self.edgesForExtendedLayout = []
         NSLayoutConstraint.activate([
             collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
             collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),

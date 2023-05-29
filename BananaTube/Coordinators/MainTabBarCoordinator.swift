@@ -37,12 +37,17 @@ class MainTabBarCoordinator: CoordinatorProtocol {
             self?.childCoordinators.removeCoordinator(ofType: SubscriptionsCoordinator.self)
         }
 
-//        let libraryCoordinator = LibraryCoordinator(
-//            window:
-//        )
+        let libraryCoordinator = LibraryCoordinator(
+            tabBarController: tabBarController,
+            resolver: resolver
+        ) { [weak self] in
+            self?.childCoordinators.removeCoordinator(ofType: LibraryCoordinator.self)
+        }
 
         subscriptionsCoordinator.start(animated: false)
+        libraryCoordinator.start(animated: false)
         childCoordinators.append(subscriptionsCoordinator)
+        childCoordinators.append(libraryCoordinator)
     }
 
     func finish(animated: Bool, completion: (() -> Void)?) {
@@ -64,13 +69,9 @@ class MainTabBarCoordinator: CoordinatorProtocol {
 }
 
 extension UITabBarController {
-    func addViewController(viewController: UIViewController, title: String, image: UIImage?, selectedImage: UIImage?) {
+    func addViewController(viewController: UIViewController, title: String, image: UIImage?) {
         viewController.title = title
-        viewController.tabBarItem = .init(
-            title: title,
-            image: image,
-            selectedImage: selectedImage
-        )
+        viewController.tabBarItem.image = image
         var viewControllers = self.viewControllers ?? []
         viewControllers.append(viewController)
         setViewControllers(viewControllers, animated: true)

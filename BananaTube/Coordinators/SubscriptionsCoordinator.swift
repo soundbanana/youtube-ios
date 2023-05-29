@@ -30,8 +30,7 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
         parentTabBarController?.addViewController(
             viewController: viewController,
             title: "subscriptions_tab_bar_item".localized,
-            image: UIImage(systemName: "books.vertical"),
-            selectedImage: UIImage(systemName: "book.vertical.fill")
+            image: UIImage(systemName: "books.vertical")
         )
     }
 
@@ -40,7 +39,6 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
         finishHandlers.append(finishHandler)
         childCoordinators.finishAll(animated: animated, completion: nil)
     }
-
 
     func showSearch(searchBarText: String) {
 //        let presenter = SearchPresenter(coordinator: SubscriptionsCoordinator.shared, searchBarText: searchBarText)
