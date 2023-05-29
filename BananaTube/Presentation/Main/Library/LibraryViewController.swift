@@ -13,8 +13,6 @@ protocol LibraryView: AnyObject {
     func reloadData()
 }
 
-// Логин, выйти из приложения. Снова запустить и выйти. Фантомный collectionView
-
 class LibraryViewController: UIViewController, LibraryView {
     var presenter: LibraryPresenter!
 

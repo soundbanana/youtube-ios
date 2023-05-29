@@ -10,6 +10,8 @@ import SwiftUI
 
 class SearchViewController: UIViewController {
     var presenter: SearchPresenter!
+    var completion: (() -> Void)?
+
 
     private let backButton: UIButton = {
         var button = UIButton(type: .system)
@@ -66,6 +68,7 @@ class SearchViewController: UIViewController {
     }
 
     @objc private func handleBackButtonTapped() {
+        completion?()
         self.navigationController?.popViewController(animated: false)
     }
 

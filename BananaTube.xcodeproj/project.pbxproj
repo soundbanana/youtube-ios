@@ -11,6 +11,7 @@
 		861CE7A1E9C01EC828E2404A /* Pods_BananaTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F07E0315E9913325B8DE4F5 /* Pods_BananaTubeTests.framework */; };
 		FF0838502A0EE13B0048FB21 /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */; };
 		FF0838522A0EE1480048FB21 /* LibraryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */; };
+		FF0968972A251EAE00FDA08B /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0968962A251EAE00FDA08B /* SearchCoordinator.swift */; };
 		FF169C972A24988200D191FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF169C992A24988200D191FB /* Localizable.strings */; };
 		FF169C9C2A24999A00D191FB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF169C9B2A24999A00D191FB /* String+Extension.swift */; };
 		FF169C9F2A24EF8E00D191FB /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF169C9E2A24EF8E00D191FB /* CoordinatorProtocol.swift */; };
@@ -88,6 +89,7 @@
 		9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaTube.debug.xcconfig"; path = "Target Support Files/Pods-BananaTube/Pods-BananaTube.debug.xcconfig"; sourceTree = "<group>"; };
 		FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
 		FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
+		FF0968962A251EAE00FDA08B /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		FF169C942A2496B100D191FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FF169C982A24988200D191FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF169C9A2A24988600D191FB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -199,14 +201,15 @@
 		FF169C9D2A24EE9300D191FB /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				FF169C9E2A24EF8E00D191FB /* CoordinatorProtocol.swift */,
 				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
+				FF169C9E2A24EF8E00D191FB /* CoordinatorProtocol.swift */,
 				FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */,
 				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
 				FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */,
 				FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */,
-				FFB125DE2A09A309002907FD /* VideosCoordinator.swift */,
 				FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */,
+				FFB125DE2A09A309002907FD /* VideosCoordinator.swift */,
+				FF0968962A251EAE00FDA08B /* SearchCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */,
 				FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */,
+				FF0968972A251EAE00FDA08B /* SearchCoordinator.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
