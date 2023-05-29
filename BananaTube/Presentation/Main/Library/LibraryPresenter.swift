@@ -90,7 +90,7 @@ class LibraryPresenter {
             let formatter = RelativeDateTimeFormatter()
             let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
-            let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
+            let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) \("views_label".localized) \(relativeDate)"
 
             guard let url = URL(string: snippet.thumbnails.high.url) else { return }
 

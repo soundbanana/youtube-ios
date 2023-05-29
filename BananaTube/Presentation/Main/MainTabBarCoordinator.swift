@@ -27,7 +27,7 @@ class MainTabBarCoordinator {
     private func subscriptions() -> UIViewController {
         let viewController = SubscriptionsViewController()
         viewController.tabBarItem = .init(
-            title: "Subscriptions",
+            title: "subscriptions_tab_bar_item".localized,
             image: UIImage(systemName: "books.vertical"),
             selectedImage: .init(systemName: "books.vertical.fill")
         )
@@ -37,7 +37,7 @@ class MainTabBarCoordinator {
     private func library() -> UIViewController {
         let viewController = LibraryViewController()
         viewController.tabBarItem = .init(
-            title: "Library",
+            title: "library_tab_bar_item".localized,
             image: UIImage(systemName: "folder"),
             selectedImage: .init(systemName: "folder.fill")
         )

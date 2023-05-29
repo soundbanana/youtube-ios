@@ -46,7 +46,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
 
     let liveLabel: UILabel = {
         let label = UILabel()
-        label.text = "LIVE"
+        label.text = "live_label".localized
         label.textColor = .white
         label.textAlignment = .center
         label.layer.cornerRadius = 4

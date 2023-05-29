@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  BananaTube
+
+  Created by Daniil Chemaev on 29.05.2023.
+  
+*/
+
+"subscriptions_tab_bar_item" = "Subscriptions";
+"library_tab_bar_item" = "Library";
+"history_title" = "History";
+"sign_out_button" = "Sign Out";
+"sign_in_button" = "Sign In";
+"views_label" = "views";
+"live_label" = "LIVE";
+"no_account_provided_label" = "No account provided";
+"search_placeholder" = "Search BananaTube";
