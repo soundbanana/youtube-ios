@@ -28,7 +28,7 @@ class VideoPlaybackPresenter {
         let formatter = RelativeDateTimeFormatter()
         let relativeDate = formatter.localizedString(for: date, relativeTo: Date())
 
-        let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) views \(relativeDate)"
+        let subtitle = "\(snippet.channelTitle!) \(statistics.viewCount) \("views_label".localized) \(relativeDate)"
 
         let videoId = video.id
 

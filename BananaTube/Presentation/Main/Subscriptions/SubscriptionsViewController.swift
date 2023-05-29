@@ -32,7 +32,7 @@ class SubscriptionsViewController: UIViewController, SubscriptionsView {
 
     lazy var noUserLabel: UILabel = {
         let label = UILabel()
-        label.text = "No account provided"
+        label.text = "no_account_provided_label".localized
         label.textColor = UIColor(named: "MainText")
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false

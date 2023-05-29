@@ -20,7 +20,7 @@ class SearchViewController: UIViewController {
 
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = "Search BananaTube"
+        search.placeholder = "search_placeholder".localized
         search.backgroundImage = UIImage()
         search.backgroundColor = UIColor(named: "Background")
         search.tintColor = UIColor(named: "MainText")

@@ -31,7 +31,7 @@ class LibraryViewController: UIViewController, LibraryView {
 
     lazy var noUserLabel: UILabel = {
         let label = UILabel()
-        label.text = "No account provided"
+        label.text = "no_account_provided_label".localized
         label.textColor = UIColor(named: "MainText")
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -96,7 +96,7 @@ class LibraryViewController: UIViewController, LibraryView {
 
     private func setupNavigationBar() {
         createCustomNavigationBar()
-        navigationItem.leftBarButtonItem = createCustomTitle(text: "History", selector: nil)
+        navigationItem.leftBarButtonItem = createCustomTitle(text: "history_title".localized, selector: nil)
 
         let accountButton = createCustomButton(imageName: "person.circle.fill", selector: #selector(showProfile))
         let searchButton = createCustomButton(imageName: "magnifyingglass", selector: #selector(showSearch))

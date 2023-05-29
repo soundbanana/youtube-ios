@@ -1,0 +1,17 @@
+ /* 
+  Localizable.strings
+  BananaTube
+
+  Created by Daniil Chemaev on 29.05.2023.
+  
+*/
+
+"subscriptions_tab_bar_item" = "Подписки";
+"library_tab_bar_item" = "Библиотека";
+"history_title" = "История";
+"sign_out_button" = "Выйти";
+"sign_in_button" = "Войти";
+"views_label" = "просмотров";
+"live_label" = "В ЭФИРЕ";
+"no_account_provided_label" = "Аккаунт не найден";
+"search_placeholder" = "Искать на BananaTube";
