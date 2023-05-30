@@ -22,8 +22,6 @@ enum State {
 }
 
 class AuthenticationManager: AuthenticationManagerProtocol {
-    static let shared = AuthenticationManager()
-
     private(set) var state: State = .unauthorized
 
     func signIn(withPresenting presentingViewController: UIViewController, completion: @escaping (Error?) -> Void) {

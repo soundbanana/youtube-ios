@@ -25,7 +25,11 @@ class VideoPlaybackCoordinator: CoordinatorProtocol {
 
     func start(animated: Bool) {
         let viewController = VideoPlaybackViewController()
-        let presenter = VideoPlaybackPresenter(view: viewController, coordinator: self, video: video)
+        let presenter = VideoPlaybackPresenter(
+            view: viewController,
+            coordinator: self,
+            video: video
+        )
         viewController.presenter = presenter
 
         navigationController?.pushViewController(viewController, animated: animated)

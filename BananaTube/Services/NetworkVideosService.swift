@@ -8,7 +8,6 @@
 import Foundation
 
 class NetworkVideosService {
-    static let shared = NetworkVideosService()
     let session = URLSession.shared
     let decoder = JSONDecoder()
 

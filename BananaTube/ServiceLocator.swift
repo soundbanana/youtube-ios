@@ -22,9 +22,7 @@ final class ServiceLocator: ServiceLocatorProtocol {
                 AuthenticationManagerAssembly(),
                 NetworkSearchAssembly(),
                 NetworkSubscriptionsAssembly(),
-                NetworkVideosAssembly(),
-                UserStoreAssembly(),
-                CoreDataAssembly()
+                NetworkVideosAssembly()
             ],
             container: container
         )

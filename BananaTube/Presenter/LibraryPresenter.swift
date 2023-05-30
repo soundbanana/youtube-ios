@@ -9,18 +9,20 @@ import Foundation
 import Combine
 
 class LibraryPresenter {
-    weak var view: LibraryView?
-    let coordinator: LibraryCoordinator
+    private weak var view: LibraryView?
+    private let coordinator: LibraryCoordinator
 
     private var videosList: [Item] = []
     var screenState: ScreenState = .unauthorized
 
-    private let service = NetworkVideosService.shared
+    private let service: NetworkVideosService
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(coordinator: LibraryCoordinator) {
+    init(view: LibraryView, coordinator: LibraryCoordinator, service: NetworkVideosService) {
+        self.view = view
         self.coordinator = coordinator
+        self.service = service
         UserStore.shared.userStatePublisher
             .sink { state in
             self.handleUserStateChange(state: state)

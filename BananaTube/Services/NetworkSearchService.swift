@@ -8,7 +8,6 @@
 import Foundation
 
 class NetworkSearchService {
-    static let shared = NetworkSearchService()
     let session = URLSession.shared
     let decoder = JSONDecoder()
 

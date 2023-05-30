@@ -9,8 +9,9 @@ import Swinject
 
 final class NetworkSubscriptionsAssembly: Assembly {
     func assemble(container: Container) {
-        container.register(NetworkSubscriptionsService.self) { _ in
-            NetworkSubscriptionsService()
+        container.register(NetworkSubscriptionsService.self) { resolver in
+            let networkVideosService = resolver.resolve(NetworkVideosService.self)!
+            return NetworkSubscriptionsService(networkVideosService: networkVideosService)
         }
     }
 }
