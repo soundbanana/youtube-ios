@@ -43,14 +43,25 @@ class LibraryCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showSearch(searchBarText: String) {
-//        let presenter = SearchPresenter(coordinator: LibraryCoordinator.shared, searchBarText: searchBarText)
-//        let viewController = SearchViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        navigationController?.pushViewController(viewController, animated: false)
-    }
+        let searchViewController = SearchViewController()
+        let searchPresenter = SearchPresenter(view: searchViewController, coordinator: self, searchBarText: searchBarText)
+        searchViewController.presenter = searchPresenter
+
+        searchPresenter.completion = { [weak self] searchText in
+            self?.navigationController?.dismiss(animated: false)
+
+            guard let searchText = searchText else {
+                return
+            }
+            // Push the VideosViewController after the SearchViewController is closed
+            let videosViewController = VideosViewController()
+            let videosPresenter = VideosPresenter(view: videosViewController, coordinator: self!, searchText: searchText)
+            videosViewController.presenter = videosPresenter
+            self?.navigationController?.pushViewController(videosViewController, animated: true)
+        }
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        searchNavigationController.modalPresentationStyle = .fullScreen
+        navigationController?.present(searchNavigationController, animated: false)    }
 
     func showProfile() {
         let presenter = ProfilePresenter()
@@ -61,18 +72,6 @@ class LibraryCoordinator: CoordinatorProtocol, NavbarCoordinator {
 
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.present(viewController, animated: true)
-    }
-
-    func showVideosList(searchText: String) {
-//        navigationController?.popViewController(animated: false)
-//
-//        let presenter = VideosPresenter(coordinator: LibraryCoordinator.shared, searchText: searchText)
-//        let viewController = VideosViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        navigationController?.pushViewController(viewController, animated: true)
     }
 
     func showDetails(video: Item) {

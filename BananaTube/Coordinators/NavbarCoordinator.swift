@@ -10,6 +10,5 @@ import Foundation
 protocol NavbarCoordinator {
     func showSearch(searchBarText: String)
     func showProfile()
-    func showVideosList(searchText: String)
     func showDetails(video: Item)
 }

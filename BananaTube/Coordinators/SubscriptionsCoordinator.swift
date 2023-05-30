@@ -75,18 +75,6 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
         navigationController?.present(viewController, animated: true)
     }
 
-    func showVideosList(searchText: String) {
-//        navigationController?.popViewController(animated: false)
-//
-//        let presenter = VideosPresenter(coordinator: SubscriptionsCoordinator.shared, searchText: searchText)
-//        let viewController = VideosViewController()
-//
-//        viewController.presenter = presenter
-//        presenter.view = viewController
-//
-//        navigationController?.pushViewController(viewController, animated: true)
-    }
-
     func showDetails(video: Item) {
         let coordinator = VideoPlaybackCoordinator(
             navigationController: navigationController,
