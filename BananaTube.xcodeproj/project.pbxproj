@@ -19,6 +19,9 @@
 		FF169CA62A2503E200D191FB /* NetworkSubscriptionsAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF169CA52A2503E200D191FB /* NetworkSubscriptionsAssembly.swift */; };
 		FF169CA82A25051200D191FB /* AuthenticationManagerAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF169CA72A25051200D191FB /* AuthenticationManagerAssembly.swift */; };
 		FF1FBB9A2A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF1FBB992A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift */; };
+		FF33E90D2A2676CC007092F8 /* NetworkVideosAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33E90C2A2676CC007092F8 /* NetworkVideosAssembly.swift */; };
+		FF33E90F2A267730007092F8 /* UserStoreAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33E90E2A267730007092F8 /* UserStoreAssembly.swift */; };
+		FF33E9112A267766007092F8 /* CoreDataAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF33E9102A267766007092F8 /* CoreDataAssembly.swift */; };
 		FF369A9029DF736300339FE5 /* VideoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */; };
 		FF47C2F22A211100006F3988 /* ChannelListResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF47C2F12A211100006F3988 /* ChannelListResponseTests.swift */; };
 		FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */; };
@@ -40,6 +43,7 @@
 		FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */; };
 		FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */; };
 		FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770329EC69000056075D /* Extension + UIViewController.swift */; };
+		FFC51E862A25FEB200FAB617 /* NetworkSearchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC51E852A25FEB200FAB617 /* NetworkSearchAssembly.swift */; };
 		FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B529D6A51B007D361B /* AppCoordinator.swift */; };
 		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
 		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
@@ -97,6 +101,9 @@
 		FF169CA52A2503E200D191FB /* NetworkSubscriptionsAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSubscriptionsAssembly.swift; sourceTree = "<group>"; };
 		FF169CA72A25051200D191FB /* AuthenticationManagerAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManagerAssembly.swift; sourceTree = "<group>"; };
 		FF1FBB992A21240B00EB6FE4 /* PlaylistItemListResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistItemListResponseTests.swift; sourceTree = "<group>"; };
+		FF33E90C2A2676CC007092F8 /* NetworkVideosAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkVideosAssembly.swift; sourceTree = "<group>"; };
+		FF33E90E2A267730007092F8 /* UserStoreAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStoreAssembly.swift; sourceTree = "<group>"; };
+		FF33E9102A267766007092F8 /* CoreDataAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataAssembly.swift; sourceTree = "<group>"; };
 		FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollectionViewCell.swift; sourceTree = "<group>"; };
 		FF47C2E72A21109E006F3988 /* BananaTubeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BananaTubeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF47C2F12A211100006F3988 /* ChannelListResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListResponseTests.swift; sourceTree = "<group>"; };
@@ -122,6 +129,7 @@
 		FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCoordinator.swift; sourceTree = "<group>"; };
 		FFC2770329EC69000056075D /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		FFC51E852A25FEB200FAB617 /* NetworkSearchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchAssembly.swift; sourceTree = "<group>"; };
 		FFC942B529D6A51B007D361B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
@@ -211,8 +219,12 @@
 		FF169CA42A2503AC00D191FB /* DependencyAssemblers */ = {
 			isa = PBXGroup;
 			children = (
-				FF169CA52A2503E200D191FB /* NetworkSubscriptionsAssembly.swift */,
 				FF169CA72A25051200D191FB /* AuthenticationManagerAssembly.swift */,
+				FFC51E852A25FEB200FAB617 /* NetworkSearchAssembly.swift */,
+				FF169CA52A2503E200D191FB /* NetworkSubscriptionsAssembly.swift */,
+				FF33E90C2A2676CC007092F8 /* NetworkVideosAssembly.swift */,
+				FF33E90E2A267730007092F8 /* UserStoreAssembly.swift */,
+				FF33E9102A267766007092F8 /* CoreDataAssembly.swift */,
 			);
 			path = DependencyAssemblers;
 			sourceTree = "<group>";
@@ -720,16 +732,20 @@
 				FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */,
+				FFC51E862A25FEB200FAB617 /* NetworkSearchAssembly.swift in Sources */,
+				FF33E90D2A2676CC007092F8 /* NetworkVideosAssembly.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
 				FFF7A3BB2A07B0AE00BD6186 /* SearchViewController.swift in Sources */,
 				FFC276EF29E9A59E0056075D /* Constants.swift in Sources */,
 				FFF7A3C62A082FA200BD6186 /* NavbarCoordinator.swift in Sources */,
 				FFF7A3C42A08119300BD6186 /* VideosPresenter.swift in Sources */,
+				FF33E9112A267766007092F8 /* CoreDataAssembly.swift in Sources */,
 				FF5FA1CB29FB14620040672B /* ProfilePresenter.swift in Sources */,
 				FFF7A3BD2A07DFC300BD6186 /* NetworkSearchService.swift in Sources */,
 				FF586AAC29F6F410005D44BF /* VideoPlaybackPresenter.swift in Sources */,
 				FF169CA12A24F4E400D191FB /* Resolver+Extensions.swift in Sources */,
 				FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */,
+				FF33E90F2A267730007092F8 /* UserStoreAssembly.swift in Sources */,
 				FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

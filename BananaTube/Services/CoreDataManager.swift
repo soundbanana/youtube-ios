@@ -25,8 +25,6 @@ final class CoreDataManager {
         return persistentContainer.viewContext
     }
 
-    private init() { }
-
     // MARK: - Video CRUD
 
     public func createVideo(id: String, userEmail: String) {

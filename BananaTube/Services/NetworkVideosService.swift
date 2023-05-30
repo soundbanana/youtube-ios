@@ -12,8 +12,6 @@ class NetworkVideosService {
     let session = URLSession.shared
     let decoder = JSONDecoder()
 
-    private init() { }
-
     func getRealVideos(videoIds: [String]) async -> [Item] {
         var videos: [Item] = []
 
