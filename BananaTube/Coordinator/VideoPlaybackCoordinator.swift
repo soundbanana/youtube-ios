@@ -1,5 +1,5 @@
 //
-//  SearchCoordinator.swift
+//  VideoPlaybackCoordinator.swift
 //  BananaTube
 //
 //  Created by Daniil Chemaev on 29.05.2023.
@@ -8,26 +8,24 @@
 import UIKit
 import Swinject
 
-class SearchCoordinator: CoordinatorProtocol {
+class VideoPlaybackCoordinator: CoordinatorProtocol {
     private var resolver: Resolver
     private weak var navigationController: UINavigationController?
-    private var parentNavCoordinator: NavbarCoordinator?
     private var childCoordinators: [CoordinatorProtocol] = []
     private var finishHandlers: [(() -> Void)] = []
 
-    private var searchBarText: String
+    private var video: Item
 
-    init(navigationController: UINavigationController?, parentNavCoordinator: NavbarCoordinator, resolver: Resolver, searchBarText: String, finishHandler: @escaping (() -> Void)) {
+    init(navigationController: UINavigationController?, resolver: Resolver, video: Item, finishHandler: @escaping (() -> Void)) {
         self.navigationController = navigationController
-        self.parentNavCoordinator = parentNavCoordinator
         self.resolver = resolver
-        self.searchBarText = searchBarText
+        self.video = video
         finishHandlers.append(finishHandler)
     }
 
     func start(animated: Bool) {
-        let viewController = SearchViewController()
-        let presenter = SearchPresenter(view: viewController, coordinator: parentNavCoordinator!, searchBarText: searchBarText)
+        let viewController = VideoPlaybackViewController()
+        let presenter = VideoPlaybackPresenter(view: viewController, coordinator: self, video: video)
         viewController.presenter = presenter
 
         navigationController?.pushViewController(viewController, animated: animated)

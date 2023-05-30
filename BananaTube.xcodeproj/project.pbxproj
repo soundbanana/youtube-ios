@@ -11,7 +11,6 @@
 		861CE7A1E9C01EC828E2404A /* Pods_BananaTubeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F07E0315E9913325B8DE4F5 /* Pods_BananaTubeTests.framework */; };
 		FF0838502A0EE13B0048FB21 /* LibraryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */; };
 		FF0838522A0EE1480048FB21 /* LibraryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */; };
-		FF0968972A251EAE00FDA08B /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF0968962A251EAE00FDA08B /* SearchCoordinator.swift */; };
 		FF169C972A24988200D191FB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF169C992A24988200D191FB /* Localizable.strings */; };
 		FF169C9C2A24999A00D191FB /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF169C9B2A24999A00D191FB /* String+Extension.swift */; };
 		FF169C9F2A24EF8E00D191FB /* CoordinatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF169C9E2A24EF8E00D191FB /* CoordinatorProtocol.swift */; };
@@ -33,7 +32,6 @@
 		FF804D412A1D7662001CA28A /* ApiError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF804D402A1D7662001CA28A /* ApiError.swift */; };
 		FFA4CDEB29F5B6D800CB05DA /* VideoPlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */; };
 		FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */; };
-		FFB125DF2A09A309002907FD /* VideosCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB125DE2A09A309002907FD /* VideosCoordinator.swift */; };
 		FFB87A892A10DF2D00BD0CAE /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB87A882A10DF2D00BD0CAE /* CoreDataManager.swift */; };
 		FFBA0FDB2A2511C900B97874 /* VideoPlaybackCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */; };
 		FFC276EF29E9A59E0056075D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276EE29E9A59E0056075D /* Constants.swift */; };
@@ -89,7 +87,6 @@
 		9CB114C370DD8AF2E860D010 /* Pods-BananaTube.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BananaTube.debug.xcconfig"; path = "Target Support Files/Pods-BananaTube/Pods-BananaTube.debug.xcconfig"; sourceTree = "<group>"; };
 		FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryPresenter.swift; sourceTree = "<group>"; };
 		FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
-		FF0968962A251EAE00FDA08B /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		FF169C942A2496B100D191FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		FF169C982A24988200D191FB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		FF169C9A2A24988600D191FB /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -117,7 +114,6 @@
 		FF804D402A1D7662001CA28A /* ApiError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiError.swift; sourceTree = "<group>"; };
 		FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackViewController.swift; sourceTree = "<group>"; };
 		FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictionsTableViewCell.swift; sourceTree = "<group>"; };
-		FFB125DE2A09A309002907FD /* VideosCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideosCoordinator.swift; sourceTree = "<group>"; };
 		FFB87A882A10DF2D00BD0CAE /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlaybackCoordinator.swift; sourceTree = "<group>"; };
 		FFC276EE29E9A59E0056075D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -198,20 +194,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		FF169C9D2A24EE9300D191FB /* Coordinators */ = {
+		FF169C9D2A24EE9300D191FB /* Coordinator */ = {
 			isa = PBXGroup;
 			children = (
-				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
 				FF169C9E2A24EF8E00D191FB /* CoordinatorProtocol.swift */,
+				FFC942B529D6A51B007D361B /* AppCoordinator.swift */,
 				FF0838512A0EE1480048FB21 /* LibraryCoordinator.swift */,
 				FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */,
 				FFF7A3C52A082FA100BD6186 /* NavbarCoordinator.swift */,
 				FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */,
 				FFBA0FDA2A2511C900B97874 /* VideoPlaybackCoordinator.swift */,
-				FFB125DE2A09A309002907FD /* VideosCoordinator.swift */,
-				FF0968962A251EAE00FDA08B /* SearchCoordinator.swift */,
 			);
-			path = Coordinators;
+			path = Coordinator;
 			sourceTree = "<group>";
 		};
 		FF169CA42A2503AC00D191FB /* DependencyAssemblers */ = {
@@ -245,7 +239,6 @@
 		FF586AAA29F6F3C4005D44BF /* VideoPlayback */ = {
 			isa = PBXGroup;
 			children = (
-				FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */,
 				FFA4CDEA29F5B6D800CB05DA /* VideoPlaybackViewController.swift */,
 			);
 			path = VideoPlayback;
@@ -254,7 +247,6 @@
 		FF5FA1C729FB0D240040672B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */,
 				FF5FA1C829FB140E0040672B /* ProfileViewController.swift */,
 			);
 			path = Profile;
@@ -285,7 +277,29 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
-		FFC276F429E9A9110056075D /* Models */ = {
+		FFBE37FF2A25F3050028753D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				FFF7A3C82A0833E800BD6186 /* Navbar */,
+				FFF7A3C72A0833A900BD6186 /* Main */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		FFBE38002A25F3100028753D /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */,
+				FF5FA1CA29FB14620040672B /* ProfilePresenter.swift */,
+				FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */,
+				FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */,
+				FF586AAB29F6F410005D44BF /* VideoPlaybackPresenter.swift */,
+				FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		FFC276F429E9A9110056075D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */,
@@ -296,7 +310,7 @@
 				FFDC771B2A1BF36E00FF2FAA /* VideoList.swift */,
 				FF804D402A1D7662001CA28A /* ApiError.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		FFC276F929EC50990056075D /* Services */ = {
@@ -313,19 +327,9 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		FFC276FA29EC50B40056075D /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				FFF7A3C72A0833A900BD6186 /* Main */,
-				FFF7A3C82A0833E800BD6186 /* Navbar */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
 		FFC276FC29EC51750056075D /* Subscriptions */ = {
 			isa = PBXGroup;
 			children = (
-				FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */,
 				FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */,
 				FF369A8F29DF736300339FE5 /* VideoCollectionViewCell.swift */,
 			);
@@ -335,7 +339,6 @@
 		FFC276FD29EC51830056075D /* Library */ = {
 			isa = PBXGroup;
 			children = (
-				FF08384F2A0EE13B0048FB21 /* LibraryPresenter.swift */,
 				FFC942BB29D6A784007D361B /* LibraryViewController.swift */,
 			);
 			path = Library;
@@ -389,34 +392,27 @@
 		FFEEC0DD29D4279700CBF948 /* BananaTube */ = {
 			isa = PBXGroup;
 			children = (
+				FFC276F429E9A9110056075D /* Model */,
+				FFBE37FF2A25F3050028753D /* View */,
+				FFBE38002A25F3100028753D /* Presenter */,
+				FF169C9D2A24EE9300D191FB /* Coordinator */,
 				FF169CA42A2503AC00D191FB /* DependencyAssemblers */,
-				FF169C9D2A24EE9300D191FB /* Coordinators */,
 				FFC2770229EC68E40056075D /* Extensions */,
-				FFEEC0EC29D4279800CBF948 /* Info.plist */,
-				FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */,
-				FFEEC0F229D428A800CBF948 /* App */,
-				FFC276F429E9A9110056075D /* Models */,
-				FFC276FA29EC50B40056075D /* Presentation */,
 				FFC276F929EC50990056075D /* Services */,
 				FFEEC0F429D428CE00CBF948 /* Storyboards */,
-			);
-			path = BananaTube;
-			sourceTree = "<group>";
-		};
-		FFEEC0F229D428A800CBF948 /* App */ = {
-			isa = PBXGroup;
-			children = (
+				FFEEC0EC29D4279800CBF948 /* Info.plist */,
+				FFF76EA029FD06D700FB0C00 /* GoogleService-Info.plist */,
+				FF169CA22A25038C00D191FB /* ServiceLocator.swift */,
 				FFEEC0DE29D4279700CBF948 /* AppDelegate.swift */,
 				FFEEC0E729D4279800CBF948 /* Assets.xcassets */,
-				FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */,
-				FF169CA22A25038C00D191FB /* ServiceLocator.swift */,
 			);
-			path = App;
+			path = BananaTube;
 			sourceTree = "<group>";
 		};
 		FFEEC0F429D428CE00CBF948 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				FFEEC0E029D4279700CBF948 /* SceneDelegate.swift */,
 				FFEEC0E929D4279800CBF948 /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
@@ -426,7 +422,6 @@
 			isa = PBXGroup;
 			children = (
 				FFB125DC2A095F71002907FD /* PredictionsTableViewCell.swift */,
-				FFF7A3B82A07B09300BD6186 /* SearchPresenter.swift */,
 				FFF7A3BA2A07B0AE00BD6186 /* SearchViewController.swift */,
 			);
 			path = Search;
@@ -435,7 +430,6 @@
 		FFF7A3C22A08117C00BD6186 /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				FFF7A3C32A08119300BD6186 /* VideosPresenter.swift */,
 				FFF7A3C02A080D6500BD6186 /* VideosViewController.swift */,
 			);
 			path = Videos;
@@ -716,7 +710,6 @@
 				FFE8ABEA2A10E266005D7D4D /* CoreData.xcdatamodeld in Sources */,
 				FFB87A892A10DF2D00BD0CAE /* CoreDataManager.swift in Sources */,
 				FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */,
-				FFB125DF2A09A309002907FD /* VideosCoordinator.swift in Sources */,
 				FFBA0FDB2A2511C900B97874 /* VideoPlaybackCoordinator.swift in Sources */,
 				FF169C9F2A24EF8E00D191FB /* CoordinatorProtocol.swift in Sources */,
 				FFE8ABEF2A10E595005D7D4D /* Video+CoreDataProperties.swift in Sources */,
@@ -725,7 +718,6 @@
 				FFEEC0E129D4279700CBF948 /* SceneDelegate.swift in Sources */,
 				FFF7A3C12A080D6500BD6186 /* VideosViewController.swift in Sources */,
 				FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */,
-				FF0968972A251EAE00FDA08B /* SearchCoordinator.swift in Sources */,
 				FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */,
 				FFDC771A2A1BEC4A00FF2FAA /* PlaylistItem.swift in Sources */,
 				FF78A7C92A023622002A4B9F /* GoogleServices.swift in Sources */,
