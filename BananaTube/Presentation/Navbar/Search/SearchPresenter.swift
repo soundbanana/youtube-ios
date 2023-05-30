@@ -12,7 +12,7 @@ class SearchPresenter {
     private weak var view: SearchViewController?
     private let coordinator: NavbarCoordinator
     private let searchBarText: String
-    var completion: ((String) -> Void)?
+    var completion: ((String?) -> Void)?
 
     let session = URLSession.shared
     let parser = XMLParser()
@@ -20,15 +20,13 @@ class SearchPresenter {
     var predictionsList: [String] = []
 
     init(view: SearchViewController, coordinator: NavbarCoordinator, searchBarText: String) {
+        self.view = view
         self.coordinator = coordinator
         self.searchBarText = searchBarText
     }
 
     func viewDidLoad() {
-        print("SearchBar text in Search presebter: \(searchBarText)")
-//        DispatchQueue.main.async { [self] in
-            view?.update(searchBarText: searchBarText)
-//        }
+        view?.update(searchBarText: searchBarText)
     }
 
     func predict(searchText: String) async {
@@ -45,6 +43,8 @@ class SearchPresenter {
                 elem["suggestion"].element?.attribute(by: "data")?.text
             }
             predictionsList = predictons.compactMap { $0 }
+
+            print("\(searchText) :: \(predictionsList)")
         } catch {
             print(error)
             return
@@ -66,4 +66,8 @@ class SearchPresenter {
     }
 
     func getPredictionsListSize() -> Int { predictionsList.count }
+
+    func backButtonTapped() {
+        completion?(nil)
+    }
 }

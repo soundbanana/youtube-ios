@@ -18,8 +18,9 @@ class VideosPresenter {
 
     let service = NetworkSearchService.shared
 
-    init(coordinator: NavbarCoordinator, searchText: String) {
+    init(view: VideosViewController, coordinator: NavbarCoordinator, searchText: String) {
         self.coordinator = coordinator
+        self.view = view
         self.searchText = searchText
     }
 
@@ -57,7 +58,6 @@ class VideosPresenter {
     }
 
     func startPagination(row: Int) -> Bool {
-        print(row)
         return row == videosList.count - 1 ? true : false
     }
 
@@ -94,7 +94,6 @@ class VideosPresenter {
     }
 
     func showSearch() {
-        print("Search text: \(searchText)")
         coordinator.showSearch(searchBarText: searchText)
     }
 

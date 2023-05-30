@@ -17,7 +17,6 @@ class VideosViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-//        collectionView.reloadData()
         return collectionView
     }()
 
@@ -30,7 +29,7 @@ class VideosViewController: UIViewController {
 
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
-        search.placeholder = "Search BananaTube"
+        search.placeholder = "search_placeholder".localized
         search.sizeToFit()
         search.backgroundColor = UIColor(named: "Background")
         search.backgroundImage = UIImage()
@@ -48,7 +47,6 @@ class VideosViewController: UIViewController {
                 self.collectionView.reloadData()
             }
         }
-        print(123456)
     }
 
     private func setupViews() {

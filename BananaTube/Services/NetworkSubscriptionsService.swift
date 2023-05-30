@@ -50,7 +50,6 @@ class NetworkSubscriptionsService {
         }
 
         let (contentDetails, _) = try await session.data(from: url)
-        print(url.absoluteString)
         let response = try decoder.decode(ChannelListResponse.self, from: contentDetails)
 
         let playlists = response.items
