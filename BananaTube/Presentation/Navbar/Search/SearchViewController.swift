@@ -12,7 +12,6 @@ class SearchViewController: UIViewController {
     var presenter: SearchPresenter!
     var completion: (() -> Void)?
 
-
     private let backButton: UIButton = {
         var button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
@@ -23,6 +22,7 @@ class SearchViewController: UIViewController {
     private let searchBar: UISearchBar = {
         let search = UISearchBar()
         search.placeholder = "search_placeholder".localized
+        search.text = "etst"
         search.backgroundImage = UIImage()
         search.backgroundColor = UIColor(named: "Background")
         search.tintColor = UIColor(named: "MainText")
@@ -49,8 +49,11 @@ class SearchViewController: UIViewController {
     func update(searchBarText: String) {
         searchBar.text = searchBarText
         Task {
+            print("SearchBarText in VC: \(searchBarText)")
             await presenter.predict(searchText: searchBarText)
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 
@@ -82,7 +85,9 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         Task {
             await presenter.predict(searchText: searchText)
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
 }
@@ -92,7 +97,7 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "text")
-        tableView.reloadData()
+//        tableView.reloadData()
 
         NSLayoutConstraint.activate([
             tableView.leftAnchor.constraint(equalTo: self.view.leftAnchor),

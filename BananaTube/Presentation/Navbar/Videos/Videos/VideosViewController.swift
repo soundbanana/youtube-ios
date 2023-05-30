@@ -17,7 +17,7 @@ class VideosViewController: UIViewController {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.reloadData()
+//        collectionView.reloadData()
         return collectionView
     }()
 
@@ -44,7 +44,11 @@ class VideosViewController: UIViewController {
         setupViews()
         Task {
             await presenter.obtainData()
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
         }
+        print(123456)
     }
 
     private func setupViews() {
@@ -137,6 +141,9 @@ extension VideosViewController: UICollectionViewDataSource {
         if presenter.startPagination(row: indexPath.row) {
             Task {
                 await presenter.obtainData()
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
             }
         }
     }

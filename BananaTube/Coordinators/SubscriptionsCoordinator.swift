@@ -43,33 +43,24 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showSearch(searchBarText: String) {
-        print(123)
         let searchViewController = SearchViewController()
-        let searchPresenter = SearchPresenter(view: searchViewController, coordinator: self, searchBarText: searchBarText)
+        let searchPresenter = SearchPresenter(view: searchViewController, coordinator: self, searchBarText: "Test")
+//        let searchPresenter = SearchPresenter(view: searchViewController, coordinator: self, searchBarText: searchBarText)
         searchViewController.presenter = searchPresenter
 
-        searchPresenter.completion = { [weak self] in
-            print(456)
+        searchPresenter.completion = { [weak self] searchText in
+            self?.navigationController?.dismiss(animated: true)
 
             // Push the VideosViewController after the SearchViewController is closed
             let videosViewController = VideosViewController()
-            let videosPresenter = VideosPresenter(coordinator: self!, searchText: searchBarText)
+            print(searchText)
+            let videosPresenter = VideosPresenter(coordinator: self!, searchText: searchText)
             videosViewController.presenter = videosPresenter
             self?.navigationController?.pushViewController(videosViewController, animated: true)
         }
-        navigationController?.pushViewController(searchViewController, animated: false)
-
-//            // Check if the SearchViewController is already in the navigation stack
-//            if let searchViewControllerIndex = navigationController?.viewControllers.firstIndex(where: { $0 is SearchViewController }) {
-//                // Pop the SearchViewController and execute the completion block
-//                navigationController?.popToViewController( navigationController?.viewControllers[searchViewControllerIndex], animated: true, completion: completionBlock)
-//            } else {
-//                // Push the SearchViewController onto the navigation stack and execute the completion block
-//                navigationController?.pushViewController(searchViewController, animated: true, completion: completionBlock)
-//            }
-
-            // Set the searchBarText in the shared SearchPresenter
-//            searchPresenter.searchBarText = searchBarText
+        let searchNavigationController = UINavigationController(rootViewController: searchViewController)
+        searchNavigationController.modalPresentationStyle = .fullScreen
+        navigationController?.present(searchNavigationController, animated: true)
     }
 
     func showProfile() {

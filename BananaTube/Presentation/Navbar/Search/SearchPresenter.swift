@@ -12,8 +12,7 @@ class SearchPresenter {
     private weak var view: SearchViewController?
     private let coordinator: NavbarCoordinator
     private let searchBarText: String
-    var completion: (() -> Void)?
-
+    var completion: ((String) -> Void)?
 
     let session = URLSession.shared
     let parser = XMLParser()
@@ -26,7 +25,10 @@ class SearchPresenter {
     }
 
     func viewDidLoad() {
-        view?.update(searchBarText: searchBarText)
+        print("SearchBar text in Search presebter: \(searchBarText)")
+//        DispatchQueue.main.async { [self] in
+            view?.update(searchBarText: searchBarText)
+//        }
     }
 
     func predict(searchText: String) async {
@@ -54,8 +56,7 @@ class SearchPresenter {
     }
 
     func search(searchText: String) {
-        completion?()
-        coordinator.showVideosList(searchText: searchText)
+        completion?(searchText)
     }
 
     func configureCell(cell: PredictionsTableViewCell, row: Int) {

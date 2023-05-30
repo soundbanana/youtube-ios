@@ -9,8 +9,6 @@ import UIKit
 
 class VideosPresenter {
     weak var view: VideosViewController?
-    var navigationController: UINavigationController?
-
     var coordinator: NavbarCoordinator
 
     var searchResult: SearchResult!
@@ -52,10 +50,6 @@ class VideosPresenter {
             }
             videosList.append(contentsOf: result)
         }
-
-        DispatchQueue.main.async {
-            self.view?.reloadData()
-        }
     }
 
     func getCollectionViewSize() -> Int {
@@ -63,6 +57,7 @@ class VideosPresenter {
     }
 
     func startPagination(row: Int) -> Bool {
+        print(row)
         return row == videosList.count - 1 ? true : false
     }
 
@@ -99,6 +94,7 @@ class VideosPresenter {
     }
 
     func showSearch() {
+        print("Search text: \(searchText)")
         coordinator.showSearch(searchBarText: searchText)
     }
 
