@@ -18,12 +18,14 @@ enum NetworkError: Error {
 }
 
 class NetworkSubscriptionsService {
-    public static let shared = NetworkSubscriptionsService()
-
     let session = URLSession.shared
     let decoder = JSONDecoder()
 
-    let videosService = NetworkVideosService.shared
+    let networkVideosService: NetworkVideosService
+
+    init(networkVideosService: NetworkVideosService) {
+        self.networkVideosService = networkVideosService
+    }
 
     func getSubscriptionsChannels(accessToken: String?) async throws -> [String] {
         guard let accessToken = accessToken else {
@@ -50,7 +52,6 @@ class NetworkSubscriptionsService {
         }
 
         let (contentDetails, _) = try await session.data(from: url)
-        print(url.absoluteString)
         let response = try decoder.decode(ChannelListResponse.self, from: contentDetails)
 
         let playlists = response.items
@@ -107,10 +108,10 @@ class NetworkSubscriptionsService {
                 let chunks = allItems.chunked(into: 50)
 
                 for chunk in chunks {
-                    allVideos.append(contentsOf: await videosService.getRealVideos(videoIds: chunk))
+                    allVideos.append(contentsOf: await networkVideosService.getRealVideos(videoIds: chunk))
                 }
             } else {
-                allVideos.append(contentsOf: await videosService.getRealVideos(videoIds: allItems))
+                allVideos.append(contentsOf: await networkVideosService.getRealVideos(videoIds: allItems))
             }
 
             let sortedVideos = allVideos.sorted { $0.snippet?.publishedAt ?? "" > $1.snippet?.publishedAt ?? "" }

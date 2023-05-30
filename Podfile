@@ -10,6 +10,7 @@ target 'BananaTube' do
     pod 'GoogleAPIClientForREST/YouTube'
     pod 'Firebase/Auth'
     pod 'SWXMLHash'
+    pod 'Swinject'
 end
 
 target 'BananaTubeTests' do
@@ -20,6 +21,7 @@ target 'BananaTubeTests' do
     pod 'GoogleAPIClientForREST/YouTube'
     pod 'Firebase/Auth'
     pod 'SWXMLHash'
+    pod 'Swinject'
 end
 
 post_install do |installer|

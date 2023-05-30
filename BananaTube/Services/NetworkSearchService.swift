@@ -8,11 +8,8 @@
 import Foundation
 
 class NetworkSearchService {
-    static let shared = NetworkSearchService()
     let session = URLSession.shared
     let decoder = JSONDecoder()
-
-    private init() { }
 
     func getVideos(searchText: String, nextPageToken: String, completion: @escaping (Result<SearchResult, Error>) -> Void) async {
         let mainPart = "https://youtube.googleapis.com/youtube/v3/search"
