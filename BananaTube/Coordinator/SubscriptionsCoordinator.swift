@@ -22,11 +22,10 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func start(animated: Bool) {
-        let viewController = SubscriptionsViewController()
-        let presenter = SubscriptionsPresenter(coordinator: self)
-        viewController.presenter = presenter
-        presenter.view = viewController
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let subscriptionsViewController = SubscriptionsViewController()
+        let subscriptionsPresenter = SubscriptionsPresenter(coordinator: self, view: subscriptionsViewController, service: resolver.resolve())
+        subscriptionsViewController.presenter = subscriptionsPresenter
+        let navigationController = UINavigationController(rootViewController: subscriptionsViewController)
         self.navigationController = navigationController
 
         parentTabBarController?.addViewController(
@@ -44,7 +43,12 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
 
     func showSearch(searchBarText: String) {
         let searchViewController = SearchViewController()
-        let searchPresenter = SearchPresenter(view: searchViewController, coordinator: self, searchBarText: searchBarText)
+        let searchPresenter = SearchPresenter(
+            coordinator: self,
+            view: searchViewController,
+            searchBarText: searchBarText
+        )
+
         searchViewController.presenter = searchPresenter
 
         searchPresenter.completion = { [weak self] searchText in
@@ -55,7 +59,14 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
             }
             // Push the VideosViewController after the SearchViewController is closed
             let videosViewController = VideosViewController()
-            let videosPresenter = VideosPresenter(view: videosViewController, coordinator: self!, searchText: searchText)
+
+            let videosPresenter = VideosPresenter(
+                coordinator: self!,
+                view: videosViewController,
+                service: (self?.resolver.resolve())!,
+                searchText: searchText
+            )
+
             videosViewController.presenter = videosPresenter
             self?.navigationController?.pushViewController(videosViewController, animated: true)
         }
@@ -65,14 +76,13 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
     }
 
     func showProfile() {
-        let presenter = ProfilePresenter()
-        let viewController = ProfileViewController()
+        let profileViewController = ProfileViewController()
+        let profilePresenter = ProfilePresenter(view: profileViewController, authenticationManager: resolver.resolve())
 
-        viewController.presenter = presenter
-        presenter.view = viewController
+        profileViewController.presenter = profilePresenter
 
-        viewController.modalPresentationStyle = .fullScreen
-        navigationController?.present(viewController, animated: true)
+        profileViewController.modalPresentationStyle = .fullScreen
+        navigationController?.present(profileViewController, animated: true)
     }
 
     func showDetails(video: Item) {

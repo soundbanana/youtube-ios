@@ -8,9 +8,13 @@
 import UIKit
 
 class ProfilePresenter {
-    weak var view: ProfileViewController?
-    var navigationController: UINavigationController?
-    private var authenticationManager = AuthenticationManager.shared
+    private weak var view: ProfileViewController?
+    private var authenticationManager: AuthenticationManager
+
+    init(view: ProfileViewController, authenticationManager: AuthenticationManager) {
+        self.view = view
+        self.authenticationManager = authenticationManager
+    }
 
     func signIn() {
         authenticationManager.signIn(withPresenting: view!) { error in

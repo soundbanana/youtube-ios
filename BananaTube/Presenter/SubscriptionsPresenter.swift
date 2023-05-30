@@ -25,21 +25,23 @@ protocol SubscriptionsPresenterProtocol {
 }
 
 class SubscriptionsPresenter: SubscriptionsPresenterProtocol {
-    weak var view: SubscriptionsView?
-    let coordinator: SubscriptionsCoordinator
+    private weak var view: SubscriptionsView?
+    private let coordinator: SubscriptionsCoordinator
 
     private(set) var videosList: [Item] = []
     var screenState: ScreenState = .unauthorized
 
-    private let networkSubscriptionsService = NetworkSubscriptionsService.shared
+    private let service: NetworkSubscriptionsService
 
     private var cancellables = Set<AnyCancellable>()
 
-    init(coordinator: SubscriptionsCoordinator) {
+    init(coordinator: SubscriptionsCoordinator, view: SubscriptionsView, service: NetworkSubscriptionsService) {
         self.coordinator = coordinator
+        self.view = view
+        self.service = service
         UserStore.shared.userStatePublisher
             .sink { [weak self] state in
-            self?.handleUserStateChange(state: state)
+                self?.handleUserStateChange(state: state)
             }
             .store(in: &cancellables)
     }
@@ -76,7 +78,7 @@ class SubscriptionsPresenter: SubscriptionsPresenterProtocol {
         switch screenState {
         case .authorized:
             let accessToken = GIDSignIn.sharedInstance.currentUser?.accessToken.tokenString
-            await networkSubscriptionsService.getSubscriptions(accessToken: accessToken) { result in
+            await service.getSubscriptions(accessToken: accessToken) { result in
                 switch result {
                 case .success(let videos):
                     self.videosList = videos

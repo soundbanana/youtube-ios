@@ -8,19 +8,20 @@
 import UIKit
 
 class VideosPresenter {
-    weak var view: VideosViewController?
-    var coordinator: NavbarCoordinator
+    private weak var view: VideosViewController?
+    private var coordinator: NavbarCoordinator
 
-    var searchResult: SearchResult!
-    let searchText: String
-    var videosList: [Item] = []
-    var nextPageToken: String = ""
+    private var searchResult: SearchResult!
+    private let searchText: String
+    private var videosList: [Item] = []
+    private var nextPageToken: String = ""
 
-    let service = NetworkSearchService.shared
+    private let service: NetworkSearchService
 
-    init(view: VideosViewController, coordinator: NavbarCoordinator, searchText: String) {
+    init(coordinator: NavbarCoordinator, view: VideosViewController, service: NetworkSearchService, searchText: String) {
         self.coordinator = coordinator
         self.view = view
+        self.service = service
         self.searchText = searchText
     }
 

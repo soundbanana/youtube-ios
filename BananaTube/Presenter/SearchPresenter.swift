@@ -19,7 +19,7 @@ class SearchPresenter {
 
     var predictionsList: [String] = []
 
-    init(view: SearchViewController, coordinator: NavbarCoordinator, searchBarText: String) {
+    init(coordinator: NavbarCoordinator, view: SearchViewController, searchBarText: String) {
         self.view = view
         self.coordinator = coordinator
         self.searchBarText = searchBarText
