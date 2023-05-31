@@ -85,21 +85,21 @@ class VideoCollectionViewCell: UICollectionViewCell {
     func setConstraints() {
         NSLayoutConstraint.activate([
             thumbnailImageView.topAnchor.constraint(equalTo: topAnchor, constant: 5),
+            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor),
             thumbnailImageView.heightAnchor.constraint(equalToConstant: 215),
-            thumbnailImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 0),
-            thumbnailImageView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
 
             userProfileImageView.topAnchor.constraint(equalTo: thumbnailImageView.bottomAnchor, constant: 10),
-            userProfileImageView.leadingAnchor.constraint(equalTo: thumbnailImageView.leadingAnchor, constant: 5),
+            userProfileImageView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             userProfileImageView.heightAnchor.constraint(equalToConstant: 36),
             userProfileImageView.widthAnchor.constraint(equalToConstant: 36),
 
             titleLabel.topAnchor.constraint(equalTo: userProfileImageView.topAnchor),
-            titleLabel.leftAnchor.constraint(equalTo: userProfileImageView.rightAnchor, constant: 12),
-            titleLabel.trailingAnchor.constraint(equalTo: thumbnailImageView.trailingAnchor),
+            titleLabel.leadingAnchor.constraint(equalTo: userProfileImageView.trailingAnchor, constant: 12),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 
             subtitleTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor),
-            subtitleTextView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
+            subtitleTextView.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             subtitleTextView.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor)
         ])
     }
