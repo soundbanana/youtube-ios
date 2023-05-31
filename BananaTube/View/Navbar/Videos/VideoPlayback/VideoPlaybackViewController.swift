@@ -12,6 +12,16 @@ import youtube_ios_player_helper
 class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     var presenter: VideoPlaybackPresenter!
 
+    private let backButton: UIButton = {
+        var button = UIButton(type: .system)
+        button.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
+        button.tintColor = UIColor(named: "MainText")
+        button.imageView?.contentMode = .scaleAspectFit
+        button.contentHorizontalAlignment = .left
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
+
     private let playerView: YTPlayerView = {
         let view = YTPlayerView()
         view.backgroundColor = UIColor(named: "Background")
@@ -21,9 +31,9 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
 
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.textColor = UIColor(named: "MainText")
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -31,13 +41,14 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     private let subtitleTextView: UILabel = {
         let label = UILabel()
         label.textColor = UIColor(named: "AdditionalText")
-        label.numberOfLines = 2
+        label.numberOfLines = 0
         label.font = label.font.withSize(14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
 
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = UIColor(named: "Background")
         setupViews()
         presenter.configureData()
@@ -51,26 +62,43 @@ class VideoPlaybackViewController: UIViewController, YTPlayerViewDelegate {
     }
 
     private func setupViews() {
+        setupNavigationBar()
         view.addSubview(playerView)
         view.addSubview(titleLabel)
         view.addSubview(subtitleTextView)
         setConstraints()
     }
 
+    private func setupNavigationBar() {
+        backButton.addTarget(self, action: #selector(handleBackButtonTapped), for: .touchUpInside)
+        NSLayoutConstraint.activate([
+            backButton.widthAnchor.constraint(equalToConstant: 32),
+            backButton.heightAnchor.constraint(equalTo: backButton.widthAnchor)
+        ])
+
+        let backButtonItem = UIBarButtonItem(customView: backButton)
+
+        navigationItem.leftBarButtonItem = backButtonItem
+    }
+
+    @objc private func handleBackButtonTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+
     func setConstraints() {
         NSLayoutConstraint.activate([
-            playerView.topAnchor.constraint(equalTo: view.topAnchor),
+            playerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             playerView.heightAnchor.constraint(equalToConstant: 215),
-            playerView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            playerView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            playerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            playerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
             titleLabel.topAnchor.constraint(equalTo: playerView.bottomAnchor, constant: 15),
-            titleLabel.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor, constant: 5),
-            titleLabel.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor, constant: -5),
+            titleLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            titleLabel.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
 
             subtitleTextView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
-            subtitleTextView.leftAnchor.constraint(equalTo: titleLabel.leftAnchor),
-            subtitleTextView.rightAnchor.constraint(equalTo: titleLabel.rightAnchor)
+            subtitleTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            subtitleTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16)
         ])
     }
 
@@ -85,7 +113,7 @@ struct ViewControllerRepresentable: UIViewControllerRepresentable {
         VideoPlaybackViewController()
     }
 
-    func updateUIViewController(_ uiViewController: VideoPlaybackViewController, context: Context) {}
+    func updateUIViewController(_ uiViewController: VideoPlaybackViewController, context: Context) { }
 }
 
 struct ViewController_Previews: PreviewProvider {
