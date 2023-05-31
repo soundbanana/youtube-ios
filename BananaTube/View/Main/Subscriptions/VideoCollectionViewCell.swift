@@ -14,7 +14,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .systemGray6
+        imageView.backgroundColor = UIColor(named: "SecondaryBackground")
         return imageView
     }()
 
@@ -22,6 +22,7 @@ class VideoCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 18
+        imageView.backgroundColor = UIColor(named: "SecondaryBackground")
         imageView.clipsToBounds = true
         return imageView
     }()

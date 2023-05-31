@@ -40,6 +40,26 @@ class PredictionsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        if selected {
+            contentView.backgroundColor = UIColor(named: "SecondaryBackground")
+        } else {
+            contentView.backgroundColor = UIColor(named: "Background")
+        }
+    }
+
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+
+        if highlighted {
+            contentView.backgroundColor = UIColor(named: "SecondaryBackground")
+        } else {
+            contentView.backgroundColor = UIColor(named: "Background")
+        }
+    }
+
     public func configure(title: String) {
         searchIcon.image = UIImage(systemName: "magnifyingglass")
         titleLabel.text = title

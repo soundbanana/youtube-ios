@@ -23,7 +23,6 @@ class LibraryViewController: UIViewController, LibraryView {
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.reloadData()
         collectionView.refreshControl = refreshControl
         return collectionView
     }()
@@ -73,7 +72,6 @@ class LibraryViewController: UIViewController, LibraryView {
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        collectionView.refreshControl = refreshControl
     }
 
     private func setupNoUserView() {
