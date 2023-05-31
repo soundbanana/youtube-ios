@@ -31,7 +31,8 @@ class SubscriptionsCoordinator: CoordinatorProtocol, NavbarCoordinator {
         parentTabBarController?.addViewController(
             viewController: navigationController,
             title: "subscriptions_tab_bar_item".localized,
-            image: UIImage(systemName: "books.vertical")
+            image: UIImage(systemName: "books.vertical"),
+            selectedImage: UIImage(systemName: "books.vertical.fill")
         )
     }
 
