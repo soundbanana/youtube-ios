@@ -14,7 +14,9 @@ class MainTabBarCoordinator: CoordinatorProtocol {
     private var resolver: Resolver
     private var tabBarController: UITabBarController = {
         var tabBar = UITabBarController()
-        tabBar.tabBar.tintColor = UIColor(named: "MainText")
+        tabBar.tabBar.tintColor = UIColor(named: "TabbarSelected")
+        tabBar.tabBar.unselectedItemTintColor = UIColor(named: "TabbarUnselected")
+
         tabBar.tabBar.barTintColor = UIColor(named: "Background")
         tabBar.tabBar.isTranslucent = false
         tabBar.tabBar.backgroundImage = UIImage()
@@ -58,15 +60,5 @@ class MainTabBarCoordinator: CoordinatorProtocol {
         guard let finishHandler = completion else { return }
         finishHandlers.append(finishHandler)
         childCoordinators.finishAll(animated: animated, completion: nil)
-    }
-}
-
-extension UITabBarController {
-    func addViewController(viewController: UIViewController, title: String, image: UIImage?) {
-        viewController.title = title
-        viewController.tabBarItem.image = image
-        var viewControllers = self.viewControllers ?? []
-        viewControllers.append(viewController)
-        setViewControllers(viewControllers, animated: true)
     }
 }

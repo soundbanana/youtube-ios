@@ -17,13 +17,13 @@ class LibraryViewController: UIViewController, LibraryView {
     var presenter: LibraryPresenter!
 
     private lazy var collectionView: UICollectionView = {
-        let collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: createLayout())
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.backgroundColor = UIColor(named: "Background")
         collectionView.register(VideoCollectionViewCell.self, forCellWithReuseIdentifier: "VideoCollectionViewCell")
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.reloadData()
+        collectionView.refreshControl = refreshControl
         return collectionView
     }()
 
@@ -67,12 +67,11 @@ class LibraryViewController: UIViewController, LibraryView {
     private func setupAuthorizedView() {
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.leftAnchor.constraint(equalTo: view.leftAnchor),
-            collectionView.rightAnchor.constraint(equalTo: view.rightAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-        collectionView.refreshControl = refreshControl
     }
 
     private func setupNoUserView() {

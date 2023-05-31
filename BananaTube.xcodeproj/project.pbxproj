@@ -40,12 +40,13 @@
 		FFC276F629E9ADC40056075D /* Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276F529E9ADC40056075D /* Subscriptions.swift */; };
 		FFC276FF29EC5AF60056075D /* SubscriptionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */; };
 		FFC2770129EC60410056075D /* SubscriptionsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */; };
-		FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770329EC69000056075D /* Extension + UIViewController.swift */; };
+		FFC2770429EC69000056075D /* Extension+UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC2770329EC69000056075D /* Extension+UIViewController.swift */; };
 		FFC51E862A25FEB200FAB617 /* NetworkSearchAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC51E852A25FEB200FAB617 /* NetworkSearchAssembly.swift */; };
 		FFC942B629D6A51B007D361B /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B529D6A51B007D361B /* AppCoordinator.swift */; };
 		FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */; };
 		FFC942BA29D6A778007D361B /* SubscriptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */; };
 		FFC942BC29D6A784007D361B /* LibraryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC942BB29D6A784007D361B /* LibraryViewController.swift */; };
+		FFD422F42A27834100C9FFA7 /* Extension+UITabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD422F32A27834100C9FFA7 /* Extension+UITabBarController.swift */; };
 		FFDC77102A1A708B00FF2FAA /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */; };
 		FFDC77162A1ABCAA00FF2FAA /* UserStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */; };
 		FFDC77182A1BD35B00FF2FAA /* ChannelListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */; };
@@ -124,12 +125,13 @@
 		FFC276F529E9ADC40056075D /* Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subscriptions.swift; sourceTree = "<group>"; };
 		FFC276FE29EC5AF60056075D /* SubscriptionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsPresenter.swift; sourceTree = "<group>"; };
 		FFC2770029EC60410056075D /* SubscriptionsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsCoordinator.swift; sourceTree = "<group>"; };
-		FFC2770329EC69000056075D /* Extension + UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIViewController.swift"; sourceTree = "<group>"; };
+		FFC2770329EC69000056075D /* Extension+UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UIViewController.swift"; sourceTree = "<group>"; };
 		FFC51E852A25FEB200FAB617 /* NetworkSearchAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSearchAssembly.swift; sourceTree = "<group>"; };
 		FFC942B529D6A51B007D361B /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B729D6A6CA007D361B /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 		FFC942B929D6A778007D361B /* SubscriptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionsViewController.swift; sourceTree = "<group>"; };
 		FFC942BB29D6A784007D361B /* LibraryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewController.swift; sourceTree = "<group>"; };
+		FFD422F32A27834100C9FFA7 /* Extension+UITabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+UITabBarController.swift"; sourceTree = "<group>"; };
 		FFDC770F2A1A708B00FF2FAA /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		FFDC77152A1ABCAA00FF2FAA /* UserStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserStore.swift; sourceTree = "<group>"; };
 		FFDC77172A1BD35B00FF2FAA /* ChannelListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelListResponse.swift; sourceTree = "<group>"; };
@@ -353,8 +355,9 @@
 		FFC2770229EC68E40056075D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FFC2770329EC69000056075D /* Extension + UIViewController.swift */,
+				FFC2770329EC69000056075D /* Extension+UIViewController.swift */,
 				FF169CA02A24F4E400D191FB /* Resolver+Extensions.swift */,
+				FFD422F32A27834100C9FFA7 /* Extension+UITabBarController.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -696,7 +699,7 @@
 				FFDC77162A1ABCAA00FF2FAA /* UserStore.swift in Sources */,
 				FF169CA82A25051200D191FB /* AuthenticationManagerAssembly.swift in Sources */,
 				FFF7A3BF2A07EA2900BD6186 /* SearchResult.swift in Sources */,
-				FFC2770429EC69000056075D /* Extension + UIViewController.swift in Sources */,
+				FFC2770429EC69000056075D /* Extension+UIViewController.swift in Sources */,
 				FFC276F129E9A6220056075D /* NetworkSubscriptionsService.swift in Sources */,
 				FFF7A3B92A07B09300BD6186 /* SearchPresenter.swift in Sources */,
 				FFC942B829D6A6CA007D361B /* MainTabBarCoordinator.swift in Sources */,
@@ -707,6 +710,7 @@
 				FFDC771C2A1BF36E00FF2FAA /* VideoList.swift in Sources */,
 				FF804D412A1D7662001CA28A /* ApiError.swift in Sources */,
 				FFB125DD2A095F71002907FD /* PredictionsTableViewCell.swift in Sources */,
+				FFD422F42A27834100C9FFA7 /* Extension+UITabBarController.swift in Sources */,
 				FFEEC0DF29D4279700CBF948 /* AppDelegate.swift in Sources */,
 				FF169CA62A2503E200D191FB /* NetworkSubscriptionsAssembly.swift in Sources */,
 				FF5FA1C929FB140E0040672B /* ProfileViewController.swift in Sources */,

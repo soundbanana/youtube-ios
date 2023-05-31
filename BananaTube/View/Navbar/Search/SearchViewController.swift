@@ -55,6 +55,7 @@ class SearchViewController: UIViewController {
     }
 
     private func setupViews() {
+        createCustomNavigationBar()
         view.backgroundColor = UIColor(named: "Background")
         view.addSubview(tableView)
 
