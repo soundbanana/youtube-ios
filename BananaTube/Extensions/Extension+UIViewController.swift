@@ -42,7 +42,7 @@ extension UIViewController {
             UIImage(systemName: imageName)?.withRenderingMode(.alwaysTemplate),
             for: .normal
         )
-        button.tintColor = UIColor(named: "MainText")
+        button.tintColor = UIColor(named: "NavbarButton")
         button.imageView?.contentMode = .scaleAspectFit
         button.contentVerticalAlignment = .fill
         button.contentHorizontalAlignment = .fill

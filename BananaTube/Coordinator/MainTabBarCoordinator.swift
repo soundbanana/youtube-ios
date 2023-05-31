@@ -14,7 +14,9 @@ class MainTabBarCoordinator: CoordinatorProtocol {
     private var resolver: Resolver
     private var tabBarController: UITabBarController = {
         var tabBar = UITabBarController()
-        tabBar.tabBar.tintColor = UIColor(named: "MainText")
+        tabBar.tabBar.tintColor = UIColor(named: "TabbarSelected")
+        tabBar.tabBar.unselectedItemTintColor = UIColor(named: "TabbarUnselected")
+
         tabBar.tabBar.barTintColor = UIColor(named: "Background")
         tabBar.tabBar.isTranslucent = false
         tabBar.tabBar.backgroundImage = UIImage()

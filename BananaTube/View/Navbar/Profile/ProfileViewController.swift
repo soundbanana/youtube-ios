@@ -70,10 +70,11 @@ class ProfileViewController: UIViewController {
     }()
 
     let signOutButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setTitle("sign_out_button".localized, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: 18, weight: .medium)
-        button.backgroundColor = UIColor(named: "MainButton")
+        button.backgroundColor = UIColor(named: "SignOutButton")
+        button.setTitleColor(UIColor(named: "SignOutButtonText"), for: .normal)
         button.layer.cornerRadius = 16
         button.clipsToBounds = true
         button.translatesAutoresizingMaskIntoConstraints = false
