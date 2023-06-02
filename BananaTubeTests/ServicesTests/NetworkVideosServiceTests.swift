@@ -9,7 +9,7 @@ import XCTest
 @testable import BananaTube
 
 class NetworkVideosServiceTests: XCTestCase {
-    let service = NetworkVideosService.shared
+    let service = NetworkVideosService()
 
     func testGetRealVideos_Successful() async throws {
         // Given
