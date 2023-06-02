@@ -9,10 +9,10 @@ import XCTest
 @testable import BananaTube
 
 class NetworkSearchServiceTests: XCTestCase {
+    let service = NetworkSearchService()
 
     func testGetVideos_Success() async throws {
         // Given
-        let service = NetworkSearchService.shared
         let searchText = "banana"
         let nextPageToken = ""
         let expectation = XCTestExpectation(description: "Get videos expectation")
@@ -32,7 +32,6 @@ class NetworkSearchServiceTests: XCTestCase {
 
     func testGetVideos_KeyNotFound() async throws {
         // Given
-        let service = NetworkSearchService.shared
         let searchText = "banana"
         let nextPageToken = "testtesttesttesttesttesttesttesttesttesttesttest"
         let expectation = XCTestExpectation(description: "Get videos expectation")

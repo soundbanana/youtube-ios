@@ -9,11 +9,9 @@ import XCTest
 @testable import BananaTube
 
 class NetworkSubscriptionsServiceTests: XCTestCase {
+    let service = NetworkSubscriptionsService(networkVideosService: NetworkVideosService())
 
     func testGetSubscriptionsChannels_Unauthorized() async {
-        // Given
-        let service = NetworkSubscriptionsService.shared
-
         // When
         do {
             _ = try await service.getSubscriptionsChannels(accessToken: nil)
@@ -27,9 +25,6 @@ class NetworkSubscriptionsServiceTests: XCTestCase {
     }
 
     func testGetPlaylists_Success() async throws {
-        // Given
-        let service = NetworkSubscriptionsService.shared
-
         // When
         let playlists = try await service.getPlaylists(subscriptions: ["UCj7bSQWlq2O4lhGxGll5SUA", "UCk73U4QT3cNDvqb_PaWM8AA", "UCM7-8EfoIv0T9cCI4FhHbKQ", "UC6bTF68IAV1okfRfwXIP1Cg"])
 
@@ -39,9 +34,6 @@ class NetworkSubscriptionsServiceTests: XCTestCase {
     }
 
     func testGetPlaylists_KeyNotFound() async throws {
-        // Given
-        let service = NetworkSubscriptionsService.shared
-
         // When
         do {
             // Provide an invalid URL to trigger the NetworkError.invalidURL
@@ -62,9 +54,6 @@ class NetworkSubscriptionsServiceTests: XCTestCase {
     }
     
     func testGetPlaylistItems_Success() async throws {
-        // Given
-        let service = NetworkSubscriptionsService.shared
-
         // When
         let items = try await service.getPlaylistItems(playlist: "UUj7bSQWlq2O4lhGxGll5SUA")
 
@@ -74,9 +63,6 @@ class NetworkSubscriptionsServiceTests: XCTestCase {
     }
 
     func testGetPlaylistItems_PlaylistNotFound() async {
-        // Given
-        let service = NetworkSubscriptionsService.shared
-
         // When
         do {
             let items = try await service.getPlaylistItems(playlist: "invalidPlaylist")
