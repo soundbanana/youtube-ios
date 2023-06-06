@@ -1,5 +1,5 @@
 <p align="center">
-<img src="readme-resources/icon.png" alt="BananaTube">
+<img src="readme-resources/app-icon.png" alt="BananaTube">
 </p>
 
 <h1 align="center">BananaTube</h1>
