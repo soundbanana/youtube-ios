@@ -18,7 +18,7 @@ No Shorts, no Recommendations.
 Only you and your choice
 
 ## Dependencies
-To set up dependencies, run pod install.
+To set up dependencies, run `pod install`.
 
 ## Running
-Open BananaTube.xcworkspace, change the bundle identifier to an identifier linked to your Apple developer account in order to run. Build using the BananaTube scheme.
+Open `BananaTube.xcworkspace`, change the bundle identifier to an identifier linked to your Apple developer account in order to run. Build using the `BananaTube` scheme.
