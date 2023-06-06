@@ -15,7 +15,7 @@ BananaTube is an YouTube app but without any distractions.
 <br>
 No Shorts, no Recommendations.
 <br>
-Only you and your choice
+Only you and your choice.
 
 ## Dependencies
 To set up dependencies, run `pod install`.
